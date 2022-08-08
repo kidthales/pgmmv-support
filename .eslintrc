@@ -1,0 +1,10 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:es5/no-es2015"],
+  "env": {},
+  "parserOptions": {
+    "ecmaVersion": 5
+  },
+  "rules": {
+    "no-undef": "off"
+  }
+}

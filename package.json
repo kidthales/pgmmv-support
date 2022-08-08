@@ -1,0 +1,34 @@
+{
+  "name": "pgmmv-support",
+  "description": "Pixel Game Maker MV support.",
+  "license": "MIT",
+  "author": "kidthales <kidthales@agogpixel.com>",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kidthales/pgmmv-support"
+  },
+  "scripts": {
+    "postinstall": "husky install",
+    "lint": "eslint . && prettier --check .",
+    "lint-fix": "eslint --fix . && prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "~8.21.0",
+    "eslint-config-prettier": "~8.5.0",
+    "eslint-plugin-es5": "~1.5.0",
+    "eslint-plugin-prettier": "~4.2.1",
+    "husky": "~8.0.1",
+    "lint-staged": "~13.0.3",
+    "prettier": "~2.7.1",
+    "type-fest": "~2.18.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "lint-staged": {
+    "*.(js|ts)": "eslint --cache --fix",
+    "*.(json|md|yml)": "prettier --write"
+  }
+}
