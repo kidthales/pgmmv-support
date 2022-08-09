@@ -170,7 +170,11 @@
       'yield',
       'null',
       'true',
-      'false'
+      'false',
+      'Agtk',
+      'cc',
+      'jsb',
+      'window'
     ],
     /**
      * @returns {boolean}
