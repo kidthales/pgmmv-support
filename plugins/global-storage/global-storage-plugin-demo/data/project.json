@@ -13,7 +13,7 @@
 	"loadingSceneId": -1,
 	"logoSizeId": 1,
 	"disableLogo": false,
-	"screenSettings": 0,
+	"screenSettings": 1,
 	"nxScreenSettings": 0,
 	"nxScreenScale": 1,
 	"nxMarginImage": "",
@@ -28,7 +28,7 @@
 	"windowMagnification":2,
 	"adjustPixelMagnification":false,
 	"pixelMagnificationType":0,
-	"displayMenuBar": false,
+	"displayMenuBar": true,
 	"displayMousePointer": true,
 	"screenEffectFlagList": [false, false, false],
 	"screenEffectValueList": [0, 0, 0],
@@ -73,8 +73,68 @@
 	"r": -1,
 	"g": -1,
 	"b": -1
+}, {
+	"id": 2,
+	"scene": true,
+	"sceneMenuId": 1,
+	"x": 216,
+	"y": 120,
+	"width": 144,
+	"height": 48,
+	"shortcutList": [],
+	"a": -1,
+	"r": -1,
+	"g": -1,
+	"b": -1
 } ],
-	"flowLinkList": [  ],
+	"flowLinkList": [ {
+	"id": 1,
+	"typeIdPair": [ [0, 1, -1], [0, 2, -1] ],
+	"linkType": 0,
+	"priority": 0,
+	"startPointGroup": 0,
+	"changeConditionType": 1,
+	"noInput": true,
+	"useInput": true,
+	"inputConditionList": [  ],
+	"sceneTerminated": false,
+	"timeElapsed": false,
+	"timeElapsed300": 0,
+	"switchVariableChanged": false,
+	"switchVariableConditionList": [  ],
+	"memo": "",
+	"preMoveEffect": 0,
+	"preMoveDuration300": 300,
+	"preMoveBgmChangeType": 0,
+	"preMoveBgmFadeout": false,
+	"preMoveBgmId": -1,
+	"preMoveBgmLoop": false,
+	"preMoveBgmChangeTiming": 0,
+	"preMovePlaySe": false,
+	"preMoveSeId": -1,
+	"postMoveEffect": 0,
+	"postMoveDuration300": 300,
+	"postMoveBgmChangeType": 2,
+	"postMoveBgmFadeout": false,
+	"postMoveBgmId": -1,
+	"postMoveBgmLoop": false,
+	"postMoveBgmChangeTiming": 0,
+	"postMovePlaySe": false,
+	"postMoveSeId": -1,
+	"postMoveChangeSwitchVariable": false,
+	"postMoveSwitchVariableAssignList": [  ],
+	"postMoveExecuteObjectAction": false,
+	"postMoveObjectActionList": [  ],
+	"coordList": [ [ 143, 71 ], [ 240, 120 ] ],
+	"endPointFactor": [ -1, -1 ],
+	"visible": true,
+	"num": 0,
+	"a": -1,
+	"r": -1,
+	"g": -1,
+	"b": -1,
+	"flowLinkIdList": [  ]
+} ],
 	"flowGroupList": [  ],
 "transitionLinkPaletteList": [],
 "transitionScreenPaletteList": []
@@ -169,6 +229,195 @@
 					],
 					"objectSingleIdHash": {  },
 			"folder": false
+				},
+				{
+					"id": 1,
+					"name": "scene001",
+					"horzScreenCount": 1,
+					"vertScreenCount": 1,
+					"tileset": [  ],
+					"memo": "",
+					"playBgmType": 1,
+					"bgmId": -1,
+					"loopBgmFlag": true,
+					"bgColorR": 0,
+					"bgColorG": 0,
+					"bgColorB": 0,
+					"setBgImageFlag": false,
+					"bgImageId": -1,
+					"bgImagePlacement": 0,
+					"bgImageMoveSpeed": 0,
+					"bgImageMoveDirection": 0,
+					"bgMoveSpeed": 100,
+					"bgMoveSpeedY": 100,
+					"layerMoveSpeed": [100, 100, 100, 100],
+					"layerMoveSpeedY": [100, 100, 100, 100],
+					"gravityAccel": 0,
+					"gravityDirection": 180,
+					"airResistance": 1,
+					"screenAutoScroll": false,
+					"screenAutoScrollSpeed": 0,
+					"screenAutoScrollDirection": 270,
+					"screenAutoScrollSwitchObjectId": -1,
+					"screenAutoScrollSwitchQualifierId": -1,
+					"screenAutoScrollSwitchId": -1,
+					"limitAreaX": 0,
+					"limitAreaY": 0,
+					"limitAreaWidth": 320,
+					"limitAreaHeight": 180,
+					"disableLimitArea": false,
+					"limitCameraX": 0,
+					"limitCameraY": 0,
+					"limitCameraWidth": 320,
+					"limitCameraHeight": 180,
+					"disableLimitCamera": false,
+					"initialMenuLayerId": -1,
+					"preloadMenuLayerIdList": [],
+					"sceneFilterEffectList": [
+					
+					],
+					"layer1": {
+						"tile": {												},
+						"name": "Layer 1"
+					},
+					"layer2": {
+						"tile": {												},
+						"name": "Layer 2"
+					},
+					"layer3": {
+						"tile": {												},
+						"name": "Layer 3"
+					},
+					"layer4": {
+						"tile": {												},
+						"name": "Layer 4"
+					},
+					"scenePartList": [
+							{
+			"id": 1,
+			"name": "Camera",
+			"partType": 2,
+			"layerIndex": -1,
+			"locked": false,
+			"visible": true,
+			"priority": 0,
+			"dispPriority": 0,
+
+	"othersType": 0,
+	"camera": {
+	"initialPlayerPosition": false,
+	"x": 0,
+	"y": 0,
+	"width": 320,
+	"height": 180,
+	"followTargetType": 0,
+	"objectId": -1,
+	"courseScenePartId": -1,
+	"startPointId": -1,
+	"scrollToShowAllPlayers": false,
+	"scaleToShowAllPlayers": false,
+	"maxScaling": 100.000000,
+	"switchObjectId": -1,
+	"switchQualifierId": -1,
+	"switchId": -1
+}
+,
+			"folder": false
+		},
+							{
+			"id": 2,
+			"name": "object001",
+			"partType": 0,
+			"layerIndex": 0,
+			"locked": false,
+			"visible": true,
+			"priority": 1,
+			"dispPriority": 0,
+
+	"objectId": 1,
+	"initialActionId": -1,
+	"initialDisplayDirectionFlag": false,
+	"initialDisplayDirection": 180.000000,
+	"x": 142,
+	"y": 82,
+	"scalingX": 100,
+	"scalingY": 100,
+	"rotation": 0,
+	"courseScenePartId": -1,
+	"courseStartPointId": -1,
+	"commonActionCommandListObject": {  },
+	"actionCommandListObject": { "1": [ {
+	"id": 5,
+	"commandType": 1101,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"custom": {
+	"customId": 1,
+	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2000\n    }\n]\n"
+}
+}, {
+	"id": 1,
+	"commandType": 50,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"scriptEvaluate": {
+	"script": "(function() {\n  var v = Agtk.variables.get(Agtk.variables.getIdByName('COUNTER')).getValue();\n  Agtk.log('Initial value: ' + v);\n})()",
+	"useCoffeeScript": false,
+	"javaScript": ""
+}
+}, {
+	"id": 4,
+	"commandType": 31,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"switchVariableChange": {
+	"swtch": false,
+	"switchObjectId": -1,
+	"switchQualifierId": -1,
+	"switchId": -1,
+	"switchValue": 0,
+	"variableObjectId": 0,
+	"variableQualifierId": -1,
+	"variableId": 2000,
+	"variableAssignOperator": 1,
+	"variableAssignValueType": 0,
+	"assignValue": 1.000000,
+	"assignVariableObjectId": -1,
+	"assignVariableQualifierId": -1,
+	"assignVariableId": -1,
+	"randomMin": 0,
+	"randomMax": 100,
+	"assignScript": "",
+	"useCoffeeScript": false,
+	"javaScript": ""
+}
+}, {
+	"id": 2,
+	"commandType": 1100,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"custom": {
+	"customId": 0,
+	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2000\n    }\n]\n"
+}
+}, {
+	"id": 3,
+	"commandType": 50,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"scriptEvaluate": {
+	"script": "(function() {\n  var v = Agtk.variables.get(Agtk.variables.getIdByName('COUNTER')).getValue();\n  Agtk.log('New value: ' + v);\n})()",
+	"useCoffeeScript": false,
+	"javaScript": ""
+}
+} ] },
+	"disappearActionCommandList": [  ]
+,
+			"folder": false
+		}
+					],
+					"objectSingleIdHash": { "1": 2 },
+			"folder": false
 				}
 	],
 	"tilesetList": [
@@ -177,7 +426,8 @@
 	"imageList": [
 		{"id":1,"name":"font6x10","filename":"img/001.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
 		{"id":2,"name":"font8x8","filename":"img/002.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
-		{"id":3,"name":"font12x12","filename":"img/003.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false}
+		{"id":3,"name":"font12x12","filename":"img/003.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
+		{"id":4,"name":"Empty 2x2","filename":"img/004.png","srcFilename":"D:/kidthales/pgmmv-support/resources/img/Empty 2x2.png","horzDivCount":1,"vertDivCount":1,			"folder": false}
 	],
 	"fontList": [
 				{
@@ -453,6 +703,15 @@
     "name": "Voice Volume Adjust",
     "toBeSaved": true
 }
+,
+		{
+    "folder": false,
+    "id": 2000,
+    "initialValue": 0,
+    "memo": "",
+    "name": "COUNTER",
+    "toBeSaved": false
+}
 
 	],
 	"switchList": [
@@ -535,14 +794,6 @@
 			"toBeSaved": true,
 			"memo": "",
 			"folder": false
-		},
-				{
-			"id": 2000,
-			"name": "Switches001",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
 		}
 	],
 	"animationOnlyList": [
@@ -590,10 +841,74 @@
 	"upDownMoveSpeed": 100,
 	"jumpSpeed": 100,
 	"turnSpeed": 100,
-	"objCommandList": [  ],
+	"objCommandList": [ {
+	"id": 5,
+	"commandType": 1101,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"custom": {
+	"customId": 1,
+	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2000\n    }\n]\n"
+}
+}, {
+	"id": 1,
+	"commandType": 50,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"scriptEvaluate": {
+	"script": "(function() {\n  var v = Agtk.variables.get(Agtk.variables.getIdByName('COUNTER')).getValue();\n  Agtk.log('Initial value: ' + v);\n})()",
+	"useCoffeeScript": false,
+	"javaScript": ""
+}
+}, {
+	"id": 4,
+	"commandType": 31,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"switchVariableChange": {
+	"swtch": false,
+	"switchObjectId": -1,
+	"switchQualifierId": -1,
+	"switchId": -1,
+	"switchValue": 0,
+	"variableObjectId": 0,
+	"variableQualifierId": -1,
+	"variableId": 2000,
+	"variableAssignOperator": 1,
+	"variableAssignValueType": 0,
+	"assignValue": 1.000000,
+	"assignVariableObjectId": -1,
+	"assignVariableQualifierId": -1,
+	"assignVariableId": -1,
+	"randomMin": 0,
+	"randomMax": 100,
+	"assignScript": "",
+	"useCoffeeScript": false,
+	"javaScript": ""
+}
+}, {
+	"id": 2,
+	"commandType": 1100,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"custom": {
+	"customId": 0,
+	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2000\n    }\n]\n"
+}
+}, {
+	"id": 3,
+	"commandType": 50,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"scriptEvaluate": {
+	"script": "(function() {\n  var v = Agtk.variables.get(Agtk.variables.getIdByName('COUNTER')).getValue();\n  Agtk.log('New value: ' + v);\n})()",
+	"useCoffeeScript": false,
+	"javaScript": ""
+}
+} ],
 	"memo": "",
-	"x": -40,
-	"y": -133,
+	"x": -48,
+	"y": -144,
 	"width": 168,
 	"height": 48,
 	"shortcutList": []
@@ -1215,7 +1530,18 @@
 		}
 	],
 	"animationList": [
-		
+				{
+			"id": 1,
+			"name": "Empty",
+			"type": 0,
+			"originType": 0,
+			"originX": 0,
+			"originY": 0,
+			"resourceInfoList": [  ],
+			"motionList": [ { "id": 1, "name": "Motion001", "dispFrameCount300": 5, "loopCount": 1, "infiniteLoop": false, "reversePlay": false, "directionList": [ { "id": 1, "name": "Direction001", "directionBit": 0, "autoGeneration": false, "yFlip": false, "resourceInfoId": -1, "animationName": "", "timelineInfoList": [ { "id": 1, "name": "Wall Detection", "timelineType": 0, "areaList": [  ] }, { "id": 2, "name": "Collision Detection", "timelineType": 1, "areaList": [  ] }, { "id": 3, "name": "Attack Detection", "timelineType": 2, "areaList": [  ] }, { "id": 4, "name": "Connection Point", "timelineType": 3, "areaList": [  ] } ], "frameList": [  ], "frameLocked": false, "framePreviewVisible": true, "imageWidth": 0, "imageHeight": 0 } ] } ],
+			"memo": "",
+			"folder": false
+		}
 	],
 	"transitionPortalList": [
 		
@@ -1227,7 +1553,7 @@
 					"filename": "plugins/001.js",
 					"srcFilename": "D:/kidthales/pgmmv-support/plugins/global-storage/global-storage-plugin.js",
 					"enabled": true,
-					"internalJson": {},
+					"internalJson": {"switches":{},"variables":{}},
 					"paramValueJson": [],
 					"officialKey": "",
 			"folder": false
@@ -1242,6 +1568,87 @@
 	"gridMagnet": true,
 	"actionIconHide": true,
 	"memo": ""
+}
+,
+	"transitionFlow": {
+	"flowScreenList": [ {
+	"id": 1,
+	"scene": true,
+	"sceneMenuId": -1,
+	"x": 24,
+	"y": 24,
+	"width": 144,
+	"height": 48,
+	"shortcutList": [],
+	"a": -1,
+	"r": -1,
+	"g": -1,
+	"b": -1
+}, {
+	"id": 2,
+	"scene": true,
+	"sceneMenuId": 1,
+	"x": 216,
+	"y": 120,
+	"width": 144,
+	"height": 48,
+	"shortcutList": [],
+	"a": -1,
+	"r": -1,
+	"g": -1,
+	"b": -1
+} ],
+	"flowLinkList": [ {
+	"id": 1,
+	"typeIdPair": [ [0, 1, -1], [0, 2, -1] ],
+	"linkType": 0,
+	"priority": 0,
+	"startPointGroup": 0,
+	"changeConditionType": 1,
+	"noInput": true,
+	"useInput": true,
+	"inputConditionList": [  ],
+	"sceneTerminated": false,
+	"timeElapsed": false,
+	"timeElapsed300": 0,
+	"switchVariableChanged": false,
+	"switchVariableConditionList": [  ],
+	"memo": "",
+	"preMoveEffect": 0,
+	"preMoveDuration300": 300,
+	"preMoveBgmChangeType": 0,
+	"preMoveBgmFadeout": false,
+	"preMoveBgmId": -1,
+	"preMoveBgmLoop": false,
+	"preMoveBgmChangeTiming": 0,
+	"preMovePlaySe": false,
+	"preMoveSeId": -1,
+	"postMoveEffect": 0,
+	"postMoveDuration300": 300,
+	"postMoveBgmChangeType": 2,
+	"postMoveBgmFadeout": false,
+	"postMoveBgmId": -1,
+	"postMoveBgmLoop": false,
+	"postMoveBgmChangeTiming": 0,
+	"postMovePlaySe": false,
+	"postMoveSeId": -1,
+	"postMoveChangeSwitchVariable": false,
+	"postMoveSwitchVariableAssignList": [  ],
+	"postMoveExecuteObjectAction": false,
+	"postMoveObjectActionList": [  ],
+	"coordList": [ [ 143, 71 ], [ 240, 120 ] ],
+	"endPointFactor": [ -1, -1 ],
+	"visible": true,
+	"num": 0,
+	"a": -1,
+	"r": -1,
+	"g": -1,
+	"b": -1,
+	"flowLinkIdList": [  ]
+} ],
+	"flowGroupList": [  ],
+"transitionLinkPaletteList": [],
+"transitionScreenPaletteList": []
 }
 ,
 	"animParticleImageList": [  ]

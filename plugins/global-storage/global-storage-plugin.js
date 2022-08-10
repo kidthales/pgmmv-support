@@ -336,7 +336,10 @@
               ? localizedParameters
               : (localizedParameters = locaManager.processParameterLocale(parameters));
           case 'internal':
-            return {};
+            if (!inEditor()) {
+              Agtk.log('getInternal: ' + JSON.stringify(internalData));
+            }
+            return internalData;
           case 'actionCommand':
             return localizedActionCommands
               ? localizedActionCommands
@@ -348,10 +351,20 @@
             break;
         }
       },
-      initialize: function () {},
+      initialize: function (data) {
+        if (!inEditor()) {
+          Agtk.log('init: ' + JSON.stringify(data));
+          self.setInternal(data);
+        }
+      },
       finalize: function () {},
       setParamValue: function () {},
-      setInternal: function () {},
+      setInternal: function (data) {
+        if (data) {
+          Agtk.log('setInternal:' + JSON.stringify(data));
+          internalData = data;
+        }
+      },
       call: function call() {},
       execActionCommand: function (actionCommandIndex, parameter) {
         /**
@@ -366,15 +379,17 @@
             containerId = normalizedParameters[actionCommandId.saveVariable.parameterId.variable];
             sourceId = normalizedParameters[actionCommandId.saveVariable.parameterId.variableSource];
             if (!sourceId && containerId > 0) {
+              Agtk.log('saving');
               internalData.variables[containerId] = Agtk.variables.get(containerId).getValue();
-              Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
+              //Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
             }
             break;
           case actionCommandId.loadVariable.id:
             containerId = normalizedParameters[actionCommandId.loadVariable.parameterId.variable];
             sourceId = normalizedParameters[actionCommandId.loadVariable.parameterId.variableSource];
-            if (!sourceId && containerId > 0 && typeof internalData[containerId] === 'number') {
-              Agtk.variables.get(containerId).setValue(internalData[containerId]);
+            if (!sourceId && containerId > 0 && typeof internalData.variables[containerId] === 'number') {
+              Agtk.log('loading');
+              Agtk.variables.get(containerId).setValue(internalData.variables[containerId]);
             }
             break;
           case actionCommandId.saveSwitch.id:
@@ -382,14 +397,14 @@
             sourceId = normalizedParameters[actionCommandId.saveSwitch.parameterId.switchSource];
             if (!sourceId && containerId > 0) {
               internalData.switches[containerId] = Agtk.switches.get(containerId).getValue();
-              Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
+              //Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
             }
             break;
           case actionCommandId.loadSwitch.id:
             containerId = normalizedParameters[actionCommandId.loadSwitch.parameterId.switch];
             sourceId = normalizedParameters[actionCommandId.loadSwitch.parameterId.switchSource];
-            if (!sourceId && containerId > 0 && typeof internalData[containerId] === 'boolean') {
-              Agtk.switches.get(containerId).setValue(internalData[containerId]);
+            if (!sourceId && containerId > 0 && typeof internalData.switches[containerId] === 'boolean') {
+              Agtk.switches.get(containerId).setValue(internalData.switches[containerId]);
             }
             break;
           default:
