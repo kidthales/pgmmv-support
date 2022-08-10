@@ -1,5 +1,6 @@
 /**
- * @file PGMMV plugin that provides a global variable for your scripts.
+ * @file PGMMV plugin that provides a global storage for your common switches &
+ * variables.
  * @author kidthales <kidthales@agogpixel.com>
  * @license MIT
  */
@@ -10,13 +11,16 @@
   var locaManager = (function () {
       var locaData = {
           en: {
-            PLUGIN_NAME: 'Global Variable Plugin',
-            PLUGIN_DESCRIPTION: 'Provides a global variable for your scripts.',
+            PLUGIN_NAME: 'Global Storage Plugin',
+            PLUGIN_DESCRIPTION: 'Provides a global storage for your common switches & variables.',
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
-            PLUGIN_HELP: 'Variable name must be a valid JavaScript identifier.',
-            PARAMETER_NAME_GLOBAL_VARIABLE_NAME: 'Global Variable Name:',
-            PARAMETER_DEFAULT_VALUE_GLOBAL_VARIABLE_NAME: 'MyGlobal',
-            PARAMETER_NAME_GLOBAL_VARIABLE_VALUE: 'Global Variable Value:'
+            PLUGIN_HELP: 'Only supports common switches & variables.',
+            ACTION_COMMAND_NAME_SAVE_SWITCH: 'Save Switch',
+            ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH: 'Save switch value to global storage.',
+            ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:',
+            ACTION_COMMAND_NAME_LOAD_SWITCH: 'Load Switch',
+            ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH: 'Load switch value from global storage.',
+            ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:'
           }
         },
         locaDefault = 'en',
@@ -90,34 +94,47 @@
               }
             }
             return parameters;
+          },
+          /**
+           * @param {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} commandsOrConditions
+           * @returns {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]}
+           */
+          processCommandOrConditionLocale: function (commandsOrConditions) {
+            var len = commandsOrConditions.length,
+              i = 0,
+              c,
+              m;
+            for (; i < len; ++i) {
+              c = commandsOrConditions[i];
+              m = c.name.match(inlineRegex);
+              if (m && m.length > 1) {
+                c.name = self.get(m[1]);
+              }
+              m = c.description.match(inlineRegex);
+              if (m && m.length > 1) {
+                c.description = self.get(m[1]);
+              }
+              self.processParameterLocale(c.parameter);
+            }
+            return commandsOrConditions;
           }
         };
       return self;
     })(),
     /**
+     * @type {{switches: Record<number, boolean>}}
+     */
+    internalData = {
+      switches: {}
+    },
+    /**
      * @const
      */
-    parameterId = {
-      globalVariableName: 0,
-      globalVariableValue: 1
-    },
+    parameterId = {},
     /**
      * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      */
-    parameters = [
-      {
-        id: parameterId.globalVariableName,
-        name: 'loca(PARAMETER_NAME_GLOBAL_VARIABLE_NAME)',
-        type: 'String',
-        defaultValue: 'loca(PARAMETER_DEFAULT_VALUE_GLOBAL_VARIABLE_NAME)'
-      },
-      {
-        id: parameterId.globalVariableValue,
-        name: 'loca(PARAMETER_NAME_GLOBAL_VARIABLE_VALUE)',
-        type: 'Json',
-        defaultValue: {}
-      }
-    ],
+    parameters = [],
     /**
      * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      */
@@ -125,57 +142,59 @@
     /**
      * @const
      */
-    reservedWords = [
-      'break',
-      'case',
-      'catch',
-      'continue',
-      'debugger',
-      'default',
-      'delete',
-      'do',
-      'else',
-      'finally',
-      'for',
-      'function',
-      'if',
-      'in',
-      'instanceof',
-      'new',
-      'return',
-      'switch',
-      'this',
-      'throw',
-      'try',
-      'typeof',
-      'var',
-      'void',
-      'while',
-      'with',
-      'class',
-      'const',
-      'enum',
-      'export',
-      'extends',
-      'import',
-      'super',
-      'implements',
-      'interface',
-      'let',
-      'package',
-      'private',
-      'protected',
-      'public',
-      'static',
-      'yield',
-      'null',
-      'true',
-      'false',
-      'Agtk',
-      'cc',
-      'jsb',
-      'window'
+    actionCommandId = {
+      saveSwitch: {
+        id: 2,
+        parameterId: {
+          switch: 0
+        }
+      },
+      loadSwitch: {
+        id: 3,
+        parameterId: {
+          switch: 0
+        }
+      }
+    },
+    /**
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
+     */
+    actionCommands = [
+      {
+        id: actionCommandId.saveSwitch.id,
+        name: 'loca(ACTION_COMMAND_NAME_SAVE_SWITCH)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH)',
+        parameter: [
+          {
+            id: actionCommandId.saveSwitch.parameterId.switch,
+            name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH)',
+            type: 'SwitchId',
+            referenceId: 0,
+            withNewButton: true,
+            defaultValue: -1
+          }
+        ]
+      },
+      {
+        id: actionCommandId.loadSwitch.id,
+        name: 'loca(ACTION_COMMAND_NAME_LOAD_SWITCH)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH)',
+        parameter: [
+          {
+            id: actionCommandId.loadSwitch.parameterId.switch,
+            name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH)',
+            type: 'SwitchId',
+            referenceId: 0,
+            withNewButton: false,
+            defaultValue: -1
+          }
+        ]
+      }
     ],
+    /**
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
+     */
+    localizedActionCommands,
     /**
      * @returns {boolean}
      */
@@ -234,7 +253,9 @@
           case 'internal':
             return {};
           case 'actionCommand':
-            return [];
+            return localizedActionCommands
+              ? localizedActionCommands
+              : (localizedActionCommands = locaManager.processCommandOrConditionLocale(actionCommands));
           case 'linkCondition':
             return [];
           case 'autoTile':
@@ -244,39 +265,37 @@
       },
       initialize: function () {},
       finalize: function () {},
-      setParamValue: function (paramValue) {
-        var isError = false,
-          normalizedParameters,
-          globalVariableName,
-          globalVariableValue;
-        if (inEditor()) {
-          return;
-        }
-        normalizedParameters = normalizeParameters(paramValue, self.getInfo('parameter'));
-        globalVariableName = trim(normalizedParameters[parameterId.globalVariableName]);
-        globalVariableValue = JSON.parse(normalizedParameters[parameterId.globalVariableValue]);
-        if (!globalVariableName) {
-          Agtk.log('[Global Variable Plugin] error: global variable name is empty');
-          isError = true;
-        } else if (~reservedWords.indexOf(globalVariableName)) {
-          Agtk.log(
-            "[Global Variable Plugin] error: global variable name is a reserved word: '" + globalVariableName + "'"
-          );
-          isError = true;
-        } else if (/\s/g.test(globalVariableName)) {
-          Agtk.log(
-            "[Global Variable Plugin] error: global variable name contains whitespace: '" + globalVariableName + "'"
-          );
-          isError = true;
-        }
-        if (isError) {
-          Agtk.log('[Global Variable Plugin] error: skipping global variable injection');
-          return;
-        }
-        window[globalVariableName] = globalVariableValue;
-      },
+      setParamValue: function () {},
       setInternal: function () {},
-      call: function call() {}
+      call: function call() {},
+      execActionCommand: function (actionCommandIndex, parameter) {
+        /**
+         * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand}
+         */
+        var actionCommand = self.getInfo('actionCommand')[actionCommandIndex],
+          normalizedParameters = normalizeParameters(parameter, actionCommand.parameter),
+          switchId,
+          value;
+        switch (actionCommand.id) {
+          case actionCommandId.saveSwitch.id:
+            switchId = normalizedParameters[actionCommandId.saveSwitch.parameterId.switch];
+            if (switchId > 0) {
+              value = Agtk.switches.get(switchId).getValue();
+              internalData.switches[switchId] = value;
+              Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
+            }
+            break;
+          case actionCommandId.loadSwitch.id:
+            switchId = normalizedParameters[actionCommandId.loadSwitch.parameterId.switch];
+            if (switchId > 0 && typeof internalData[switchId] === 'boolean') {
+              Agtk.switches.get(switchId).setValue(internalData[switchId]);
+            }
+            break;
+          default:
+            break;
+        }
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
+      }
     };
   return self;
 })();
