@@ -15,11 +15,21 @@
             PLUGIN_DESCRIPTION: 'Provides a global storage for your common switches & variables.',
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
             PLUGIN_HELP: 'Only supports common switches & variables.',
+            ACTION_COMMAND_NAME_SAVE_VARIABLE: 'Save Variable',
+            ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE: 'Save variable value to global storage.',
+            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source:',
+            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable:',
+            ACTION_COMMAND_NAME_LOAD_VARIABLE: 'Load Variable',
+            ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE: 'Load variable value from global storage.',
+            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source:',
+            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable:',
             ACTION_COMMAND_NAME_SAVE_SWITCH: 'Save Switch',
             ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH: 'Save switch value to global storage.',
+            ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source:',
             ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:',
             ACTION_COMMAND_NAME_LOAD_SWITCH: 'Load Switch',
             ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH: 'Load switch value from global storage.',
+            ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source:',
             ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:'
           }
         },
@@ -122,9 +132,10 @@
       return self;
     })(),
     /**
-     * @type {{switches: Record<number, boolean>}}
+     * @type {{variables: Record<number, number>, switches: Record<number, boolean>}}
      */
     internalData = {
+      variables: {},
       switches: {}
     },
     /**
@@ -143,16 +154,32 @@
      * @const
      */
     actionCommandId = {
+      saveVariable: {
+        id: 0,
+        parameterId: {
+          variable: 0,
+          variableSource: 100
+        }
+      },
+      loadVariable: {
+        id: 1,
+        parameterId: {
+          variable: 0,
+          variableSource: 100
+        }
+      },
       saveSwitch: {
         id: 2,
         parameterId: {
-          switch: 0
+          switch: 0,
+          switchSource: 100
         }
       },
       loadSwitch: {
         id: 3,
         parameterId: {
-          switch: 0
+          switch: 0,
+          switchSource: 100
         }
       }
     },
@@ -161,15 +188,66 @@
      */
     actionCommands = [
       {
+        id: actionCommandId.saveVariable.id,
+        name: 'loca(ACTION_COMMAND_NAME_SAVE_VARIABLE)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE)',
+        parameter: [
+          {
+            id: actionCommandId.saveVariable.parameterId.variableSource,
+            name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: [''],
+            defaultValue: -1
+          },
+          {
+            id: actionCommandId.saveVariable.parameterId.variable,
+            name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE)',
+            type: 'VariableId',
+            referenceId: actionCommandId.saveVariable.parameterId.variableSource,
+            withNewButton: true,
+            defaultValue: -1
+          }
+        ]
+      },
+      {
+        id: actionCommandId.loadVariable.id,
+        name: 'loca(ACTION_COMMAND_NAME_LOAD_VARIABLE)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE)',
+        parameter: [
+          {
+            id: actionCommandId.loadVariable.parameterId.variableSource,
+            name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: [''],
+            defaultValue: -1
+          },
+          {
+            id: actionCommandId.loadVariable.parameterId.variable,
+            name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE)',
+            type: 'VariableId',
+            referenceId: actionCommandId.loadVariable.parameterId.variableSource,
+            withNewButton: false,
+            defaultValue: -1
+          }
+        ]
+      },
+      {
         id: actionCommandId.saveSwitch.id,
         name: 'loca(ACTION_COMMAND_NAME_SAVE_SWITCH)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH)',
         parameter: [
           {
+            id: actionCommandId.saveSwitch.parameterId.switchSource,
+            name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: [''],
+            defaultValue: -1
+          },
+          {
             id: actionCommandId.saveSwitch.parameterId.switch,
             name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH)',
             type: 'SwitchId',
-            referenceId: 0,
+            referenceId: actionCommandId.saveSwitch.parameterId.switchSource,
             withNewButton: true,
             defaultValue: -1
           }
@@ -181,10 +259,17 @@
         description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH)',
         parameter: [
           {
+            id: actionCommandId.loadSwitch.parameterId.switchSource,
+            name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: [''],
+            defaultValue: -1
+          },
+          {
             id: actionCommandId.loadSwitch.parameterId.switch,
             name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH)',
             type: 'SwitchId',
-            referenceId: 0,
+            referenceId: actionCommandId.loadSwitch.parameterId.switchSource,
             withNewButton: false,
             defaultValue: -1
           }
@@ -274,21 +359,37 @@
          */
         var actionCommand = self.getInfo('actionCommand')[actionCommandIndex],
           normalizedParameters = normalizeParameters(parameter, actionCommand.parameter),
-          switchId,
-          value;
+          containerId,
+          sourceId;
         switch (actionCommand.id) {
+          case actionCommandId.saveVariable.id:
+            containerId = normalizedParameters[actionCommandId.saveVariable.parameterId.variable];
+            sourceId = normalizedParameters[actionCommandId.saveVariable.parameterId.variableSource];
+            if (!sourceId && containerId > 0) {
+              internalData.variables[containerId] = Agtk.variables.get(containerId).getValue();
+              Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
+            }
+            break;
+          case actionCommandId.loadVariable.id:
+            containerId = normalizedParameters[actionCommandId.loadVariable.parameterId.variable];
+            sourceId = normalizedParameters[actionCommandId.loadVariable.parameterId.variableSource];
+            if (!sourceId && containerId > 0 && typeof internalData[containerId] === 'number') {
+              Agtk.variables.get(containerId).setValue(internalData[containerId]);
+            }
+            break;
           case actionCommandId.saveSwitch.id:
-            switchId = normalizedParameters[actionCommandId.saveSwitch.parameterId.switch];
-            if (switchId > 0) {
-              value = Agtk.switches.get(switchId).getValue();
-              internalData.switches[switchId] = value;
+            containerId = normalizedParameters[actionCommandId.saveSwitch.parameterId.switch];
+            sourceId = normalizedParameters[actionCommandId.saveSwitch.parameterId.switchSource];
+            if (!sourceId && containerId > 0) {
+              internalData.switches[containerId] = Agtk.switches.get(containerId).getValue();
               Agtk.plugins.reload(self, self.id, locaManager.getLocale(), internalData);
             }
             break;
           case actionCommandId.loadSwitch.id:
-            switchId = normalizedParameters[actionCommandId.loadSwitch.parameterId.switch];
-            if (switchId > 0 && typeof internalData[switchId] === 'boolean') {
-              Agtk.switches.get(switchId).setValue(internalData[switchId]);
+            containerId = normalizedParameters[actionCommandId.loadSwitch.parameterId.switch];
+            sourceId = normalizedParameters[actionCommandId.loadSwitch.parameterId.switchSource];
+            if (!sourceId && containerId > 0 && typeof internalData[containerId] === 'boolean') {
+              Agtk.switches.get(containerId).setValue(internalData[containerId]);
             }
             break;
           default:

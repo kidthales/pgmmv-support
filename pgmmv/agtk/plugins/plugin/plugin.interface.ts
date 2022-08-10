@@ -5,6 +5,8 @@
  */
 import type { JsonValue } from 'type-fest';
 
+import type { AgtkCommandBehaviorValue as AgtkCommandBehavior } from '../../constants/action-commands/command-behavior';
+
 import type { AgtkActionCommand } from './action-command.interface';
 import type { AgtkAutoTileParameters } from './auto-tile-parameters.interface';
 import type { AgtkLinkCondition } from './link-condition.interface';
@@ -137,7 +139,7 @@ export interface AgtkPlugin<I extends JsonValue = JsonValue> {
     commandId: number,
     commonActionStatus: 0 | 1,
     sceneId: number
-  ) => number | undefined;
+  ) => AgtkCommandBehavior | undefined;
 
   /**
    * Evaluates link condition.

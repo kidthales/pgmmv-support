@@ -194,7 +194,7 @@
 			"hankakuWidth": 1,
 			"zenkakuWidth": 1,
 			"letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
-			"localeSettings": { "mainLanguage": { "imageFontFlag": true, "imageId": 1, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 1, "zenkakuWidth": 1, "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡" } },
+			"localeSettings": { "en_US": { "imageFontFlag": true, "imageId": 1, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 1, "zenkakuWidth": 1, "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡" } },
 			"folder": false
 		},
 				{
@@ -211,7 +211,7 @@
 			"hankakuWidth": 1,
 			"zenkakuWidth": 1,
 			"letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
-			"localeSettings": { "mainLanguage": { "imageFontFlag": true, "imageId": 2, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 1, "zenkakuWidth": 1, "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡" } },
+			"localeSettings": { "en_US": { "imageFontFlag": true, "imageId": 2, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 1, "zenkakuWidth": 1, "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡" } },
 			"folder": false
 		},
 				{
@@ -228,7 +228,7 @@
 			"hankakuWidth": 1,
 			"zenkakuWidth": 1,
 			"letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
-			"localeSettings": { "mainLanguage": { "imageFontFlag": true, "imageId": 3, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 1, "zenkakuWidth": 1, "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡" } },
+			"localeSettings": { "en_US": { "imageFontFlag": true, "imageId": 3, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 1, "zenkakuWidth": 1, "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡" } },
 			"folder": false
 		},
 				{
@@ -245,7 +245,7 @@
 			"hankakuWidth": 10,
 			"zenkakuWidth": 10,
 			"letterLayout": "",
-			"localeSettings": { "mainLanguage": { "imageFontFlag": false, "imageId": -1, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 10, "zenkakuWidth": 10, "letterLayout": "" } },
+			"localeSettings": { "en_US": { "imageFontFlag": false, "imageId": -1, "fontName": "mplus-1m-regular", "ttfName": "M+ 1m", "fontSize": 10, "antialiasDisabled": false, "aliasThreshold": 126, "fixedWidth": true, "hankakuWidth": 10, "zenkakuWidth": 10, "letterLayout": "" } },
 			"folder": false
 		}
 	],

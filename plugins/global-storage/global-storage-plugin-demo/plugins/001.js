@@ -15,6 +15,12 @@
             PLUGIN_DESCRIPTION: 'Provides a global storage for your common switches & variables.',
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
             PLUGIN_HELP: 'Only supports common switches & variables.',
+            ACTION_COMMAND_NAME_SAVE_VARIABLE: 'Save Variable',
+            ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE: 'Save variable value to global storage.',
+            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable:',
+            ACTION_COMMAND_NAME_LOAD_VARIABLE: 'Load Variable',
+            ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE: 'Load variable value from global storage.',
+            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable:',
             ACTION_COMMAND_NAME_SAVE_SWITCH: 'Save Switch',
             ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH: 'Save switch value to global storage.',
             ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:',
@@ -143,6 +149,18 @@
      * @const
      */
     actionCommandId = {
+      saveVariable: {
+        id: 0,
+        parameterId: {
+          variable: 0
+        }
+      },
+      loadVariable: {
+        id: 1,
+        parameterId: {
+          variable: 0
+        }
+      },
       saveSwitch: {
         id: 2,
         parameterId: {
@@ -160,6 +178,43 @@
      * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
      */
     actionCommands = [
+      {
+        id: actionCommandId.saveVariable.id,
+        name: 'loca(ACTION_COMMAND_NAME_SAVE_VARIABLE)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE)',
+        parameter: [
+          {
+            id: 100,
+            name: '(Common Variable)',
+            type: 'SwitchVariableObjectId',
+            option: [''],
+            defaultValue: -1
+          },
+          {
+            id: actionCommandId.saveVariable.parameterId.variable,
+            name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE)',
+            type: 'VariableId',
+            referenceId: 100,
+            withNewButton: true,
+            defaultValue: -1
+          }
+        ]
+      },
+      {
+        id: actionCommandId.loadVariable.id,
+        name: 'loca(ACTION_COMMAND_NAME_LOAD_VARIABLE)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE)',
+        parameter: [
+          {
+            id: actionCommandId.loadVariable.parameterId.variable,
+            name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE)',
+            type: 'VariableId',
+            referenceId: 100,
+            withNewButton: false,
+            defaultValue: -1
+          }
+        ]
+      },
       {
         id: actionCommandId.saveSwitch.id,
         name: 'loca(ACTION_COMMAND_NAME_SAVE_SWITCH)',
