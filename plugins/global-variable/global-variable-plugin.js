@@ -5,13 +5,27 @@
  */
 (function () {
   /**
-   * Localization manager. Responsible for mapping our localization keys to
-   * their localized values.
+   * Default global variable name.
    *
    * @const
    * @private
    */
-  var locaManager = (function () {
+  var kDefaultGlobalVariableName = 'MyPlugin',
+    /**
+     * Default global variable value.
+     *
+     * @const
+     * @private
+     */
+    kDefaultGlobalVariableValue = {},
+    /**
+     * Localization manager. Responsible for mapping our localization keys to
+     * their localized values.
+     *
+     * @const
+     * @private
+     */
+    locaManager = (function () {
       /**
        * Localization data. Maps locale key to localized look up object. Track
        * all of your plugin localizations here.
@@ -32,11 +46,15 @@
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
 
             /** Required. */
-            PLUGIN_HELP: 'Variable name must be a valid JavaScript identifier.',
+            PLUGIN_HELP:
+              'Provides a global variable for your scripts.\n\nParameters:\n  - Global Variable Name. Required. Must be a valid JavaScript identifier.\n    Default: ' +
+              kDefaultGlobalVariableName +
+              '\n  - Global Variable Value. Required. Must be a valid JSON value.\n    Default: ' +
+              JSON.stringify(kDefaultGlobalVariableValue),
 
-            PARAMETER_NAME_GLOBAL_VARIABLE_NAME: 'Global Variable Name:',
-            PARAMETER_DEFAULT_VALUE_GLOBAL_VARIABLE_NAME: 'MyGlobal',
-            PARAMETER_NAME_GLOBAL_VARIABLE_VALUE: 'Global Variable Value:'
+            PARAMETER_NAME_GLOBAL_VARIABLE_NAME: 'Global Variable Name!:',
+            PARAMETER_DEFAULT_VALUE_GLOBAL_VARIABLE_NAME: kDefaultGlobalVariableName,
+            PARAMETER_NAME_GLOBAL_VARIABLE_VALUE: 'Global Variable Value!:'
           }
         },
         /**
@@ -211,7 +229,7 @@
         id: parameterId.globalVariableValue,
         name: 'loca(PARAMETER_NAME_GLOBAL_VARIABLE_VALUE)',
         type: 'Json',
-        defaultValue: {}
+        defaultValue: kDefaultGlobalVariableValue
       }
     ],
     /**
