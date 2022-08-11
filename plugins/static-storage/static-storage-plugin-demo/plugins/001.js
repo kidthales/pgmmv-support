@@ -5,40 +5,149 @@
  * @license MIT
  */
 (function () {
-  var locaManager = (function () {
+  /**
+   * Default static file slot.
+   *
+   * @const
+   * @private
+   */
+  var kDefaultStaticFileSlot = -1337,
+    /**
+     * Default debounce value (in frames).
+     *
+     * @const
+     * @private
+     */
+    kDefaultDebounceValue = 3,
+    /**
+     * Minimum debounce value (in frames).
+     *
+     * @const
+     * @private
+     */
+    kMinDebounceValue = 3,
+    /**
+     * Maximum debounce value (in frames).
+     *
+     * @const
+     * @private
+     */
+    kMaxDebounceValue = 3600,
+    /**
+     * Default unset ID value.
+     *
+     * @const
+     * @private
+     */
+    kDefaultUnsetIdValue = -1,
+    /**
+     * Localization manager. Responsible for mapping our localization keys to
+     * their localized values.
+     *
+     * @const
+     * @private
+     */
+    locaManager = (function () {
+      /**
+       * Localization data. Maps locale key to localized look up object. Track
+       * all of your plugin localizations here.
+       *
+       * @const
+       * @private
+       */
       var locaData = {
+          /** Default english localizations. */
           en: {
+            /** Required. */
             PLUGIN_NAME: 'Static Storage Plugin',
+
+            /** Required. */
             PLUGIN_DESCRIPTION: 'Provides static storage for your switches & variables.',
+
+            /** Required. */
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
-            PLUGIN_HELP: 'Leverages file slot system.',
-            PARAMETER_NAME_FILE_SLOT: 'File Slot:',
-            PARAMETER_NAME_DEBOUNCE: 'Debounce:',
+
+            /** Required. */
+            PLUGIN_HELP:
+              "Provides static storage for your switches & variables. Leverages the PGMMV file slot system.\n\nParameters:\n  - Static File Slot. Required. Make sure this is set to a value that will not be used by your game's save system.\n    Default: " +
+              kDefaultStaticFileSlot +
+              '\n  - Debounce. Required. Number of frames to wait when transitioning to & from the Static File Slot while saving data.\n    Default: ' +
+              kDefaultDebounceValue +
+              '; Min: ' +
+              kMinDebounceValue +
+              '; Max: ' +
+              kMaxDebounceValue +
+              '\n  - Load Proxy. Required. Plugin will create an object instance from this object ID for use with initial load from the Static File Slot. Object instance is destroyed upon completion of initial load.\n    Default: ' +
+              kDefaultUnsetIdValue +
+              '\n  - Lock Switch Source. Optional. See Lock Switch. If used, this should be set to your Project Common switches.\n    Default: ' +
+              kDefaultUnsetIdValue +
+              '\n  - Lock Switch. Optional. Plugin will set this switch when performing save & load operations against the Static File Slot.\n    You can use this in your game to ensure you are not saving & loading from the incorrect file slot.\n    Default: ' +
+              kDefaultUnsetIdValue,
+
+            PARAMETER_NAME_STATIC_FILE_SLOT: 'Static File Slot!:',
+            PARAMETER_NAME_DEBOUNCE: 'Debounce!:',
+            PARAMETER_NAME_LOAD_PROXY: 'Load Proxy!:',
+            PARAMETER_NAME_LOCK_SWITCH_SOURCE: 'Lock Switch Source?:',
+            PARAMETER_NAME_LOCK_SWITCH: 'Lock Switch?:',
+
             ACTION_COMMAND_NAME_SAVE_VARIABLE: 'Save Variable',
             ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE: 'Save variable value to static storage.',
-            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source:',
-            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable:',
+            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source!:',
+            ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable!:',
+
             ACTION_COMMAND_NAME_LOAD_VARIABLE: 'Load Variable',
             ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE: 'Load variable value from static storage.',
-            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source:',
-            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable:',
+            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source!:',
+            ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable!:',
+
             ACTION_COMMAND_NAME_SAVE_SWITCH: 'Save Switch',
             ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH: 'Save switch value to static storage.',
-            ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source:',
-            ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:',
+            ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source!:',
+            ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH: 'Switch!:',
+
             ACTION_COMMAND_NAME_LOAD_SWITCH: 'Load Switch',
             ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH: 'Load switch value from static storage.',
-            ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source:',
-            ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH: 'Switch:'
+            ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source!:',
+            ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH: 'Switch!:'
           }
         },
+        /**
+         * Default locale. Used as a fallback if a given loca key is not
+         * found for currently set locale.
+         *
+         * @const
+         * @private
+         */
         locaDefault = 'en',
+        /**
+         * Special regex for matching loca keys we can inline in our plugin
+         * parameters, etc.
+         *
+         * @const
+         * @private
+         * @example 'loca(MY_LOCA_KEY)'
+         */
         inlineRegex = /^loca\((.+)\)$/,
+        /**
+         * Current locale.
+         *
+         * @private
+         */
         locaCurrent = locaDefault,
+        /**
+         * Localization manager API.
+         *
+         * @public
+         */
         self = {
           /**
-           * @param {string} key
-           * @returns {string}
+           * Get localized string for specified key. Look up is performed in this order:
+           *   1. Current locale (ie. 'en_CA').
+           *   2. Current locale prefix (ie. 'en').
+           *   3. Default locale.
+           *
+           * @param {string} key Loca key.
+           * @returns {string} Localized string when successful, loca key otherwise.
            */
           get: function (key) {
             var locaCurrentShort = locaCurrent.substring(0, 2);
@@ -50,42 +159,66 @@
               ? locaData[locaDefault][key]
               : key;
           },
-          /** @returns {string} */
+
+          /**
+           * Get current locale.
+           *
+           * @returns {string} Current locale.
+           */
           getLocale: function () {
             return locaCurrent;
           },
-          /** @param {string} locale */
+
+          /**
+           * Set current locale.
+           *
+           * @param {string} locale Locale to set.
+           */
           setLocale: function (locale) {
             locaCurrent = locale;
           },
+
           /**
-           * @param {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]} parameters
-           * @returns {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
+           * Localize plugin parameters in place.
+           *
+           * @param {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]} parameters Non-localized plugin parameters.
+           * @returns {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]} Localized plugin parameters.
            */
-          processParameterLocale: function (parameters) {
+          processParameters: function (parameters) {
             var pLen = parameters.length,
               i = 0,
               j = 0,
+              /** @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter} */
               p,
+              /** @type {RegExpMatchArray | null} */
               m,
+              /** @type {number} */
               cpLen,
+              /** @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkCustomIdParameterParameter} */
               cp;
+
             for (; i < pLen; ++i) {
               p = parameters[i];
               m = p.name.match(inlineRegex);
+
               if (m && m.length > 1) {
                 p.name = self.get(m[1]);
               }
+
               switch (p.type) {
                 case 'String':
                 case 'MultiLineString':
                   m = p.defaultValue.match(inlineRegex);
+
                   if (m && m.length > 1) {
                     p.defaultValue = self.get(m[1]);
                   }
+
                   break;
+
                 case 'CustomId':
                   cpLen = p.customParam.length;
+
                   for (; j < cpLen; ++j) {
                     cp = p.customParam[j];
                     m = cp.name.match(inlineRegex);
@@ -93,204 +226,597 @@
                       cp.name = self.get(m[1]);
                     }
                   }
+
                   break;
+
                 default:
                   break;
               }
             }
+
             return parameters;
           },
+
           /**
-           * @param {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} commandsOrConditions
-           * @returns {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]}
+           * Localize action commands or link conditions in place.
+           *
+           * @param {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} commandsOrConditions Non-localized action commands or link conditions.
+           * @returns {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} Localized action commands or link conditions.
            */
-          processCommandOrConditionLocale: function (commandsOrConditions) {
+          processCommandsOrConditions: function (commandsOrConditions) {
             var len = commandsOrConditions.length,
               i = 0,
+              /** @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand | import("pgmmv/agtk/constants/link-condition").AgtkLinkCondition} */
               c,
+              /** @type {RegExpMatchArray | null} */
               m;
+
             for (; i < len; ++i) {
               c = commandsOrConditions[i];
               m = c.name.match(inlineRegex);
+
               if (m && m.length > 1) {
                 c.name = self.get(m[1]);
               }
+
               m = c.description.match(inlineRegex);
+
               if (m && m.length > 1) {
                 c.description = self.get(m[1]);
               }
-              self.processParameterLocale(c.parameter);
+
+              self.processParameters(c.parameter);
             }
+
             return commandsOrConditions;
           }
         };
+
+      // Localization manager is ready!
       return self;
     })(),
-    parameterId = { fileSlot: 0, debounce: 1 },
-    /** @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]} */
+    /**
+     * Plugin parameter IDs. So we don't use 'magic values' throughout the code.
+     *
+     * @const
+     * @private
+     */
+    parameterId = {
+      /**
+       * File slot plugin parameter ID.
+       *
+       * @const
+       */
+      staticFileSlot: 0,
+
+      /**
+       * Debounce plugin parameter ID.
+       *
+       * @const
+       */
+      debounce: 1,
+
+      /**
+       * Lock switch parameter ID.
+       *
+       * @const
+       */
+      lockSwitch: 2,
+
+      /**
+       * Lock switch source parameter ID.
+       *
+       * @const
+       */
+      lockSwitchSource: 102,
+
+      /**
+       * Load proxy parameter ID.
+       *
+       * @const
+       */
+      loadProxy: 3
+    },
+    /**
+     * Plugin parameters.
+     *
+     * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
+     * @const
+     * @private
+     */
     parameters = [
+      // Static file slot parameter.
       {
-        id: parameterId.fileSlot,
-        name: 'loca(PARAMETER_NAME_FILE_SLOT)',
+        id: parameterId.staticFileSlot,
+        name: 'loca(PARAMETER_NAME_STATIC_FILE_SLOT)',
         type: 'Number',
-        decimals: 0,
-        defaultValue: -1337
+        defaultValue: kDefaultStaticFileSlot
       },
+      // Debounce parameter.
       {
         id: parameterId.debounce,
         name: 'loca(PARAMETER_NAME_DEBOUNCE)',
         type: 'Number',
-        decimals: 2,
-        minimumValue: 0.05,
-        maximumValue: 0.5,
-        defaultValue: 0.05
+        minimumValue: kMinDebounceValue,
+        maximumValue: kMaxDebounceValue,
+        defaultValue: kDefaultDebounceValue
+      },
+      // Load proxy parameter.
+      {
+        id: parameterId.loadProxy,
+        name: 'loca(PARAMETER_NAME_LOAD_PROXY)',
+        type: 'ObjectId',
+        defaultValue: kDefaultUnsetIdValue
+      },
+      // Lock switch source parameter.
+      {
+        id: parameterId.lockSwitchSource,
+        name: 'loca(PARAMETER_NAME_LOCK_SWITCH_SOURCE)',
+        type: 'SwitchVariableObjectId',
+        option: [''],
+        defaultValue: kDefaultUnsetIdValue
+      },
+      // Lock switch parameter.
+      {
+        id: parameterId.lockSwitch,
+        name: 'loca(PARAMETER_NAME_LOCK_SWITCH)',
+        type: 'SwitchId',
+        referenceId: parameterId.lockSwitchSource,
+        withNewButton: true,
+        defaultValue: kDefaultUnsetIdValue
       }
     ],
-    /** @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]} */
+    /**
+     * Assigned our localized plugin parameters.
+     *
+     * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
+     * @private
+     */
     localizedParameters,
+    /**
+     * Plugin action command IDs with corresponding parameter IDs. So we don't
+     * use 'magic values' throughout the code.
+     *
+     * @const
+     * @private
+     */
     actionCommandId = {
-      saveVariable: { id: 0, parameterId: { variable: 0, variableSource: 100 } },
-      loadVariable: { id: 1, parameterId: { variable: 0, variableSource: 100 } },
-      saveSwitch: { id: 2, parameterId: { switch: 0, switchSource: 100 } },
-      loadSwitch: { id: 3, parameterId: { switch: 0, switchSource: 100 } }
+      /**
+       * Save variable action command.
+       *
+       * @const
+       */
+      saveVariable: {
+        /**
+         * Save variable action command ID.
+         *
+         * @const
+         */
+        id: 0,
+
+        /**
+         * Save variable action command parameter IDs.
+         *
+         * @const
+         */
+        parameterId: {
+          /**
+           * Save variable action command variable parameter ID.
+           *
+           * @const
+           */
+          variable: 0,
+
+          /**
+           * Save variable action command variable source parameter ID.
+           *
+           * @const
+           */
+          variableSource: 100
+        }
+      },
+
+      /**
+       * Load variable action command ID.
+       *
+       * @const
+       */
+      loadVariable: {
+        /**
+         * Load variable action command ID.
+         *
+         * @const
+         */
+        id: 1,
+
+        /**
+         * Load variable action command parameter IDs.
+         *
+         * @const
+         */
+        parameterId: {
+          /**
+           * Load variable action command variable parameter ID.
+           *
+           * @const
+           */
+          variable: 0,
+
+          /**
+           * Load variable action command variable source parameter ID.
+           *
+           * @const
+           */
+          variableSource: 100
+        }
+      },
+
+      /**
+       * Save switch action command.
+       *
+       * @const
+       */
+      saveSwitch: {
+        /**
+         * Save switch action command ID.
+         *
+         * @const
+         */
+        id: 2,
+
+        /**
+         * Save switch action command parameter IDs.
+         *
+         * @const
+         */
+        parameterId: {
+          /**
+           * Save switch action command switch parameter ID.
+           *
+           * @const
+           */
+          switch: 0,
+
+          /**
+           * Save switch action command switch source parameter ID.
+           *
+           * @const
+           */
+          switchSource: 100
+        }
+      },
+
+      /**
+       * Load switch action command.
+       *
+       * @const
+       */
+      loadSwitch: {
+        /**
+         * Load switch action command ID.
+         *
+         * @const
+         */
+        id: 3,
+
+        /**
+         * Load switch action command parameter IDs.
+         *
+         * @const
+         */
+        parameterId: {
+          /**
+           * Load switch action command switch parameter ID.
+           *
+           * @const
+           */
+          switch: 0,
+
+          /**
+           * Load switch action command switch source parameter ID.
+           *
+           * @const
+           */
+          switchSource: 100
+        }
+      }
     },
-    /** @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]} */
+    /**
+     * Plugin action commands.
+     *
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
+     * @const
+     * @private
+     */
     actionCommands = [
+      // Save variable action command.
       {
         id: actionCommandId.saveVariable.id,
         name: 'loca(ACTION_COMMAND_NAME_SAVE_VARIABLE)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE)',
         parameter: [
+          // Variable source parameter.
           {
             id: actionCommandId.saveVariable.parameterId.variableSource,
             name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           },
+          // Variable parameter.
           {
             id: actionCommandId.saveVariable.parameterId.variable,
             name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE)',
             type: 'VariableId',
             referenceId: actionCommandId.saveVariable.parameterId.variableSource,
             withNewButton: true,
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           }
         ]
       },
+      // Load variable action command.
       {
         id: actionCommandId.loadVariable.id,
         name: 'loca(ACTION_COMMAND_NAME_LOAD_VARIABLE)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE)',
         parameter: [
+          // Variable source parameter.
           {
             id: actionCommandId.loadVariable.parameterId.variableSource,
             name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           },
+          // Variable parameter.
           {
             id: actionCommandId.loadVariable.parameterId.variable,
             name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE)',
             type: 'VariableId',
             referenceId: actionCommandId.loadVariable.parameterId.variableSource,
             withNewButton: false,
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           }
         ]
       },
+      // Save switch action command.
       {
         id: actionCommandId.saveSwitch.id,
         name: 'loca(ACTION_COMMAND_NAME_SAVE_SWITCH)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH)',
         parameter: [
+          // Switch source parameter.
           {
             id: actionCommandId.saveSwitch.parameterId.switchSource,
             name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           },
+          // Switch parameter.
           {
             id: actionCommandId.saveSwitch.parameterId.switch,
             name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH)',
             type: 'SwitchId',
             referenceId: actionCommandId.saveSwitch.parameterId.switchSource,
             withNewButton: true,
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           }
         ]
       },
+      // Load switch action command.
       {
         id: actionCommandId.loadSwitch.id,
         name: 'loca(ACTION_COMMAND_NAME_LOAD_SWITCH)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH)',
         parameter: [
+          // Switch source parameter.
           {
             id: actionCommandId.loadSwitch.parameterId.switchSource,
             name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           },
+          // Switch parameter.
           {
             id: actionCommandId.loadSwitch.parameterId.switch,
             name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH)',
             type: 'SwitchId',
             referenceId: actionCommandId.loadSwitch.parameterId.switchSource,
             withNewButton: false,
-            defaultValue: -1
+            defaultValue: kDefaultUnsetIdValue
           }
         ]
       }
     ],
-    /** @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]} */
+    /**
+     * Assigned our localized action commands.
+     *
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
+     * @const
+     */
     localizedActionCommands,
-    /** @type {Record<string, number | boolean>} */
+    /**
+     * Plugin internal data. This is the data structure which our variables &
+     * switches interact with for save & load.
+     *
+     * @type {Record<string, number | boolean>}
+     * @private
+     */
     internalData = {},
+    /**
+     * Is internal data initially loaded from static file slot?
+     *
+     * @private
+     */
     isInternalDataLoaded = false,
-    isSaveRequested = false,
-    isLoadRequested = false,
-    pluginStateId = {
-      ready: 0,
-      debounceSave: 1,
-      debounceLoad: 2
-    },
-    pluginState = pluginStateId.ready,
+    /**
+     * Flag error at plugin scope.
+     *
+     * @private
+     */
     isError = false,
-    accumulator = 0,
-    /** @type {number} */
-    fileSlot,
-    /** @type {number} */
+    /**
+     * Reference to Static File Slot plugin parameter value.
+     *
+     * @type {number}
+     * @private
+     */
+    staticFileSlot,
+    /**
+     * Reference to Debounce plugin parameter value.
+     *
+     * @type {number}
+     * @private
+     */
     debounce,
-    /** @returns {boolean} */
+    /**
+     * Reference to object instance that performs initial load from Static File
+     * Slot.
+     *
+     * @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | undefined}
+     * @private
+     */
+    loadProxy,
+    /**
+     * Optional lock switch object.
+     *
+     * @type {import("pgmmv/agtk/switches/switch").AgtkSwitch | undefined}
+     * @private
+     */
+    lockSwitch,
+    /**
+     * IO controller.
+     *
+     * @const
+     * @private
+     */
+    ioController = (function () {
+      /**
+       * IO controller state ID.
+       *
+       * @const
+       * @private
+       */
+      var stateId = {
+          ready: 0,
+          debounceSavePhase1: 1,
+          debounceLoadPhase1: 2,
+          debounceSavePhase2: 3,
+          debounceLoadPhase2: 4
+        },
+        /**
+         * Is save requested?
+         *
+         * @private
+         */
+        isSaveRequested = false,
+        /**
+         * Is load requested?
+         *
+         * @private
+         */
+        isLoadRequested = false,
+        /**
+         * Debounce duration accumulator.
+         *
+         * @private
+         */
+        accumulator = 0,
+        /**
+         * IO controller current state.
+         *
+         * @private
+         */
+        state = stateId.ready,
+        /**
+         * IO controller API.
+         *
+         * @public
+         */
+        self = {};
+
+      // IO controller ready!
+      return self;
+    })(),
+    /**
+     * Test if plugin is currently running in the editor.
+     *
+     * @returns {boolean} `true` when in editor, `false` otherwise.
+     * @private
+     */
     inEditor = function () {
       return !Agtk || typeof Agtk.log !== 'function';
     },
-    /** @returns {Record<number,import("type-fest").JsonValue>} */
+    /**
+     * Normalize specified parameter values into a `<parameter ID>,<value>`
+     * mapping. Missing parameter values will be assigned corresponding values
+     * from the provided defaults, if available.
+     *
+     * @param paramValue Parameter values to normalize.
+     * @param defaults Default parameter values available.
+     * @returns Normalized `<parameter ID>,<value>` mapping.
+     * @private
+     */
     normalizeParameters = function (
       /** @type {import("pgmmv/agtk/plugins/plugin").AgtkParameterValue[]} */
       paramValue,
       /** @type {import("pgmmv/agtk/plugins/plugin").AgtkParameterValue[]} */
       defaults
     ) {
+      /** @type {Record<number,import("type-fest").JsonValue>} */
       var normalized = {},
         len = defaults.length,
         i = 0,
+        /** @type {import("pgmmv/agtk/plugins/plugin").AgtkParameterValue} */
         p;
+
       for (; i < len; ++i) {
         p = defaults[i];
         normalized[p.id] = p.type === 'Json' ? JSON.stringify(p.defaultValue) : p.defaultValue;
       }
+
       len = paramValue.length;
+
       for (i = 0; i < len; ++i) {
         p = paramValue[i];
         normalized[p.id] = p.value;
       }
+
       return normalized;
     },
-    /** @returns {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | 0 | -1} */
+    /**
+     * Generate key for indexing into the internalData object.
+     *
+     * @param objectId Object ID.
+     * @param variableId Variable ID.
+     * @returns {string} Key unique key generated from object & variable IDs.
+     * @private
+     */
+    generateKey = function (
+      /** @type {number} */
+      objectId,
+      /** @type {number} */
+      variableId
+    ) {
+      return objectId + ',' + variableId;
+    },
+    /**
+     * Resolve the switch/variable source object to either the Project Common
+     * identifier (`0`) or an appropriate object instance.
+     *
+     * @param switchVariableObjectId Suitable values are:
+     *   - 0: Project Common
+     *   - -2: Self Object
+     *   - -7: Parent Object
+     * @returns {
+     *   import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance |
+     *   import("pgmmv/agtk/constants/switch-variable-objects").AgtkSwitchVariableObjects['ProjectCommon'] |
+     *   import("pgmmv/agtk/constants/action-commands").AgtkActionCommands['UnsetObject']
+     * } Resolved switch/variable source, or `-1` when not resolved.
+     * @private
+     */
     resolveSwitchVariableObject = function (
       /** @type {number} switchVariableObjectId */
       switchVariableObjectId,
@@ -299,6 +825,7 @@
     ) {
       var instance = Agtk.objectInstances.get(instanceId),
         pId;
+
       switch (switchVariableObjectId) {
         case Agtk.constants.switchVariableObjects.ProjectCommon:
           return switchVariableObjectId;
@@ -313,32 +840,43 @@
         default:
           break;
       }
+
       return Agtk.constants.actionCommands.UnsetObject;
     },
-    /** @returns {string} */
-    getKey = function (
-      /** @type {number} */
-      objectId,
-      /** @type {number} */
-      variableId
-    ) {
-      return objectId + ',' + variableId;
-    },
+    /**
+     * Set internal data & flag for save.
+     *
+     * @param switchOrVariableSource Object instance or Project Common
+     * identifier.
+     * @param switchOrVariableId Switch or variable ID.
+     * @param type 'switches' or 'variables'.
+     */
     setInternalData = function (
       /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | 0 } */
-      target,
+      switchOrVariableSource,
       /** @type {number} */
-      variableId,
+      switchOrVariableId,
       /** @type {'variables' | 'switches'} */
       type
     ) {
       var projectCommon = Agtk.constants.switchVariableObjects.ProjectCommon,
-        key = getKey(target === projectCommon ? target : target.objectId, variableId),
-        accessor = target === projectCommon ? Agtk[type].get(variableId) : target[type].get(variableId);
+        key = generateKey(
+          switchOrVariableSource === projectCommon ? switchOrVariableSource : switchOrVariableSource.objectId,
+          switchOrVariableId
+        ),
+        accessor =
+          switchOrVariableSource === projectCommon
+            ? Agtk[type].get(switchOrVariableId)
+            : switchOrVariableSource[type].get(switchOrVariableId);
       internalData[key] = accessor.getValue();
-      isSaveRequested = true;
+      // TODO: Signal IO controller ...
+      //isSaveRequested = true;
     },
-    /** @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']} */
+    /**
+     * Execute save variable action command.
+     *
+     * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
+     */
     execSaveVariable = function (
       /** @type {number} */
       variableObjectId,
@@ -347,13 +885,18 @@
       /** @type {number} */
       instanceId
     ) {
-      var target = resolveSwitchVariableObject(variableObjectId, instanceId);
+      // TODO
+      /*var target = resolveSwitchVariableObject(variableObjectId, instanceId);
       if (target !== Agtk.constants.actionCommands.UnsetObject) {
         setInternalData(target, variableId, 'variables');
-      }
+      }*/
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
-    /** @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']} */
+    /**
+     * Execute load variable action command.
+     *
+     * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
+     */
     execLoadVariable = function (
       /** @type {number} */
       variableObjectId,
@@ -362,14 +905,19 @@
       /** @type {number} */
       instanceId
     ) {
-      var target = resolveSwitchVariableObject(variableObjectId, instanceId),
+      // TODO
+      /*var target = resolveSwitchVariableObject(variableObjectId, instanceId),
         key;
       if (target === Agtk.constants.actionCommands.UnsetObject) {
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       } else if (!isInternalDataLoaded) {
+        if (!isLoadRequested && !loadProxy) {
+          isLoadRequested = true;
+          loadProxy = Agtk.objectInstances.get(instanceId);
+        }
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
       }
-      key = getKey(target, variableId);
+      key = generateKey(target, variableId);
       if (target === Agtk.constants.switchVariableObjects.ProjectCommon) {
         Agtk.variables.get(variableId).setValue(internalData[key]);
       } else {
@@ -381,11 +929,14 @@
           variableAssignOperator: Agtk.constants.assignments.VariableAssignOperatorSet,
           assignValue: internalData[key]
         });
-      }
-
+      }*/
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
-    /** @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']} */
+    /**
+     * Execute save switch action command.
+     *
+     * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
+     */
     execSaveSwitch = function (
       /** @type {number} */
       switchObjectId,
@@ -394,13 +945,18 @@
       /** @type {number} */
       instanceId
     ) {
-      var target = resolveSwitchVariableObject(switchObjectId, instanceId);
+      // TODO
+      /*var target = resolveSwitchVariableObject(switchObjectId, instanceId);
       if (target !== Agtk.constants.actionCommands.UnsetObject) {
         setInternalData(target, switchId, 'switches');
-      }
+      }*/
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
-    /** @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']} */
+    /**
+     * Execute load switch action command.
+     *
+     * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
+     */
     execLoadSwitch = function (
       /** @type {number} */
       switchObjectId,
@@ -409,14 +965,19 @@
       /** @type {number} */
       instanceId
     ) {
-      var target = resolveSwitchVariableObject(switchObjectId, instanceId),
+      // TODO
+      /*var target = resolveSwitchVariableObject(switchObjectId, instanceId),
         key;
       if (target === Agtk.constants.actionCommands.UnsetObject) {
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       } else if (!isInternalDataLoaded) {
+        if (!isLoadRequested && !loadProxy) {
+          isLoadRequested = true;
+          loadProxy = Agtk.objectInstances.get(instanceId);
+        }
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
       }
-      key = getKey(target, switchId);
+      key = generateKey(target, switchId);
       if (target === Agtk.constants.switchVariableObjects.ProjectCommon) {
         Agtk.switches.get(switchId).setValue(internalData[key]);
       } else {
@@ -427,15 +988,20 @@
           switchId: switchId,
           switchValue: internalData[key]
         });
-      }
-
+      }*/
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
-    /** @type {import("pgmmv/agtk/plugins/plugin").AgtkPlugin} */
+    /**
+     * Static storage plugin API.
+     *
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkPlugin}
+     * @public
+     */
     self = {
       setLocale: function (locale) {
         locaManager.setLocale(locale);
       },
+
       getInfo: function (category) {
         switch (category) {
           case 'name':
@@ -449,13 +1015,13 @@
           case 'parameter':
             return localizedParameters
               ? localizedParameters
-              : (localizedParameters = locaManager.processParameterLocale(parameters));
+              : (localizedParameters = locaManager.processParameters(parameters));
           case 'internal':
             return internalData;
           case 'actionCommand':
             return localizedActionCommands
               ? localizedActionCommands
-              : (localizedActionCommands = locaManager.processCommandOrConditionLocale(actionCommands));
+              : (localizedActionCommands = locaManager.processCommandsOrConditions(actionCommands));
           case 'linkCondition':
             return [];
           case 'autoTile':
@@ -463,69 +1029,105 @@
             break;
         }
       },
+
       initialize: function () {},
+
       finalize: function () {},
+
       setParamValue: function (paramValue) {
+        /** @type {Record<number,import("type-fest").JsonValue>} */
         var np;
+
         if (inEditor()) {
           return;
         }
+
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
-        fileSlot = np[parameterId.fileSlot];
+        staticFileSlot = np[parameterId.staticFileSlot];
         debounce = np[parameterId.debounce];
-        if (isNaN(fileSlot)) {
+        // TODO: load proxy & lock switch ...
+
+        if (isNaN(staticFileSlot)) {
           Agtk.log('[Static Storage Plugin] error: file slot is NaN');
           isError = true;
         } else if (isNaN(debounce)) {
           Agtk.log('[Static Storage Plugin] error: debounce is NaN');
           isError = true;
         }
+
         if (isError) {
           Agtk.log('[Static Storage Plugin] error: deactivating action commands');
           return;
         }
-        isLoadRequested = true;
       },
+
       setInternal: function (data) {
         internalData = data;
         isInternalDataLoaded = true;
+        loadProxy = undefined;
       },
+
       call: function call() {},
+
       update: function (delta) {
-        Agtk.log(delta);
         if (isError) {
           return;
         }
+
         // TODO: Manage file slot change + file operation + file slot change operation...
-        switch (pluginState) {
+        /*switch (pluginState) {
           case pluginStateId.ready:
+            // TODO: old file slot...
             if (isLoadRequested) {
-              Agtk.variables.get(Agtk.variables.FileSlotId).setValue(fileSlot);
-              pluginState = pluginStateId.debounceLoad;
+              Agtk.variables.get(Agtk.variables.FileSlotId).setValue(staticFileSlot);
+              pluginState = pluginStateId.debounceLoadPhase1;
             } else if (isSaveRequested) {
-              Agtk.variables.get(Agtk.variables.FileSlotId).setValue(fileSlot);
-              pluginState = pluginStateId.debounceSave;
+              Agtk.variables.get(Agtk.variables.FileSlotId).setValue(staticFileSlot);
+              pluginState = pluginStateId.debounceSavePhase1;
             }
             break;
-          case pluginStateId.debounceLoad:
+          case pluginStateId.debounceLoadPhase1:
+            accumulator += delta;
+            if (accumulator >= debounce) {
+              if (Agtk.variables.get(Agtk.variables.FileSlotId).getValue() === staticFileSlot) {
+                // TODO: Check file..?
+                loadProxy.execCommandFileLoad({
+                  projectCommonSwitches: false,
+                  projectCommonVariables: false,
+                  sceneAtTimeOfSave: false,
+                  objectsStatesInSceneAtTimeOfSave: false,
+                  effectType: Agtk.constants.actionCommands.fileLoad.None,
+                  duration300: 0
+                });
+                isLoadRequested = false;
+              }
+              pluginState = pluginStateId.ready;
+              accumulator = 0;
+            }
             break;
-          case pluginStateId.debounceSave:
+          case pluginStateId.debounceSavePhase1:
             break;
           default:
             break;
-        }
+        }*/
       },
+
       execActionCommand: function (actionCommandIndex, parameter, objectId, instanceId) {
         /**
          * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand}
          */
-        var actionCommand, np;
+        var actionCommand,
+          /** @type {Record<number,import("type-fest").JsonValue>} */
+          np;
+
         if (isError) {
           Agtk.log('[Static Storage Plugin] error: skipping action command');
           return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
         }
+
         actionCommand = self.getInfo('actionCommand')[actionCommandIndex];
         np = normalizeParameters(parameter, actionCommand.parameter);
+
         switch (actionCommand.id) {
           case actionCommandId.saveVariable.id:
             return execSaveVariable(
@@ -554,8 +1156,11 @@
           default:
             break;
         }
+
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       }
     };
+
+  // Plugin ready!
   return self;
 })();

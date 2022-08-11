@@ -1236,27 +1236,6 @@
 	"memo": ""
 }
 ,
-	"transitionFlow": {
-	"flowScreenList": [ {
-	"id": 1,
-	"scene": true,
-	"sceneMenuId": -1,
-	"x": 24,
-	"y": 24,
-	"width": 144,
-	"height": 48,
-	"shortcutList": [],
-	"a": -1,
-	"r": -1,
-	"g": -1,
-	"b": -1
-} ],
-	"flowLinkList": [  ],
-	"flowGroupList": [  ],
-"transitionLinkPaletteList": [],
-"transitionScreenPaletteList": []
-}
-,
 	"animParticleImageList": [  ]
 
 }

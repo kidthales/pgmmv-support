@@ -39,7 +39,7 @@
      * @const
      * @private
      */
-    kDefaultUnsetIdValue = Agtk.constants.actionCommands.UnsetObject,
+    kDefaultUnsetIdValue = -1,
     /**
      * Localization manager. Responsible for mapping our localization keys to
      * their localized values.
