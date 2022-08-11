@@ -21,28 +21,18 @@
        * @private
        */
       var locaData = {
-          /**
-           * Default english localizations.
-           */
+          /** Default english localizations. */
           en: {
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_NAME: 'Static Storage Plugin',
 
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_DESCRIPTION: 'Provides static storage for your switches & variables.',
 
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
 
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_HELP: 'Leverages file slot system.',
 
             PARAMETER_NAME_FILE_SLOT: 'File Slot:',
@@ -130,7 +120,7 @@
           /**
            * Set current locale.
            *
-           * @param {string} locale
+           * @param {string} locale Locale to set.
            */
           setLocale: function (locale) {
             locaCurrent = locale;
@@ -257,9 +247,9 @@
     /**
      * Plugin parameters.
      *
+     * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      * @const
      * @private
-     * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      */
     parameters = [
       // File slot parameter.
@@ -284,8 +274,8 @@
     /**
      * Assigned our localized plugin parameters.
      *
-     * @private
      * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
+     * @private
      */
     localizedParameters,
     /**
@@ -439,9 +429,9 @@
     /**
      * Plugin action commands.
      *
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
      * @const
      * @private
-     * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
      */
     actionCommands = [
       // Save variable action command.
@@ -548,16 +538,16 @@
     /**
      * Assigned our localized action commands.
      *
-     * @const
      * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
+     * @const
      */
     localizedActionCommands,
     /**
      * Plugin internal data. This is the data structure which our variables &
      * switches interact with for save & load.
      *
-     * @private
      * @type {Record<string, number | boolean>}
+     * @private
      */
     internalData = {},
     isInternalDataLoaded = false,
@@ -579,30 +569,50 @@
     fileSlot,
     /** @type {number} */
     debounce,
-    /** @returns {boolean} */
+    /**
+     * Test if plugin is currently running in the editor.
+     *
+     * @returns {boolean} `true` when in editor, `false` otherwise.
+     * @private
+     */
     inEditor = function () {
       return !Agtk || typeof Agtk.log !== 'function';
     },
-    /** @returns {Record<number,import("type-fest").JsonValue>} */
+    /**
+     * Normalize specified parameter values into a `<parameter ID>,<value>`
+     * mapping. Missing parameter values will be assigned corresponding values
+     * from the provided defaults, if available.
+     *
+     * @param paramValue Parameter values to normalize.
+     * @param defaults Default parameter values available.
+     * @returns Normalized `<parameter ID>,<value>` mapping.
+     * @private
+     */
     normalizeParameters = function (
       /** @type {import("pgmmv/agtk/plugins/plugin").AgtkParameterValue[]} */
       paramValue,
       /** @type {import("pgmmv/agtk/plugins/plugin").AgtkParameterValue[]} */
       defaults
     ) {
+      /** @type {Record<number,import("type-fest").JsonValue>} */
       var normalized = {},
         len = defaults.length,
         i = 0,
+        /** @type {import("pgmmv/agtk/plugins/plugin").AgtkParameterValue} */
         p;
+
       for (; i < len; ++i) {
         p = defaults[i];
         normalized[p.id] = p.type === 'Json' ? JSON.stringify(p.defaultValue) : p.defaultValue;
       }
+
       len = paramValue.length;
+
       for (i = 0; i < len; ++i) {
         p = paramValue[i];
         normalized[p.id] = p.value;
       }
+
       return normalized;
     },
     /** @returns {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | 0 | -1} */
@@ -753,11 +763,17 @@
 
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
-    /** @type {import("pgmmv/agtk/plugins/plugin").AgtkPlugin} */
+    /**
+     * Static storage plugin API.
+     *
+     * @type {import("pgmmv/agtk/plugins/plugin").AgtkPlugin}
+     * @public
+     */
     self = {
       setLocale: function (locale) {
         locaManager.setLocale(locale);
       },
+
       getInfo: function (category) {
         switch (category) {
           case 'name':
@@ -785,16 +801,23 @@
             break;
         }
       },
+
       initialize: function () {},
+
       finalize: function () {},
+
       setParamValue: function (paramValue) {
+        /** @type {Record<number,import("type-fest").JsonValue>} */
         var np;
+
         if (inEditor()) {
           return;
         }
+
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
         fileSlot = np[parameterId.fileSlot];
         debounce = np[parameterId.debounce];
+
         if (isNaN(fileSlot)) {
           Agtk.log('[Static Storage Plugin] error: file slot is NaN');
           isError = true;
@@ -802,21 +825,26 @@
           Agtk.log('[Static Storage Plugin] error: debounce is NaN');
           isError = true;
         }
+
         if (isError) {
           Agtk.log('[Static Storage Plugin] error: deactivating action commands');
           return;
         }
       },
+
       setInternal: function (data) {
         internalData = data;
         isInternalDataLoaded = true;
         loadProxy = undefined;
       },
+
       call: function call() {},
+
       update: function (delta) {
         if (isError) {
           return;
         }
+
         // TODO: Manage file slot change + file operation + file slot change operation...
         switch (pluginState) {
           case pluginStateId.ready:
@@ -854,17 +882,23 @@
             break;
         }
       },
+
       execActionCommand: function (actionCommandIndex, parameter, objectId, instanceId) {
         /**
          * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand}
          */
-        var actionCommand, np;
+        var actionCommand,
+          /** @type {Record<number,import("type-fest").JsonValue>} */
+          np;
+
         if (isError) {
           Agtk.log('[Static Storage Plugin] error: skipping action command');
           return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
         }
+
         actionCommand = self.getInfo('actionCommand')[actionCommandIndex];
         np = normalizeParameters(parameter, actionCommand.parameter);
+
         switch (actionCommand.id) {
           case actionCommandId.saveVariable.id:
             return execSaveVariable(
@@ -893,8 +927,11 @@
           default:
             break;
         }
+
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       }
     };
+
+  // Plugin ready!
   return self;
 })();

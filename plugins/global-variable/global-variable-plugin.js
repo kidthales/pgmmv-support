@@ -20,28 +20,18 @@
        * @private
        */
       var locaData = {
-          /**
-           * Default english localizations.
-           */
+          /** Default english localizations. */
           en: {
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_NAME: 'Global Variable Plugin',
 
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_DESCRIPTION: 'Provides a global variable for your scripts.',
 
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
 
-            /**
-             * Required.
-             */
+            /** Required. */
             PLUGIN_HELP: 'Variable name must be a valid JavaScript identifier.',
 
             PARAMETER_NAME_GLOBAL_VARIABLE_NAME: 'Global Variable Name:',
@@ -110,7 +100,7 @@
           /**
            * Set current locale.
            *
-           * @param {string} locale
+           * @param {string} locale Locale to set.
            */
           setLocale: function (locale) {
             locaCurrent = locale;
@@ -204,9 +194,9 @@
     /**
      * Plugin parameters.
      *
+     * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      * @const
      * @private
-     * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      */
     parameters = [
       // Global variable name parameter.
@@ -227,8 +217,8 @@
     /**
      * Assigned our localized plugin parameters.
      *
-     * @private
      * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
+     * @private
      */
     localizedParameters,
     /**
