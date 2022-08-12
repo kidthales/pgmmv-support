@@ -343,6 +343,20 @@
       return normalized;
     },
     /**
+     * Log plugin error message.
+     *
+     * @param msg The error message.
+     */
+    logError = function (
+      /** @type {string} */
+      msg
+    ) {
+      if (inEditor()) {
+        return;
+      }
+      Agtk.log('[' + locaManager.get('PLUGIN_NAME') + '] error: ' + msg);
+    },
+    /**
      * Global variable plugin API.
      *
      * @type {import("pgmmv/agtk/plugins/plugin").AgtkPlugin}
@@ -401,18 +415,18 @@
         value = JSON.parse(np[parameterId.globalVariableValue]);
 
         if (!name) {
-          Agtk.log('[Global Variable Plugin] error: global variable name is empty');
+          logError('global variable name is empty');
           isError = true;
         } else if (~reservedWords.indexOf(name)) {
-          Agtk.log("[Global Variable Plugin] error: global variable name is a reserved word: '" + name + "'");
+          logError("global variable name is a reserved word: '" + name + "'");
           isError = true;
         } else if (/\s/g.test(name)) {
-          Agtk.log("[Global Variable Plugin] error: global variable name contains whitespace: '" + name + "'");
+          logError("global variable name contains whitespace: '" + name + "'");
           isError = true;
         }
 
         if (isError) {
-          Agtk.log('[Global Variable Plugin] error: skipping global variable injection');
+          logError('skipping global variable injection');
           return;
         }
 

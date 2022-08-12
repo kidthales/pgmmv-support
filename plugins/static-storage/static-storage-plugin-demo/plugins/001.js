@@ -679,6 +679,20 @@
      */
     debounce,
     /**
+     * Reference to load proxy object ID.
+     *
+     * @type {number | undefined}
+     * @private
+     */
+    loadProxyObjectId,
+    /**
+     * Reference to load proxy instance ID.
+     *
+     * @type {number | undefined}
+     * @private
+     */
+    loadProxyInstanceId,
+    /**
      * Reference to object instance that performs initial load from Static File
      * Slot.
      *
@@ -808,6 +822,34 @@
       }
 
       return normalized;
+    },
+    /**
+     * Log plugin error message.
+     *
+     * @param msg The error message.
+     */
+    logError = function (
+      /** @type {string} */
+      msg
+    ) {
+      if (inEditor()) {
+        return;
+      }
+      Agtk.log('[' + locaManager.get('PLUGIN_NAME') + '] error: ' + msg);
+    },
+    /**
+     * Log plugin warning message.
+     *
+     * @param msg The warning message.
+     */
+    logWarning = function (
+      /** @type {string} */
+      msg
+    ) {
+      if (inEditor()) {
+        return;
+      }
+      Agtk.log('[' + locaManager.get('PLUGIN_NAME') + '] warning: ' + msg);
     },
     /**
      * Generate key for indexing into the internalData object.
@@ -1060,10 +1102,6 @@
       setParamValue: function (paramValue) {
         /** @type {Record<number,import("type-fest").JsonValue>} */
         var np,
-          /** @type {number} */
-          lpObjectId,
-          /** @type {number} */
-          lpInstanceId,
           /** @type {number | undefined} */
           lssId,
           /** @type {number | undefined} */
@@ -1074,27 +1112,29 @@
         }
 
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
+
         staticFileSlot = np[parameterId.staticFileSlot];
         debounce = np[parameterId.debounce];
-        lpObjectId = np[parameterId.loadProxy];
+        loadProxyObjectId = np[parameterId.loadProxy];
+
         lssId = np[parameterId.lockSwitchSource];
         lsId = np[parameterId.lockSwitch];
 
         if (isNaN(staticFileSlot)) {
-          Agtk.log('[Static Storage Plugin] error: file slot is NaN');
+          logError('static file slot is NaN');
           isError = true;
         }
 
         if (isNaN(debounce)) {
-          Agtk.log('[Static Storage Plugin] error: debounce is NaN');
+          logError('debounce is NaN');
           isError = true;
         }
 
-        if (isNaN(lpObjectId)) {
-          Agtk.log('[Static Storage Plugin] error: load proxy object ID is NaN');
+        if (isNaN(loadProxyObjectId)) {
+          logError('load proxy object ID is NaN');
           isError = true;
-        } else if (lpObjectId <= 0) {
-          Agtk.log('[Static Storage Plugin] error: invalid load proxy object ID: ' + lpObjectId);
+        } else if (loadProxyObjectId <= 0) {
+          logError('invalid load proxy object ID: ' + loadProxyObjectId);
           isError = true;
         }
 
@@ -1122,38 +1162,33 @@
         }*/
 
         if (isError) {
-          Agtk.log('[Static Storage Plugin] a critical error occurred: deactivating plugin');
+          logError('a critical error occurred: deactivating plugin');
           return;
         }
 
         // Setup lock switch.
         if (!isNaN(lssId) && lssId !== Agtk.constants.actionCommands.UnsetObject) {
           if (lssId !== Agtk.constants.switchVariableObjects.ProjectCommon) {
-            Agtk.log(
-              '[Static Storage Plugin] warning: invalid lock switch source ID: ' +
+            logWarning(
+              'invalid lock switch source ID: ' +
                 lssId +
                 '; expected: ' +
                 Agtk.constants.switchVariableObjects.ProjectCommon
             );
           } else if (isNaN(lsId)) {
-            Agtk.log('[Static Storage Plugin] warning: lock switch ID is NaN');
+            logWarning('lock switch ID is NaN');
           } else if (lsId < kCustomSwitchIDStartValue) {
-            Agtk.log(
-              '[Static Storage Plugin] warning: invalid lock switch ID: ' +
-                lsId +
-                '; expected value >= ' +
-                kCustomSwitchIDStartValue
-            );
+            logWarning('invalid lock switch ID: ' + lsId + '; expected value >= ' + kCustomSwitchIDStartValue);
           } else {
             lockSwitch = Agtk.switches.get(lsId);
 
             if (!lockSwitch) {
-              Agtk.log('[Static Storage Plugin] warning: lock switch is not defined');
+              logWarning('lock switch is not defined');
             }
           }
         }
 
-        // TODO: Request static file load...
+        // TODO: Request load proxy creation & static file load...
       },
 
       setInternal: function (data) {
