@@ -177,7 +177,8 @@
 	"imageList": [
 		{"id":1,"name":"font6x10","filename":"img/001.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
 		{"id":2,"name":"font8x8","filename":"img/002.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
-		{"id":3,"name":"font12x12","filename":"img/003.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false}
+		{"id":3,"name":"font12x12","filename":"img/003.png","srcFilename":"","horzDivCount":1,"vertDivCount":1,			"folder": false},
+		{"id":4,"name":"Empty 2x2","filename":"img/004.png","srcFilename":"D:/kidthales/pgmmv-support/resources/img/Empty 2x2.png","horzDivCount":1,"vertDivCount":1,			"folder": false}
 	],
 	"fontList": [
 				{
@@ -535,6 +536,14 @@
 			"toBeSaved": true,
 			"memo": "",
 			"folder": false
+		},
+				{
+			"id": 2000,
+			"name": "STATIC FILE SLOT LOCK",
+			"initialValue": false,
+			"toBeSaved": false,
+			"memo": "Best to not keep this on game save.",
+			"folder": false
 		}
 	],
 	"animationOnlyList": [
@@ -543,27 +552,27 @@
 	"objectList": [
 				{
 			"id": 1,
-			"name": "object001",
+			"name": "Static Storage Plugin Load Proxy",
 			"type": 0,
 			"group": 0,
-			"animationId": -1,
+			"animationId": 1,
 			"operatable": false,
 			"priority": 0,
 			"initialActionId": 1,
 			"initialDisplayDirectionFlag": false,
 			"initialDisplayDirection": 180.000000,
 			"hitPlayerGroup": false,
-			"hitEnemyGroup": true,
-			"hitObjectGroupBit": 2,
+			"hitEnemyGroup": false,
+			"hitObjectGroupBit": 0,
 			"collideWithPlayerGroup": false,
-			"collideWithEnemyGroup": true,
-			"collideWithObjectGroupBit": 2,
-			"collideWithTile": true,
-			"collideWithTileGroupBit": 1,
+			"collideWithEnemyGroup": false,
+			"collideWithObjectGroupBit": 0,
+			"collideWithTile": false,
+			"collideWithTileGroupBit": 0,
 			"dispPriority": 0,
 			"actionList": [ {
 	"id": 1,
-	"name": "Actions001",
+	"name": "Noop",
 	"a": 255,
 	"r": 166,
 	"g": 166,
@@ -584,9 +593,9 @@
 	"turnSpeed": 100,
 	"objCommandList": [  ],
 	"memo": "",
-	"x": -72,
+	"x": -48,
 	"y": -24,
-	"width": 168,
+	"width": 96,
 	"height": 48,
 	"shortcutList": []
 } ],
@@ -1207,7 +1216,18 @@
 		}
 	],
 	"animationList": [
-		
+				{
+			"id": 1,
+			"name": "Static Storage Plugin Load Proxy",
+			"type": 0,
+			"originType": 3,
+			"originX": 1,
+			"originY": 1,
+			"resourceInfoList": [ { "id": 1, "image": true, "imageId": 4, "hdivCount": 1, "vdivCount": 1 } ],
+			"motionList": [ { "id": 1, "name": "Motion001", "dispFrameCount300": 5, "loopCount": 1, "infiniteLoop": false, "reversePlay": false, "directionList": [ { "id": 1, "name": "Direction001", "directionBit": 0, "autoGeneration": false, "yFlip": false, "resourceInfoId": 1, "animationName": "", "timelineInfoList": [  ], "frameList": [ { "id": 1, "frameCount300": 5, "interpType": 0, "playSe": false, "playSeId": -1, "playVoice": false, "playVoiceId": -1, "centerOrigin": true, "originX": 0, "originY": 0, "offsetX": 0, "offsetY": 0, "centerX": 1, "centerY": 1, "scalingX": 100, "scalingY": 100, "flipX": false, "flipY": false, "rotation": 0, "alpha": 255, "r": 255, "g": 255, "b": 255, "imageTileX": 0, "imageTileY": 0 } ], "frameLocked": false, "framePreviewVisible": true, "imageWidth": 2, "imageHeight": 2 } ] } ],
+			"memo": "",
+			"folder": false
+		}
 	],
 	"transitionPortalList": [
 		
@@ -1220,7 +1240,25 @@
 					"srcFilename": "D:/kidthales/pgmmv-support/plugins/static-storage/static-storage-plugin.js",
 					"enabled": true,
 					"internalJson": {},
-					"paramValueJson": [{"id":1,"value":0.05}],
+					"paramValueJson": [
+    {
+        "id": 1,
+        "value": 0.05
+    },
+    {
+        "id": 3,
+        "value": 1
+    },
+    {
+        "id": 102,
+        "value": 0
+    },
+    {
+        "id": 2,
+        "value": 2000
+    }
+]
+,
 					"officialKey": "",
 			"folder": false
 				}
@@ -1234,6 +1272,27 @@
 	"gridMagnet": true,
 	"actionIconHide": true,
 	"memo": ""
+}
+,
+	"transitionFlow": {
+	"flowScreenList": [ {
+	"id": 1,
+	"scene": true,
+	"sceneMenuId": -1,
+	"x": 24,
+	"y": 24,
+	"width": 144,
+	"height": 48,
+	"shortcutList": [],
+	"a": -1,
+	"r": -1,
+	"g": -1,
+	"b": -1
+} ],
+	"flowLinkList": [  ],
+	"flowGroupList": [  ],
+"transitionLinkPaletteList": [],
+"transitionScreenPaletteList": []
 }
 ,
 	"animParticleImageList": [  ]
