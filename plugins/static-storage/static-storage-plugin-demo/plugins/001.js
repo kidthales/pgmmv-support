@@ -92,7 +92,7 @@
             ACTION_COMMAND_NAME_LOAD_VARIABLE: 'Load Static Variable',
             ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE:
               "Load variable value from static storage. Valid variable sources: 'Project Common', 'Object Self', 'Parent Object'.\n\n" +
-              'If plugin has not completed initial static file load, returns `Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock` until initial static file load is complete.',
+              'If plugin has not completed initial static file load, returns `CommandBehaviorBlock` until initial static file load is complete.',
             ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source!:',
             ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable!:',
 
@@ -105,7 +105,7 @@
             ACTION_COMMAND_NAME_LOAD_SWITCH: 'Load Static Switch',
             ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH:
               "Load switch value from static storage. Valid switch sources: 'Project Common', 'Object Self', 'Parent Object'.\n\n" +
-              'If plugin has not completed initial static file load, returns `Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock` until initial static file load is complete.',
+              'If plugin has not completed initial static file load, returns `CommandBehaviorBlock` until initial static file load is complete.',
             ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source!:',
             ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH: 'Switch!:'
           }
