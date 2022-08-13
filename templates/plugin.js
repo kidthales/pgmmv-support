@@ -371,9 +371,14 @@
       finalize: function () {},
 
       setParamValue: function (paramValue) {
+        /** @type {Record<number,import("type-fest").JsonValue>} */
+        var np;
+
         if (inEditor()) {
           return;
         }
+
+        np = normalizeParameters(paramValue, self.getInfo('parameter'));
       },
 
       setInternal: function (data) {
