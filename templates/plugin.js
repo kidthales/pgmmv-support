@@ -218,6 +218,7 @@
     parameters = [],
     /**
      * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
+     * @private
      */
     localizedParameters,
     /**
