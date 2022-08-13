@@ -836,6 +836,7 @@
                   isSaveRequested = false;
 
                   try {
+                    // Encode.
                     json = JSON.stringify(internalData);
                   } catch (e) {
                     logError('failed encoding internalData');
@@ -843,11 +844,14 @@
                     return;
                   }
 
+                  // Get byte length of our encoding (for comparison with file size).
                   jsonSize = getStringByteLength(json);
 
                   if (!jsb.fileUtils.isDirectoryExist(dirPath)) {
+                    // Static directory does not exist. Create it!
                     fileSize = 0;
                     jsb.fileUtils.createDirectory(dirPath);
+                    // Poll for directory create completion.
                     state = stateId.createDir;
                     return;
                   }
@@ -868,11 +872,16 @@
                 break;
 
               case stateId.save:
+                // Polling for file write completion.
                 if (fileSize !== jsonSize) {
+                  // JSON encoding and previous file size does not match - we
+                  // can test for new file size to indicate write completion.
                   if (jsonSize === jsb.fileUtils.getFileSize(filePath)) {
                     state = stateId.ready;
                   }
                 } else if (json === jsb.fileUtils.getStringFromFile(filePath)) {
+                  // JSON encoding and previous file size matched so we need to
+                  // compare content directly to indicate write completion.
                   state = stateId.ready;
                 }
 
@@ -880,7 +889,9 @@
 
               case stateId.createDir:
                 if (jsb.fileUtils.isDirectoryExist(dirPath)) {
-                  state = stateId.save;
+                  // Static directory created, attempt save again.
+                  isSaveRequested = true;
+                  state = stateId.ready;
                 }
 
                 break;
