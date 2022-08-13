@@ -664,6 +664,7 @@
      *
      * @type {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[]}
      * @const
+     * @private
      */
     localizedActionCommands,
     /**
@@ -1566,7 +1567,7 @@
         isInternalDataLoaded = true;
       },
 
-      call: function call() {},
+      call: function () {},
 
       update: function (delta) {
         if (isError) {

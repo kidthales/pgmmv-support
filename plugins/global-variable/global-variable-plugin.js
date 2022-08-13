@@ -436,7 +436,7 @@
 
       setInternal: function () {},
 
-      call: function call() {}
+      call: function () {}
     };
 
   // Plugin is ready!
