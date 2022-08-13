@@ -1339,6 +1339,10 @@
 
       key = generateKey(source === projectCommon ? source : source.objectId, kVariableAccessorTypeValue, variableId);
 
+      if (internalData[key] === undefined) {
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
+      }
+
       // Load the variable!
       if (source === projectCommon) {
         Agtk.variables.get(variableId).setValue(internalData[key]);
@@ -1419,6 +1423,10 @@
       }
 
       key = generateKey(source === projectCommon ? source : source.objectId, kSwitchAccessorTypeValue, switchId);
+
+      if (internalData[key] === undefined) {
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
+      }
 
       // Load the switch!
       if (source === projectCommon) {
@@ -1587,26 +1595,26 @@
         switch (actionCommand.id) {
           case actionCommandId.saveVariable.id:
             return execSaveVariable(
-              np[actionCommandId.saveVariable.parameterId.variable],
               np[actionCommandId.saveVariable.parameterId.variableSource],
+              np[actionCommandId.saveVariable.parameterId.variable],
               instanceId
             );
           case actionCommandId.loadVariable.id:
             return execLoadVariable(
-              np[actionCommandId.loadVariable.parameterId.variable],
               np[actionCommandId.loadVariable.parameterId.variableSource],
+              np[actionCommandId.loadVariable.parameterId.variable],
               instanceId
             );
           case actionCommandId.saveSwitch.id:
             return execSaveSwitch(
-              np[actionCommandId.saveSwitch.parameterId.switch],
               np[actionCommandId.saveSwitch.parameterId.switchSource],
+              np[actionCommandId.saveSwitch.parameterId.switch],
               instanceId
             );
           case actionCommandId.loadSwitch.id:
             return execLoadSwitch(
-              np[actionCommandId.loadSwitch.parameterId.switch],
               np[actionCommandId.loadSwitch.parameterId.switchSource],
+              np[actionCommandId.loadSwitch.parameterId.switch],
               instanceId
             );
           default:
