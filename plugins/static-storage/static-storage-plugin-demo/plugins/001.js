@@ -810,7 +810,6 @@
           update: function () {
             switch (state) {
               case stateId.init:
-                Agtk.log('io init');
                 if (jsb.fileUtils.isFileExist(filePath)) {
                   jsbResult = jsb.fileUtils.getStringFromFile(filePath);
 
@@ -1199,9 +1198,6 @@
               ? localizedParameters
               : (localizedParameters = locaManager.processParameters(parameters));
           case 'internal':
-            if (!inEditor()) {
-              Agtk.log('getInternal');
-            }
             return null;
           case 'actionCommand':
             return localizedActionCommands
@@ -1215,21 +1211,9 @@
         }
       },
 
-      initialize: function () {
-        if (inEditor()) {
-          return;
-        }
+      initialize: function () {},
 
-        Agtk.log('initialize');
-      },
-
-      finalize: function () {
-        if (inEditor()) {
-          return;
-        }
-
-        Agtk.log('finalize');
-      },
+      finalize: function () {},
 
       setParamValue: function (paramValue) {
         /** @type {Record<number,import("type-fest").JsonValue>} */
@@ -1238,18 +1222,13 @@
         if (inEditor()) {
           return;
         }
-        Agtk.log('setParamValue');
+
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
 
         ioController = createIOController(np[parameterId.staticFileSlot]);
       },
 
-      setInternal: function () {
-        if (inEditor()) {
-          return;
-        }
-        Agtk.log('setInternal');
-      },
+      setInternal: function () {},
 
       call: function () {},
 
