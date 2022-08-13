@@ -74,30 +74,36 @@
 
             /** Required. */
             PLUGIN_HELP:
-              'Provides static storage for your switches & variables. Leverages the PGMMV file slot system.\n\n' +
-              'Parameters:\n  - Static File Slot. Required. Make sure this is set to a unique value when using multiple instances of this plugin.\n' +
+              'Provides static storage for your switches & variables.\n\n' +
+              '***WARNING***: Plugin leverages the Cocos JSB, so all platforms may not be supported!\n\n' +
+              'Parameters:\n  - Static File Slot. Usually safe to ignore this parameter; however, make sure this is set to a unique value when using multiple instances of this plugin.\n' +
+              '    Can also be adjusted to simulate a static data reset (if slot is not already in use).\n' +
               '    Default: ' +
               kDefaultStaticFileSlot,
 
             PARAMETER_NAME_STATIC_FILE_SLOT: 'Static File Slot!:',
 
-            ACTION_COMMAND_NAME_SAVE_VARIABLE: 'Save Variable',
-            ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE: 'Save variable value to static storage.',
+            ACTION_COMMAND_NAME_SAVE_VARIABLE: 'Save Static Variable',
+            ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE:
+              "Save variable value to static storage. Valid variable sources: 'Project Common', 'Object Self', 'Parent Object'.",
             ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source!:',
             ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable!:',
 
-            ACTION_COMMAND_NAME_LOAD_VARIABLE: 'Load Variable',
-            ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE: 'Load variable value from static storage.',
+            ACTION_COMMAND_NAME_LOAD_VARIABLE: 'Load Static Variable',
+            ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE:
+              "Load variable value from static storage. Valid variable sources: 'Project Common', 'Object Self', 'Parent Object'.",
             ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE: 'Variable Source!:',
             ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE: 'Variable!:',
 
-            ACTION_COMMAND_NAME_SAVE_SWITCH: 'Save Switch',
-            ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH: 'Save switch value to static storage.',
+            ACTION_COMMAND_NAME_SAVE_SWITCH: 'Save Static Switch',
+            ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH:
+              "Save switch value to static storage. Valid switch sources: 'Project Common', 'Object Self', 'Parent Object'.",
             ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source!:',
             ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH: 'Switch!:',
 
-            ACTION_COMMAND_NAME_LOAD_SWITCH: 'Load Switch',
-            ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH: 'Load switch value from static storage.',
+            ACTION_COMMAND_NAME_LOAD_SWITCH: 'Load Static Switch',
+            ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH:
+              "Load switch value from static storage. Valid switch sources: 'Project Common', 'Object Self', 'Parent Object'.",
             ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE: 'Switch Source!:',
             ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH: 'Switch!:'
           }

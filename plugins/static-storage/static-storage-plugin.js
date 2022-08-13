@@ -77,7 +77,7 @@
               'Provides static storage for your switches & variables.\n\n' +
               '***WARNING***: Plugin leverages the Cocos JSB, so all platforms may not be supported!\n\n' +
               'Parameters:\n  - Static File Slot. Usually safe to ignore this parameter; however, make sure this is set to a unique value when using multiple instances of this plugin.\n' +
-              '    Can also be adjusted to simulate a static data reset (if slot is not already in use).' +
+              '    Can also be adjusted to simulate a static data reset (if slot is not already in use).\n' +
               '    Default: ' +
               kDefaultStaticFileSlot,
 
