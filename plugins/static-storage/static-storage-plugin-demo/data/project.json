@@ -294,37 +294,6 @@
 					},
 					"scenePartList": [
 							{
-			"id": 1,
-			"name": "Camera",
-			"partType": 2,
-			"layerIndex": -1,
-			"locked": false,
-			"visible": true,
-			"priority": 0,
-			"dispPriority": 0,
-
-	"othersType": 0,
-	"camera": {
-	"initialPlayerPosition": false,
-	"x": 0,
-	"y": 0,
-	"width": 320,
-	"height": 180,
-	"followTargetType": 0,
-	"objectId": -1,
-	"courseScenePartId": -1,
-	"startPointId": -1,
-	"scrollToShowAllPlayers": false,
-	"scaleToShowAllPlayers": false,
-	"maxScaling": 100.000000,
-	"switchObjectId": -1,
-	"switchQualifierId": -1,
-	"switchId": -1
-}
-,
-			"folder": false
-		},
-							{
 			"id": 2,
 			"name": "test001",
 			"partType": 0,
@@ -420,8 +389,48 @@
 	"customId": 0,
 	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2001\n    }\n]\n"
 }
+}, {
+	"id": 7,
+	"commandType": 1102,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"custom": {
+	"customId": 2,
+	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2000\n    }\n]\n"
+}
 } ] },
 	"disappearActionCommandList": [  ]
+,
+			"folder": false
+		},
+							{
+			"id": 1,
+			"name": "Camera",
+			"partType": 2,
+			"layerIndex": -1,
+			"locked": false,
+			"visible": true,
+			"priority": 0,
+			"dispPriority": 0,
+
+	"othersType": 0,
+	"camera": {
+	"initialPlayerPosition": false,
+	"x": 0,
+	"y": 0,
+	"width": 320,
+	"height": 180,
+	"followTargetType": 0,
+	"objectId": -1,
+	"courseScenePartId": -1,
+	"startPointId": -1,
+	"scrollToShowAllPlayers": false,
+	"scaleToShowAllPlayers": false,
+	"maxScaling": 100.000000,
+	"switchObjectId": -1,
+	"switchQualifierId": -1,
+	"switchId": -1
+}
 ,
 			"folder": false
 		}
@@ -826,670 +835,6 @@
 	],
 	"objectList": [
 				{
-			"id": 1,
-			"name": "Static Storage Plugin Load Proxy",
-			"type": 0,
-			"group": 0,
-			"animationId": 1,
-			"operatable": false,
-			"priority": 0,
-			"initialActionId": 1,
-			"initialDisplayDirectionFlag": false,
-			"initialDisplayDirection": 180.000000,
-			"hitPlayerGroup": false,
-			"hitEnemyGroup": false,
-			"hitObjectGroupBit": 0,
-			"collideWithPlayerGroup": false,
-			"collideWithEnemyGroup": false,
-			"collideWithObjectGroupBit": 0,
-			"collideWithTile": false,
-			"collideWithTileGroupBit": 0,
-			"dispPriority": 0,
-			"actionList": [ {
-	"id": 1,
-	"name": "Noop",
-	"a": 255,
-	"r": 166,
-	"g": 166,
-	"b": 166,
-	"animMotionId": -1,
-	"animDirectionId": -1,
-	"takeOverMotion": false,
-	"jumpable": false,
-	"enableCustomizedJump": false,
-	"ignoreMoveInput": false,
-	"keepDirection": false,
-	"ignoreGravity": false,
-	"gravity": 100,
-	"reflectGravityToDisplayDirection": false,
-	"moveSpeed": 100,
-	"upDownMoveSpeed": 100,
-	"jumpSpeed": 100,
-	"turnSpeed": 100,
-	"objCommandList": [  ],
-	"memo": "",
-	"x": -48,
-	"y": -24,
-	"width": 96,
-	"height": 48,
-	"shortcutList": []
-} ],
-			"actionLinkList": [  ],
-			"actionGroupList": [  ],
-			"memo": "",
-			"testplayOnly": false,
-			"appearCondition": 1,
-			"appearConditionTileCount": 0,
-			"reappearCondition": 1,
-			"reappearConditionTileCount": 0,
-			"hp": 1,
-			"maxHp": 1,
-			"minAttack": 1,
-			"maxAttack": 1,
-			"initialDamageRate": 100,
-			"damageVariationValue": 0,
-			"critical": true,
-			"criticalRatio": 200,
-			"criticalIncidence": 5,
-			"moveType": 0,
-			"normalAccelMove": false,
-			"tankAccelMove": false,
-			"carAccelMove": false,
-			"upMoveKeyId": -1,
-			"downMoveKeyId": -1,
-			"leftMoveKeyId": -1,
-			"rightMoveKeyId": -1,
-			"forwardMoveKeyId": -1,
-			"backwardMoveKeyId": -1,
-			"leftTurnKeyId": -1,
-			"rightTurnKeyId": -1,
-			"slipOnSlope": false,
-			"diagonalMoveWithPolar": false,
-			"moveAroundWithinDots": false,
-			"dotsToMoveAround": 0,
-			"horizontalMove": 1.000000,
-			"verticalMove": 1.000000,
-			"horizontalAccel": 1.000000,
-			"horizontalMaxMove": 1.000000,
-			"horizontalDecel": 1.000000,
-			"verticalAccel": 1.000000,
-			"verticalMaxMove": 1.000000,
-			"verticalDecel": 1.000000,
-			"forwardMove": 1.000000,
-			"backwardMove": 1.000000,
-			"forwardAccel": 1.000000,
-			"forwardMaxMove": 1.000000,
-			"forwardDecel": 1.000000,
-			"backwardAccel": 1.000000,
-			"backwardMaxMove": 1.000000,
-			"backwardDecel": 1.000000,
-			"leftTurn": 1.000000,
-			"rightTurn": 1.000000,
-			"jumpInitialSpeed": 1.000000,
-			"gravity": 1.000000,
-			"movableWhenJumping": true,
-			"movableWhenFalling": true,
-			"fallOnCollideWithWall": true,
-			"fallOnCollideWithHitbox": true,
-			"jumpInputOperationKeyId": -1,
-			"affectInputDuration300": 0,
-			"limitFalldownAmount": true,
-			"maxFalldownAmount": 16.000000,
-			"invincibleOnDamaged": true,
-			"invincibleDuration300": 300,
-			"winkWhenInvincible": true,
-			"winkInterval300": 300,
-			"afterimage": false,
-			"afterimageCount": 0,
-			"afterimageInterval": 0.000000,
-			"afterimageDuration300": 0,
-			"fillAfterimage": false,
-			"fillAfterimageA": 255,
-			"fillAfterimageR": 128,
-			"fillAfterimageG": 0,
-			"fillAfterimageB": 255,
-			"fadeoutAfterimage": false,
-			"fadeoutAfterimageStart300": 0,
-			"useAnimationAfterimage": false,
-			"afterimageAnimationId": -1,
-			"followType": 1,
-			"followPrecision": 100,
-			"followIntervalByTime300": 0,
-			"followIntervalByLocusLength": 0,
-			"childDamageType": 1,
-			"takeOverDamageRateToParent": false,
-			"unattackableToParent": true,
-			"takeoverDispDirection": true,
-			"takeoverAngle": true,
-			"takeoverScaling": true,
-			"takeoverIntensity": true,
-			"disappearWhenHp0": false,
-			"disappearWhenOutOfCamera": false,
-			"disappearCameraMarginTileCount": 2,
-			"fixedInCamera": false,
-			"pushedbackByObject": true,
-			"takeoverStatesAtSceneEnd": false,
-			"disappearSettingFlag": false,
-			"disappearSetting": {
-	"otherObjectDecrementHp": true,
-	"decrement": 0,
-	"targetObjectType": 1,
-	"targetObjectTypeByType": 0,
-	"targetObjectGroup": -1,
-	"targetObjectId": -3,
-	"damageRange": 0,
-	"cameraRangeAdjust": 0,
-	"objCommandList": [  ]
-},
-			"fireBulletSettingFlag": false,
-			"additionalDisplayList": [  ],
-			"fireBulletSettingList": [  ],
-			"effectSettingFlag": false,
-			"effectSettingList": [  ],
-			"connectSettingFlag": false,
-			"connectSettingList": [  ],
-			"moveDispDirectionSettingFlag": false,
-			"moveDispDirectionSetting": {
-	"upOperationKeyId": -1,
-	"downOperationKeyId": -1,
-	"leftOperationKeyId": -1,
-	"rightOperationKeyId": -1,
-	"actionInfoList": [  ]
-},
-			"physicsSettingFlag": false,
-			"physicsSetting": {
-	"affectPhysics": false,
-	"physicsAffected": false,
-	"followConnectedPhysics": false,
-	"templateId": -1,
-	"density": 1000,
-	"mass": 1,
-	"friction": 1,
-	"repulsion": 0.5,
-	"nonCollisionGroup": [  ]
-},
-			"viewportLightSettingFlag": false,
-			"viewportLightSettingList": [  ],
-			"commonActionSettingFlag": false,
-			"commonActionSettingList": [  ],
-			"commonActionGroup": {
-	"id": 99999999,
-	"name": "Common Actions",
-	"a": 255,
-	"r": 255,
-	"g": 255,
-	"b": 0,
-	"actionIdList": [  ],
-	"x": 0,
-	"y": 0,
-	"width": 64,
-	"height": 64,
-	"collapsed": false
-},
-			"aroundCharacterViewSettingFlag": false,
-			"aroundCharacterViewSetting": {
-	"tileOn": true,
-	"objectOn": true,
-	"viewType": 0,
-	"multiplyFill": true,
-	"fillA": 255,
-	"fillR": 255,
-	"fillG": 255,
-	"fillB": 255,
-	"transparency": 0,
-	"width": 0,
-	"height": 0
-},
-			"invincibleSettingFlag": false,
-			"invincibleSettingList": [  ],
-			"damagedSettingFlag": false,
-			"damagedSettingList": [  ],
-			"moveRestrictionSettingFlag": false,
-			"moveRestrictionSettingList": [  ],
-					"variableList": [
-					{
-    "folder": false,
-    "id": 1,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Object ID",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 2,
-    "initialValue": 0,
-    "memo": "",
-    "name": "HP",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 3,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Max HP",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 4,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Min Attack",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 5,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Max attack",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 15,
-    "initialValue": 100,
-    "memo": "",
-    "name": "Critical Boost (%)",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 16,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Critical Rate (%)",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 6,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Received Damage Rate",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 36,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Damage Spread",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 7,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Attack Attribute",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 8,
-    "initialValue": -1,
-    "memo": "",
-    "name": "Area Detection",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 9,
-    "initialValue": 0,
-    "memo": "",
-    "name": "X Coordinate Position",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 10,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Y Coordinate Position",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 37,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Display Direction",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 32,
-    "initialValue": 100,
-    "memo": "",
-    "name": "Scale X (%)",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 33,
-    "initialValue": 100,
-    "memo": "",
-    "name": "Scale Y (%)",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 11,
-    "initialValue": 0,
-    "memo": "",
-    "name": "X Direction Speed",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 12,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Y Direction Speed",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 23,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Horizontal Movement",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 24,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Vertical Movement",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 25,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Horizontal Acceleration",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 26,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Vertical Acceleration",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 27,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Horizontal Max Movement",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 28,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Vertical Max Movement",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 29,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Horizontal Deceleration",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 30,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Vertical Deceleration",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 35,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Initial Jump Speed",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 13,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Player Detection",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 22,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Controller ID",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 14,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Received Damage Amount",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 17,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Time of Invincibility",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 18,
-    "initialValue": -1,
-    "memo": "",
-    "name": "Animation frame",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 19,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Instance ID",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 21,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Single Unit Instance ID",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 20,
-    "initialValue": 0,
-    "memo": "",
-    "name": "No. of Same Instances Placed in Scene",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 31,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Duration to take over accelerated speed",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 34,
-    "initialValue": 0,
-    "memo": "",
-    "name": "Display Priority",
-    "toBeSaved": true
-}
-,
-					{
-    "folder": false,
-    "id": 38,
-    "initialValue": -1,
-    "memo": "",
-    "name": "Parent Object Instance ID",
-    "toBeSaved": true
-}
-
-					],
-					"switchList": [
-							{
-			"id": 1,
-			"name": "Invincibility",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 2,
-			"name": "Free Movement",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 3,
-			"name": "Lock Target",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 4,
-			"name": "Portal Touched",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 5,
-			"name": "Critical Received",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 6,
-			"name": "Disable",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 7,
-			"name": "SlipOnSlope",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 8,
-			"name": "AffectOtherPhysics",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 9,
-			"name": "AffectedByOtherPhysics",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 10,
-			"name": "FollowConnectedPhysics",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		},
-							{
-			"id": 11,
-			"name": "Display Afterimage",
-			"initialValue": false,
-			"toBeSaved": true,
-			"memo": "",
-			"folder": false
-		}
-					],
-			"databaseSettingFlag": false,
-			"databaseId": 0,
-					"physicsPartList": [
-					
-					],
-					"priorityInPhysics": 0
-,
-			"folder": false
-		},
-				{
 			"id": 2,
 			"name": "Testing",
 			"folder": true, 	"children": [
@@ -1515,7 +860,7 @@
 					"dispPriority": 0,
 					"actionList": [ {
 	"id": 1,
-	"name": "Test Variable Load",
+	"name": "Test",
 	"a": 255,
 	"r": 166,
 	"g": 166,
@@ -1607,6 +952,15 @@
 	"custom": {
 	"customId": 0,
 	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2001\n    }\n]\n"
+}
+}, {
+	"id": 7,
+	"commandType": 1102,
+	"ignored": false,
+	"instanceConfigurable": false,
+	"custom": {
+	"customId": 2,
+	"valueJson": "[\n    {\n        \"id\": 100,\n        \"value\": 0\n    },\n    {\n        \"id\": 0,\n        \"value\": 2000\n    }\n]\n"
 }
 } ],
 	"memo": "1. Display default counter value (-1).\n2. Load it!\n3. Display either -1 if no previous static saved exists, or 0+.\n4. Increment and display value.\n5. Save it!\n6. Restart player. Does it persist?",
@@ -2270,30 +1624,8 @@
 					"filename": "plugins/001.js",
 					"srcFilename": "D:/kidthales/pgmmv-support/plugins/static-storage/static-storage-plugin.js",
 					"enabled": true,
-					"internalJson": {},
-					"paramValueJson": [
-    {
-        "id": 1,
-        "value": 3
-    },
-    {
-        "id": 3,
-        "value": 1
-    },
-    {
-        "id": 102,
-        "value": 0
-    },
-    {
-        "id": 2,
-        "value": 2000
-    },
-    {
-        "id": 0,
-        "value": -1337
-    }
-]
-,
+					"internalJson": null,
+					"paramValueJson": [],
 					"officialKey": "",
 			"folder": false
 				}

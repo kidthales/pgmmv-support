@@ -346,7 +346,7 @@
           case 'parameter':
             return localizedParameters
               ? localizedParameters
-              : (localizedParameters = locaManager.processParameterLocale(parameters));
+              : (localizedParameters = locaManager.processParameters(parameters));
           case 'internal':
             return internalData;
           case 'actionCommand':

@@ -6,69 +6,44 @@
  */
 (function () {
   /**
-   * Default static file slot.
+   * Variable accessor type value. Used in internalData key generation.
    *
    * @const
    * @private
    */
-  var kDefaultStaticFileSlot = -1337,
-    /**
-     * Default debounce value (in frames).
-     *
-     * @const
-     * @private
-     */
-    kDefaultDebounceValue = 3,
-    /**
-     * Minimum debounce value (in frames).
-     *
-     * @const
-     * @private
-     */
-    kMinDebounceValue = 3,
-    /**
-     * Maximum debounce value (in frames).
-     *
-     * @const
-     * @private
-     */
-    kMaxDebounceValue = 3600,
-    /**
-     * Default unset ID value.
-     *
-     * @const
-     * @private
-     */
-    kDefaultUnsetIdValue = -1,
-    /**
-     * Custom switch ID start value.
-     *
-     * @const
-     * @private
-     */
-    kCustomSwitchIDStartValue = 2000,
-    /**
-     * Variable accessor type value. Used in internalData key generation.
-     *
-     * @const
-     * @private
-     */
-    kVariableAccessorTypeValue = 0,
+  var kVariableAccessorType = 0,
     /**
      * Switch accessor type value. Used in internalData key generation.
      *
      * @const
      * @private
      */
-    kSwitchAccessorTypeValue = 1,
+    kSwitchAccessorType = 1,
     /**
-     * Global lock identifier used for ensuring multiple plugins don't clobber
-     * each other.
+     * Save directory name.
      *
      * @const
      * @private
      */
-    kGlobalLockIdentifier = '_kt_ssp_global_lock',
+    kStaticDirectoryName = 'save',
+    /**
+     * Save file name prefix.
+     *
+     * @const
+     * @private
+     */
+    kStaticFileNamePrefix = '_kt_ssp_',
+    /**
+     * Default static file slot.
+     *
+     * @const
+     * @private
+     */
+    kDefaultStaticFileSlot = 0,
+    /**
+     * Default unset ID.
+     */
+    kUnsetId = -1,
     /**
      * Localization manager. Responsible for mapping our localization keys to
      * their localized values.
@@ -98,26 +73,12 @@
 
             /** Required. */
             PLUGIN_HELP:
-              "Provides static storage for your switches & variables. Leverages the PGMMV file slot system.\n\nParameters:\n  - Static File Slot. Required. Make sure this is set to a value that will not be used by your game's save system.\n    Default: " +
-              kDefaultStaticFileSlot +
-              '\n  - Debounce. Required. Number of frames to wait when transitioning to & from the Static File Slot while saving data.\n    Default: ' +
-              kDefaultDebounceValue +
-              '; Min: ' +
-              kMinDebounceValue +
-              '; Max: ' +
-              kMaxDebounceValue +
-              '\n  - Load Proxy. Required. Plugin will create an object instance from this object ID for use with initial load from the Static File Slot. Object instance is destroyed upon completion of initial load.\n    Default: ' +
-              kDefaultUnsetIdValue +
-              '\n  - Lock Switch Source. Optional. See Lock Switch. If used, this should be set to your Project Common switches.\n    Default: ' +
-              kDefaultUnsetIdValue +
-              '\n  - Lock Switch. Optional. Plugin will set this switch when performing save & load operations against the Static File Slot.\n    You can use this in your game to ensure you are not saving & loading from the incorrect file slot.\n    Default: ' +
-              kDefaultUnsetIdValue,
+              'Provides static storage for your switches & variables. Leverages the PGMMV file slot system.\n\n' +
+              'Parameters:\n  - Static File Slot. Required. Make sure this is set to a unique value when using multiple instances of this plugin.\n' +
+              '    Default: ' +
+              kDefaultStaticFileSlot,
 
             PARAMETER_NAME_STATIC_FILE_SLOT: 'Static File Slot!:',
-            PARAMETER_NAME_DEBOUNCE: 'Debounce!:',
-            PARAMETER_NAME_LOAD_PROXY: 'Load Proxy!:',
-            PARAMETER_NAME_LOCK_SWITCH_SOURCE: 'Lock Switch Source?:',
-            PARAMETER_NAME_LOCK_SWITCH: 'Lock Switch?:',
 
             ACTION_COMMAND_NAME_SAVE_VARIABLE: 'Save Variable',
             ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE: 'Save variable value to static storage.',
@@ -269,8 +230,10 @@
           /**
            * Localize action commands or link conditions in place.
            *
-           * @param {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} commandsOrConditions Non-localized action commands or link conditions.
-           * @returns {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} Localized action commands or link conditions.
+           * @param {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]} commandsOrConditions
+           * Non-localized action commands or link conditions.
+           * @returns {import("pgmmv/agtk/plugins/plugin").AgtkActionCommand[] | import("pgmmv/agtk/plugins/plugin").AgtkLinkCondition[]}
+           * Localized action commands or link conditions.
            */
           processCommandsOrConditions: function (commandsOrConditions) {
             var len = commandsOrConditions.length,
@@ -316,35 +279,7 @@
        *
        * @const
        */
-      staticFileSlot: 0,
-
-      /**
-       * Debounce plugin parameter ID.
-       *
-       * @const
-       */
-      debounce: 1,
-
-      /**
-       * Lock switch parameter ID.
-       *
-       * @const
-       */
-      lockSwitch: 2,
-
-      /**
-       * Lock switch source parameter ID.
-       *
-       * @const
-       */
-      lockSwitchSource: 102,
-
-      /**
-       * Load proxy parameter ID.
-       *
-       * @const
-       */
-      loadProxy: 3
+      staticFileSlot: 0
     },
     /**
      * Plugin parameters.
@@ -360,44 +295,9 @@
         name: 'loca(PARAMETER_NAME_STATIC_FILE_SLOT)',
         type: 'Number',
         defaultValue: kDefaultStaticFileSlot
-      },
-      // Debounce parameter.
-      {
-        id: parameterId.debounce,
-        name: 'loca(PARAMETER_NAME_DEBOUNCE)',
-        type: 'Number',
-        minimumValue: kMinDebounceValue,
-        maximumValue: kMaxDebounceValue,
-        defaultValue: kDefaultDebounceValue
-      },
-      // Load proxy parameter.
-      {
-        id: parameterId.loadProxy,
-        name: 'loca(PARAMETER_NAME_LOAD_PROXY)',
-        type: 'ObjectId',
-        defaultValue: kDefaultUnsetIdValue
-      },
-      // Lock switch source parameter.
-      {
-        id: parameterId.lockSwitchSource,
-        name: 'loca(PARAMETER_NAME_LOCK_SWITCH_SOURCE)',
-        type: 'SwitchVariableObjectId',
-        option: [''],
-        defaultValue: kDefaultUnsetIdValue
-      },
-      // Lock switch parameter.
-      {
-        id: parameterId.lockSwitch,
-        name: 'loca(PARAMETER_NAME_LOCK_SWITCH)',
-        type: 'SwitchId',
-        referenceId: parameterId.lockSwitchSource,
-        withNewButton: true,
-        defaultValue: kDefaultUnsetIdValue
       }
     ],
     /**
-     * Assigned our localized plugin parameters.
-     *
      * @type {import("pgmmv/agtk/plugins/plugin/parameter").AgtkParameter[]}
      * @private
      */
@@ -570,7 +470,7 @@
             name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           },
           // Variable parameter.
           {
@@ -579,7 +479,7 @@
             type: 'VariableId',
             referenceId: actionCommandId.saveVariable.parameterId.variableSource,
             withNewButton: true,
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           }
         ]
       },
@@ -595,7 +495,7 @@
             name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           },
           // Variable parameter.
           {
@@ -604,7 +504,7 @@
             type: 'VariableId',
             referenceId: actionCommandId.loadVariable.parameterId.variableSource,
             withNewButton: false,
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           }
         ]
       },
@@ -620,7 +520,7 @@
             name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           },
           // Switch parameter.
           {
@@ -629,7 +529,7 @@
             type: 'SwitchId',
             referenceId: actionCommandId.saveSwitch.parameterId.switchSource,
             withNewButton: true,
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           }
         ]
       },
@@ -645,7 +545,7 @@
             name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           },
           // Switch parameter.
           {
@@ -654,7 +554,7 @@
             type: 'SwitchId',
             referenceId: actionCommandId.loadSwitch.parameterId.switchSource,
             withNewButton: false,
-            defaultValue: kDefaultUnsetIdValue
+            defaultValue: kUnsetId
           }
         ]
       }
@@ -668,32 +568,12 @@
      */
     localizedActionCommands,
     /**
-     * Plugin internal data. This is the data structure which our variables &
-     * switches interact with for save & load.
+     * Plugin internal data.
      *
-     * @type {Record<string, number | boolean>}
+     * @type {import("type-fest").JsonValue}
      * @private
      */
     internalData = {},
-    /**
-     * Is internal data initially loaded from static file slot?
-     *
-     * @private
-     */
-    isInternalDataLoaded = false,
-    /**
-     * Is load sequence complete?
-     *
-     * @private
-     */
-    isLoadSequenceComplete = false,
-    /**
-     * Set on plugin initialization.
-     *
-     * @type {number}
-     * @private
-     */
-    pluginId,
     /**
      * Flag error at plugin scope.
      *
@@ -701,413 +581,16 @@
      */
     isError = false,
     /**
-     * Reference to Static File Slot plugin parameter value.
+     * Flag for one-time shutdown message.
      *
-     * @type {number}
      * @private
      */
-    staticFileSlot,
+    shownShutdownMessage = false,
     /**
-     * Reference to Debounce plugin parameter value.
-     *
-     * @type {number}
+     * @type {ReturnType<typeof createIOController>}
      * @private
      */
-    debounce,
-    /**
-     * Reference to load proxy object ID parameter value.
-     *
-     * @type {number}
-     * @private
-     */
-    loadProxyObjectId,
-    /**
-     * Optional lock switch object.
-     *
-     * @type {import("pgmmv/agtk/switches/switch").AgtkSwitch | undefined}
-     * @private
-     */
-    lockSwitch,
-    /**
-     * IO controller.
-     *
-     * @const
-     * @private
-     */
-    ioController = (function () {
-      /**
-       * IO controller state ID.
-       *
-       * @const
-       * @private
-       */
-      var stateId = {
-          ready: 0,
-          debounceSavePhase1: 1,
-          debounceSavePhase2: 3,
-          debounceSavePhase3: 6,
-          debounceLoadPhase1: 2,
-          debounceLoadPhase2: 4,
-          debounceLoadPhase3: 5
-        },
-        /**
-         * Is save requested?
-         *
-         * @private
-         */
-        isSaveRequested = false,
-        /**
-         * Is load requested?
-         *
-         * @private
-         */
-        isLoadRequested = false,
-        /**
-         * Reference to load proxy instance ID.
-         *
-         * @type {number | undefined}
-         * @private
-         */
-        loadProxyInstanceId,
-        /**
-         * Reference to object instance that performs initial load from Static
-         * File Slot.
-         *
-         * @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | undefined}
-         * @private
-         */
-        loadProxy,
-        /**
-         * Debounce duration accumulator.
-         *
-         * @private
-         */
-        accumulator = 0,
-        /**
-         * Reference to the Project Common file slot variable.
-         *
-         * @type {import("pgmmv/agtk/variables/variable").AgtkVariable}
-         * @private
-         */
-        fileSlotVariable,
-        /**
-         * Caches the file slot that is set prior to our change to the Static
-         * File Slot.
-         *
-         * @type {number | undefined}
-         * @private
-         */
-        fileSlotCache,
-        isSaveRequestWindowOpen = false,
-        /**
-         * IO controller current state.
-         *
-         * @private
-         */
-        state = stateId.ready,
-        /**
-         * IO controller API.
-         *
-         * @public
-         */
-        self = {
-          /**
-           * Request internalData load from Static File Slot.
-           *
-           * @public
-           */
-          requestLoad: function () {
-            isLoadRequested = true;
-          },
-
-          /**
-           * Request internalData save to Static File Slot.
-           *
-           * @public
-           */
-          requestSave: function () {
-            if (!isSaveRequestWindowOpen) {
-              isSaveRequested = true;
-            }
-          },
-
-          /**
-           * Is IO controller ready?
-           *
-           * @returns `true` when ready, false otherwise.
-           */
-          isReady: function () {
-            return state === stateId.ready;
-          },
-
-          /**
-           * Update IO controller state.
-           */
-          update: function () {
-            switch (state) {
-              // Accepting load & save requests. Load takes priority.
-              case stateId.ready:
-                if (isLoadRequested && Agtk.sceneInstances.getCurrent()) {
-                  // Load requested!
-                  isLoadRequested = false;
-                  isInternalDataLoaded = false;
-                  isLoadSequenceComplete = false;
-
-                  if (!loadProxy) {
-                    // Create load proxy.
-                    loadProxyInstanceId = Agtk.actionCommands.objectCreate(loadProxyObjectId, 0, 0, 0);
-
-                    if (isNaN(loadProxyInstanceId)) {
-                      logError('load proxy instance ID is NaN');
-                      isError = true;
-                    } else if (loadProxyInstanceId <= 0) {
-                      logError('invalid load proxy instance ID: ' + loadProxyInstanceId);
-                      isError = true;
-                    }
-
-                    if (!isError) {
-                      // Get load proxy object instance reference.
-                      loadProxy = Agtk.objectInstances.get(loadProxyInstanceId);
-
-                      if (!loadProxy) {
-                        logError('load proxy instance is not defined');
-                        isError = true;
-                      }
-                    }
-
-                    if (isError) {
-                      logError('a critical error occurred during load request: deactivating plugin');
-                      return;
-                    }
-                  }
-
-                  if (!fileSlotVariable) {
-                    fileSlotVariable = Agtk.variables.get(Agtk.variables.FileSlotId);
-                  }
-
-                  if (!fileSlotVariable) {
-                    logError('file slot variable is not defined');
-                    isError = true;
-                  } else if (fileSlotVariable.getValue() === staticFileSlot) {
-                    logError('file slot variable out of sync');
-                    isError = true;
-                  }
-
-                  if (isError) {
-                    logError('a critical error occurred during load request: deactivating plugin');
-                    return;
-                  }
-
-                  if (window[kGlobalLockIdentifier] !== undefined && window[kGlobalLockIdentifier] !== pluginId) {
-                    isLoadRequested = true;
-                    return;
-                  }
-
-                  window[kGlobalLockIdentifier] = pluginId;
-
-                  if (lockSwitch && !lockSwitch.getValue()) {
-                    lockSwitch.setValue(true);
-                  }
-
-                  // Juggle file slots.
-                  fileSlotCache = fileSlotVariable.getValue();
-                  fileSlotVariable.setValue(staticFileSlot);
-
-                  // Begin load sequence.
-                  state = stateId.debounceLoadPhase1;
-                } else if (isSaveRequested) {
-                  // Save requested!
-                  isSaveRequested = false;
-
-                  if (!fileSlotVariable) {
-                    fileSlotVariable = Agtk.variables.get(Agtk.variables.FileSlotId);
-                  }
-
-                  if (!fileSlotVariable) {
-                    logError('file slot variable is not defined');
-                    isError = true;
-                  } else if (fileSlotVariable.getValue() === staticFileSlot) {
-                    logError('file slot variable out of sync');
-                    isError = true;
-                  }
-
-                  if (isError) {
-                    logError('a critical error occurred during save request: deactivating plugin');
-                    return;
-                  }
-
-                  if (window[kGlobalLockIdentifier] !== undefined && window[kGlobalLockIdentifier] !== pluginId) {
-                    isSaveRequested = true;
-                    return;
-                  }
-
-                  window[kGlobalLockIdentifier] = pluginId;
-
-                  if (lockSwitch && !lockSwitch.getValue()) {
-                    lockSwitch.setValue(true);
-                  }
-
-                  // Juggle file slots.
-                  fileSlotCache = fileSlotVariable.getValue();
-                  fileSlotVariable.setValue(staticFileSlot);
-
-                  // Begin save sequence.
-                  isSaveRequestWindowOpen = true;
-                  state = stateId.debounceSavePhase1;
-                }
-
-                break;
-
-              case stateId.debounceLoadPhase1:
-                if (++accumulator >= debounce) {
-                  // Reset frame accumulator.
-                  accumulator = 0;
-
-                  if (fileSlotVariable.getValue() === staticFileSlot) {
-                    // Things still look good after debounce duration!
-                    if (Agtk.switches.get(Agtk.switches.FileExistsId).getValue()) {
-                      // Static file exists. Begin load.
-                      loadProxy.execCommandFileLoad({
-                        projectCommonSwitches: false,
-                        projectCommonVariables: false,
-                        sceneAtTimeOfSave: false,
-                        objectsStatesInSceneAtTimeOfSave: false,
-                        effectType: Agtk.constants.actionCommands.fileLoad.None,
-                        duration300: 0
-                      });
-
-                      state = stateId.debounceLoadPhase2;
-                    } else {
-                      // Static file does not exist; clean up & use existing internalData.
-                      isInternalDataLoaded = true;
-                      state = stateId.debounceLoadPhase2;
-                    }
-                  } else {
-                    // Things don't look good after debounce duration; try again!
-                    logWarning('unable to maintain Static File Slot: retrying after ' + debounce + ' frames...');
-                    isLoadRequested = true;
-
-                    window[kGlobalLockIdentifier] = undefined;
-
-                    if (lockSwitch) {
-                      lockSwitch.setValue(false);
-                    }
-
-                    state = stateId.ready;
-                  }
-                }
-
-                break;
-
-              case stateId.debounceLoadPhase2:
-                if (isInternalDataLoaded) {
-                  // setInternal has been called by the system - file load OK.
-                  // Clean up.
-                  Agtk.actionCommands.objectDestroy(loadProxyInstanceId);
-                  loadProxyInstanceId = undefined;
-                  loadProxy = undefined;
-
-                  if (fileSlotVariable.getValue() === staticFileSlot) {
-                    // Restore previous file slot!
-                    fileSlotVariable.setValue(fileSlotCache);
-                  } else {
-                    logWarning('file slot variable changed from outside plugin during load');
-                  }
-
-                  state = stateId.debounceLoadPhase3;
-                }
-
-                break;
-
-              case stateId.debounceLoadPhase3:
-                if (++accumulator >= debounce) {
-                  // Reset frame accumulator.
-                  accumulator = 0;
-
-                  window[kGlobalLockIdentifier] = undefined;
-
-                  if (lockSwitch) {
-                    lockSwitch.setValue(false);
-                  }
-
-                  isLoadSequenceComplete = true;
-                  state = stateId.ready;
-                }
-
-                break;
-
-              case stateId.debounceSavePhase1:
-                if (++accumulator >= debounce) {
-                  // Reset frame accumulator.
-                  accumulator = 0;
-
-                  // Close save request window.
-                  isSaveRequestWindowOpen = false;
-
-                  if (fileSlotVariable.getValue() === staticFileSlot) {
-                    // Things still look good after debounce duration!
-                    // Save internalData to Static File Slot!
-                    Agtk.switches.get(Agtk.switches.SaveFileId).setValue(true);
-                    state = stateId.debounceSavePhase2;
-                  } else {
-                    // Things don't look good after debounce duration; try again!
-                    logWarning('unable to maintain Static File Slot: retrying after ' + debounce + ' frames...');
-                    isSaveRequested = true;
-
-                    window[kGlobalLockIdentifier] = undefined;
-
-                    if (lockSwitch) {
-                      lockSwitch.setValue(false);
-                    }
-
-                    state = stateId.ready;
-                  }
-                }
-
-                break;
-
-              case stateId.debounceSavePhase2:
-                if (++accumulator >= debounce) {
-                  // Reset frame accumulator.
-                  accumulator = 0;
-
-                  if (fileSlotVariable.getValue() === staticFileSlot) {
-                    // Restore previous file slot!
-                    fileSlotVariable.setValue(fileSlotCache);
-                  } else {
-                    logWarning('file slot variable changed from outside plugin during load');
-                  }
-
-                  state = stateId.debounceSavePhase3;
-                }
-
-                break;
-
-              case stateId.debounceSavePhase3:
-                if (++accumulator >= debounce) {
-                  // Reset frame accumulator.
-                  accumulator = 0;
-
-                  window[kGlobalLockIdentifier] = undefined;
-
-                  if (lockSwitch) {
-                    lockSwitch.setValue(false);
-                  }
-
-                  state = stateId.ready;
-                }
-
-                break;
-
-              default:
-                break;
-            }
-          }
-        };
-
-      // IO controller ready!
-      return self;
-    })(),
+    ioController,
     /**
      * Test if plugin is currently running in the editor.
      *
@@ -1181,6 +664,234 @@
         return;
       }
       Agtk.log('[' + locaManager.get('PLUGIN_NAME') + '] warning: ' + msg);
+    },
+    createIOController = function (staticFileSlot) {
+      /**
+       * IO controller state ID.
+       *
+       * @const
+       * @private
+       */
+      var stateId = {
+          /**
+           * Initial load required.
+           *
+           * @const
+           */
+          init: -1,
+
+          /**
+           * Ready for save requests.
+           *
+           * @const
+           */
+          ready: 0,
+
+          /**
+           * Currently saving.
+           *
+           * @const
+           */
+          save: 1,
+
+          /**
+           * Creating static file directory.
+           */
+          createDir: 2
+        },
+        /**
+         * IO controller current state.
+         *
+         * @private
+         */
+        state = stateId.init,
+        /**
+         * Is save requested?
+         *
+         * @private
+         */
+        isSaveRequested = false,
+        /**
+         * Path to static file directory.
+         *
+         * @const
+         * @private
+         */
+        dirPath = Agtk.settings.projectPath + '/' + kStaticDirectoryName,
+        /**
+         * Path to static file.
+         *
+         * @const
+         * @private
+         */
+        filePath = dirPath + '/' + kStaticFileNamePrefix + staticFileSlot + '.json',
+        /**
+         * JSB file operation result.
+         *
+         * @type {string | boolean}
+         * @private
+         */
+        jsbResult,
+        /**
+         * JSON encoding of internalData.
+         *
+         * @type {string}
+         * @private
+         */
+        json,
+        /**
+         * Current static file size.
+         *
+         * @type {number}
+         * @private
+         */
+        fileSize,
+        /**
+         * JSON encoding size.
+         *
+         * @type {number}
+         * @private
+         */
+        jsonSize,
+        /**
+         * Get the string byte length (UTF-8).
+         *
+         * @param str String to calculate byte length with.
+         * @returns String byte length.
+         * @private
+         */
+        getStringByteLength = function (str) {
+          var s = str.length,
+            i = s - 1,
+            code;
+
+          for (; i >= 0; --i) {
+            code = str.charCodeAt(i);
+
+            if (code > 0x7f && code <= 0x7ff) {
+              s++;
+            } else if (code > 0x7ff && code <= 0xffff) {
+              s += 2;
+            }
+
+            if (code >= 0xdc00 && code <= 0xdfff) {
+              // Trail surrogate.
+              i--;
+            }
+          }
+
+          return s;
+        },
+        /**
+         * IO controller API.
+         *
+         * @public
+         */
+        self = {
+          /**
+           * Request internalData save to Static File Slot.
+           *
+           * @public
+           */
+          requestSave: function () {
+            isSaveRequested = true;
+          },
+
+          /**
+           * Update IO controller state.
+           */
+          update: function () {
+            switch (state) {
+              case stateId.init:
+                if (jsb.fileUtils.isFileExist(filePath)) {
+                  jsbResult = jsb.fileUtils.getStringFromFile(filePath);
+
+                  if (!cc.isString(jsbResult)) {
+                    logError('failed reading from: ' + filePath);
+                    isError = true;
+                    return;
+                  }
+
+                  try {
+                    internalData = JSON.parse(jsbResult);
+                  } catch (e) {
+                    logError('failed parsing read result: ' + jsbResult);
+                    isError = true;
+                    return;
+                  }
+
+                  if (!cc.isObject(internalData)) {
+                    logError('invalid parse result: expected object');
+                    isError = true;
+                    return;
+                  }
+                }
+
+                state = stateId.ready;
+                break;
+
+              case stateId.ready:
+                if (isSaveRequested) {
+                  isSaveRequested = false;
+
+                  try {
+                    json = JSON.stringify(internalData);
+                  } catch (e) {
+                    logError('failed encoding internalData');
+                    isError = true;
+                    return;
+                  }
+
+                  jsonSize = getStringByteLength(json);
+
+                  if (!jsb.fileUtils.isDirectoryExist(dirPath)) {
+                    fileSize = 0;
+                    jsb.fileUtils.createDirectory(dirPath);
+                    state = stateId.createDir;
+                    return;
+                  }
+
+                  fileSize = jsb.fileUtils.getFileSize(filePath);
+
+                  jsbResult = jsb.fileUtils.writeStringToFile(json, filePath);
+
+                  if (!jsbResult) {
+                    logError('failed writing to: ' + filePath);
+                    isError = true;
+                    return;
+                  }
+
+                  state = stateId.save;
+                }
+
+                break;
+
+              case stateId.save:
+                if (fileSize !== jsonSize) {
+                  if (jsonSize === jsb.fileUtils.getFileSize(filePath)) {
+                    state = stateId.ready;
+                  }
+                } else if (json === jsb.fileUtils.getStringFromFile(filePath)) {
+                  state = stateId.ready;
+                }
+
+                break;
+
+              case stateId.createDir:
+                if (jsb.fileUtils.isDirectoryExist(dirPath)) {
+                  state = stateId.save;
+                }
+
+                break;
+
+              default:
+                break;
+            }
+          }
+        };
+
+      // IO controller ready!
+      return self;
     },
     /**
      * Generate key for indexing into the internalData object.
@@ -1261,7 +972,7 @@
       var projectCommon = Agtk.constants.switchVariableObjects.ProjectCommon,
         key = generateKey(
           switchOrVariableSource === projectCommon ? switchOrVariableSource : switchOrVariableSource.objectId,
-          type === 'switches' ? kSwitchAccessorTypeValue : kVariableAccessorTypeValue,
+          type === 'switches' ? kSwitchAccessorType : kVariableAccessorType,
           switchOrVariableId
         ),
         accessor =
@@ -1294,10 +1005,8 @@
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('save variable action command executed with unset variable source');
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       } else if (variableId < 1) {
         logWarning('save variable action command executed with invalid variable ID');
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       } else {
         setInternalData(source, variableId, 'variables');
       }
@@ -1327,35 +1036,26 @@
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('load variable action command executed with unset variable source');
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       } else if (variableId < 1) {
         logWarning('load variable action command executed with invalid variable ID');
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
-      }
-
-      if (!isLoadSequenceComplete) {
-        // Block until load sequence from static file slot is complete.
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
-      }
-
-      key = generateKey(source === projectCommon ? source : source.objectId, kVariableAccessorTypeValue, variableId);
-
-      if (internalData[key] === undefined) {
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
-      }
-
-      // Load the variable!
-      if (source === projectCommon) {
-        Agtk.variables.get(variableId).setValue(internalData[key]);
       } else {
-        source.execCommandSwitchVariableChange({
-          swtch: false,
-          variableObjectId: source.objectId,
-          variableQualifierId: Agtk.constants.qualifier.QualifierWhole,
-          variableId: variableId,
-          variableAssignOperator: Agtk.constants.assignments.VariableAssignOperatorSet,
-          assignValue: internalData[key]
-        });
+        key = generateKey(source === projectCommon ? source : source.objectId, kVariableAccessorType, variableId);
+
+        if (internalData[key] !== undefined) {
+          // Load the variable!
+          if (source === projectCommon) {
+            Agtk.variables.get(variableId).setValue(internalData[key]);
+          } else {
+            source.execCommandSwitchVariableChange({
+              swtch: false,
+              variableObjectId: source.objectId,
+              variableQualifierId: Agtk.constants.qualifier.QualifierWhole,
+              variableId: variableId,
+              variableAssignOperator: Agtk.constants.assignments.VariableAssignOperatorSet,
+              assignValue: internalData[key]
+            });
+          }
+        }
       }
 
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
@@ -1412,40 +1112,31 @@
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('load switch action command executed with unset switch source');
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       } else if (switchId < 1) {
         logWarning('load switch action command executed with invalid switch ID');
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
-      }
-
-      if (!isLoadSequenceComplete) {
-        // Block until load sequence from static file slot is complete.
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
-      }
-
-      key = generateKey(source === projectCommon ? source : source.objectId, kSwitchAccessorTypeValue, switchId);
-
-      if (internalData[key] === undefined) {
-        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
-      }
-
-      // Load the switch!
-      if (source === projectCommon) {
-        Agtk.switches.get(switchId).setValue(internalData[key]);
       } else {
-        source.execCommandSwitchVariableChange({
-          swtch: true,
-          switchObjectId: source.objectId,
-          switchQualifierId: Agtk.constants.qualifier.QualifierWhole,
-          switchId: switchId,
-          switchValue: internalData[key]
-        });
+        key = generateKey(source === projectCommon ? source : source.objectId, kSwitchAccessorType, switchId);
+
+        if (internalData[key] !== undefined) {
+          // Load the switch!
+          if (source === projectCommon) {
+            Agtk.switches.get(switchId).setValue(internalData[key]);
+          } else {
+            source.execCommandSwitchVariableChange({
+              swtch: true,
+              switchObjectId: source.objectId,
+              switchQualifierId: Agtk.constants.qualifier.QualifierWhole,
+              switchId: switchId,
+              switchValue: internalData[key]
+            });
+          }
+        }
       }
 
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Static storage plugin API.
+     * Plugin API
      *
      * @type {import("pgmmv/agtk/plugins/plugin").AgtkPlugin}
      * @public
@@ -1470,7 +1161,7 @@
               ? localizedParameters
               : (localizedParameters = locaManager.processParameters(parameters));
           case 'internal':
-            return internalData;
+            return null;
           case 'actionCommand':
             return localizedActionCommands
               ? localizedActionCommands
@@ -1483,23 +1174,13 @@
         }
       },
 
-      initialize: function () {
-        if (inEditor()) {
-          return;
-        }
-
-        pluginId = self.id;
-      },
+      initialize: function () {},
 
       finalize: function () {},
 
       setParamValue: function (paramValue) {
         /** @type {Record<number,import("type-fest").JsonValue>} */
-        var np,
-          /** @type {number | undefined} */
-          lssId,
-          /** @type {number | undefined} */
-          lsId;
+        var np;
 
         if (inEditor()) {
           return;
@@ -1507,74 +1188,25 @@
 
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
 
-        staticFileSlot = np[parameterId.staticFileSlot];
-        debounce = np[parameterId.debounce];
-        loadProxyObjectId = np[parameterId.loadProxy];
-
-        lssId = np[parameterId.lockSwitchSource];
-        lsId = np[parameterId.lockSwitch];
-
-        if (isNaN(staticFileSlot)) {
-          logError('static file slot is NaN');
-          isError = true;
-        }
-
-        if (isNaN(debounce)) {
-          logError('debounce is NaN');
-          isError = true;
-        }
-
-        if (isNaN(loadProxyObjectId)) {
-          logError('load proxy object ID is NaN');
-          isError = true;
-        } else if (loadProxyObjectId <= 0) {
-          logError('invalid load proxy object ID: ' + loadProxyObjectId);
-          isError = true;
-        }
-
-        if (isError) {
-          logError('a critical error occurred: deactivating plugin');
-          return;
-        }
-
-        // Setup lock switch.
-        if (!isNaN(lssId) && lssId !== Agtk.constants.actionCommands.UnsetObject) {
-          if (lssId !== Agtk.constants.switchVariableObjects.ProjectCommon) {
-            logWarning(
-              'invalid lock switch source ID: ' +
-                lssId +
-                '; expected: ' +
-                Agtk.constants.switchVariableObjects.ProjectCommon
-            );
-          } else if (isNaN(lsId)) {
-            logWarning('lock switch ID is NaN');
-          } else if (lsId < kCustomSwitchIDStartValue) {
-            logWarning('invalid lock switch ID: ' + lsId + '; expected value >= ' + kCustomSwitchIDStartValue);
-          } else {
-            lockSwitch = Agtk.switches.get(lsId);
-
-            if (!lockSwitch) {
-              logWarning('lock switch is not defined');
-            }
-          }
-        }
-
-        ioController.requestLoad();
+        ioController = createIOController(np[parameterId.staticFileSlot]);
       },
 
-      setInternal: function (data) {
-        internalData = data;
-        isInternalDataLoaded = true;
-      },
+      setInternal: function () {},
 
       call: function () {},
 
       update: function (delta) {
         if (isError) {
+          if (shownShutdownMessage) {
+            return;
+          }
+
+          logError('critical error has occurred: shutting down plugin!');
+          shownShutdownMessage = true;
           return;
         }
 
-        ioController.update(delta);
+        ioController && ioController.update(delta);
       },
 
       execActionCommand: function (actionCommandIndex, parameter, objectId, instanceId) {
@@ -1586,46 +1218,46 @@
           np;
 
         if (isError) {
-          Agtk.log('[Static Storage Plugin] error: skipping action command');
+          logWarning('plugin deactivated: skipping action command');
           return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
-        }
+        } else {
+          actionCommand = self.getInfo('actionCommand')[actionCommandIndex];
+          np = normalizeParameters(parameter, actionCommand.parameter);
 
-        actionCommand = self.getInfo('actionCommand')[actionCommandIndex];
-        np = normalizeParameters(parameter, actionCommand.parameter);
-
-        switch (actionCommand.id) {
-          case actionCommandId.saveVariable.id:
-            return execSaveVariable(
-              np[actionCommandId.saveVariable.parameterId.variableSource],
-              np[actionCommandId.saveVariable.parameterId.variable],
-              instanceId
-            );
-          case actionCommandId.loadVariable.id:
-            return execLoadVariable(
-              np[actionCommandId.loadVariable.parameterId.variableSource],
-              np[actionCommandId.loadVariable.parameterId.variable],
-              instanceId
-            );
-          case actionCommandId.saveSwitch.id:
-            return execSaveSwitch(
-              np[actionCommandId.saveSwitch.parameterId.switchSource],
-              np[actionCommandId.saveSwitch.parameterId.switch],
-              instanceId
-            );
-          case actionCommandId.loadSwitch.id:
-            return execLoadSwitch(
-              np[actionCommandId.loadSwitch.parameterId.switchSource],
-              np[actionCommandId.loadSwitch.parameterId.switch],
-              instanceId
-            );
-          default:
-            break;
+          switch (actionCommand.id) {
+            case actionCommandId.saveVariable.id:
+              return execSaveVariable(
+                np[actionCommandId.saveVariable.parameterId.variableSource],
+                np[actionCommandId.saveVariable.parameterId.variable],
+                instanceId
+              );
+            case actionCommandId.loadVariable.id:
+              return execLoadVariable(
+                np[actionCommandId.loadVariable.parameterId.variableSource],
+                np[actionCommandId.loadVariable.parameterId.variable],
+                instanceId
+              );
+            case actionCommandId.saveSwitch.id:
+              return execSaveSwitch(
+                np[actionCommandId.saveSwitch.parameterId.switchSource],
+                np[actionCommandId.saveSwitch.parameterId.switch],
+                instanceId
+              );
+            case actionCommandId.loadSwitch.id:
+              return execLoadSwitch(
+                np[actionCommandId.loadSwitch.parameterId.switchSource],
+                np[actionCommandId.loadSwitch.parameterId.switch],
+                instanceId
+              );
+            default:
+              break;
+          }
         }
 
         return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
       }
     };
 
-  // Plugin ready!
+  // Plugin is ready!
   return self;
 })();
