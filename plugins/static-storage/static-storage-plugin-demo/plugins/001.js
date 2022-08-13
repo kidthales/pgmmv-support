@@ -2,6 +2,7 @@
  * @file PGMMV plugin that provides static storage for your switches &
  * variables.
  * @author kidthales <kidthales@agogpixel.com>
+ * @version 1.0.0-alpha
  * @license MIT
  */
 (function () {
@@ -575,6 +576,12 @@
      */
     internalData = {},
     /**
+     * Is internal data loaded from static file?
+     *
+     * @private
+     */
+    isInternalDataLoaded = false,
+    /**
      * Flag error at plugin scope.
      *
      * @private
@@ -803,6 +810,7 @@
           update: function () {
             switch (state) {
               case stateId.init:
+                Agtk.log('io init');
                 if (jsb.fileUtils.isFileExist(filePath)) {
                   jsbResult = jsb.fileUtils.getStringFromFile(filePath);
 
@@ -827,6 +835,9 @@
                   }
                 }
 
+                // Load variable/switch action commands will stop blocking.
+                isInternalDataLoaded = true;
+
                 state = stateId.ready;
                 break;
 
@@ -835,6 +846,7 @@
                   isSaveRequested = false;
 
                   try {
+                    // Encode.
                     json = JSON.stringify(internalData);
                   } catch (e) {
                     logError('failed encoding internalData');
@@ -842,11 +854,14 @@
                     return;
                   }
 
+                  // Get byte length of our encoding (for comparison with file size).
                   jsonSize = getStringByteLength(json);
 
                   if (!jsb.fileUtils.isDirectoryExist(dirPath)) {
+                    // Static directory does not exist. Create it!
                     fileSize = 0;
                     jsb.fileUtils.createDirectory(dirPath);
+                    // Poll for directory create completion.
                     state = stateId.createDir;
                     return;
                   }
@@ -867,11 +882,16 @@
                 break;
 
               case stateId.save:
+                // Polling for file write completion.
                 if (fileSize !== jsonSize) {
+                  // JSON encoding and previous file size does not match - we
+                  // can test for new file size to indicate write completion.
                   if (jsonSize === jsb.fileUtils.getFileSize(filePath)) {
                     state = stateId.ready;
                   }
                 } else if (json === jsb.fileUtils.getStringFromFile(filePath)) {
+                  // JSON encoding and previous file size matched so we need to
+                  // compare content directly to indicate write completion.
                   state = stateId.ready;
                 }
 
@@ -879,7 +899,9 @@
 
               case stateId.createDir:
                 if (jsb.fileUtils.isDirectoryExist(dirPath)) {
-                  state = stateId.save;
+                  // Static directory created, attempt save again.
+                  isSaveRequested = true;
+                  state = stateId.ready;
                 }
 
                 break;
@@ -1031,8 +1053,16 @@
       instanceId
     ) {
       var projectCommon = Agtk.constants.switchVariableObjects.ProjectCommon,
-        source = resolveSwitchVariableObject(variableObjectId, instanceId),
+        /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | import("pgmmv/agtk/constants/switch-variable-objects").AgtkSwitchVariableObjects['ProjectCommon'] | import("pgmmv/agtk/constants/action-commands").AgtkActionCommands['UnsetObject']} */
+        source,
+        /** @type {string} */
         key;
+
+      if (!isInternalDataLoaded) {
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
+      }
+
+      source = resolveSwitchVariableObject(variableObjectId, instanceId);
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('load variable action command executed with unset variable source');
@@ -1107,8 +1137,16 @@
       instanceId
     ) {
       var projectCommon = Agtk.constants.switchVariableObjects.ProjectCommon,
-        source = resolveSwitchVariableObject(switchObjectId, instanceId),
+        /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | import("pgmmv/agtk/constants/switch-variable-objects").AgtkSwitchVariableObjects['ProjectCommon'] | import("pgmmv/agtk/constants/action-commands").AgtkActionCommands['UnsetObject']} */
+        source,
+        /** @type {string} */
         key;
+
+      if (!isInternalDataLoaded) {
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
+      }
+
+      source = resolveSwitchVariableObject(switchObjectId, instanceId);
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('load switch action command executed with unset switch source');
@@ -1161,6 +1199,9 @@
               ? localizedParameters
               : (localizedParameters = locaManager.processParameters(parameters));
           case 'internal':
+            if (!inEditor()) {
+              Agtk.log('getInternal');
+            }
             return null;
           case 'actionCommand':
             return localizedActionCommands
@@ -1174,9 +1215,21 @@
         }
       },
 
-      initialize: function () {},
+      initialize: function () {
+        if (inEditor()) {
+          return;
+        }
 
-      finalize: function () {},
+        Agtk.log('initialize');
+      },
+
+      finalize: function () {
+        if (inEditor()) {
+          return;
+        }
+
+        Agtk.log('finalize');
+      },
 
       setParamValue: function (paramValue) {
         /** @type {Record<number,import("type-fest").JsonValue>} */
@@ -1185,13 +1238,18 @@
         if (inEditor()) {
           return;
         }
-
+        Agtk.log('setParamValue');
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
 
         ioController = createIOController(np[parameterId.staticFileSlot]);
       },
 
-      setInternal: function () {},
+      setInternal: function () {
+        if (inEditor()) {
+          return;
+        }
+        Agtk.log('setInternal');
+      },
 
       call: function () {},
 

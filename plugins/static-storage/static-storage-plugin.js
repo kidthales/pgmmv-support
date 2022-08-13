@@ -576,6 +576,12 @@
      */
     internalData = {},
     /**
+     * Is internal data loaded from static file?
+     *
+     * @private
+     */
+    isInternalDataLoaded = false,
+    /**
      * Flag error at plugin scope.
      *
      * @private
@@ -828,6 +834,9 @@
                   }
                 }
 
+                // Load variable/switch action commands will stop blocking.
+                isInternalDataLoaded = true;
+
                 state = stateId.ready;
                 break;
 
@@ -1043,8 +1052,16 @@
       instanceId
     ) {
       var projectCommon = Agtk.constants.switchVariableObjects.ProjectCommon,
-        source = resolveSwitchVariableObject(variableObjectId, instanceId),
+        /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | import("pgmmv/agtk/constants/switch-variable-objects").AgtkSwitchVariableObjects['ProjectCommon'] | import("pgmmv/agtk/constants/action-commands").AgtkActionCommands['UnsetObject']} */
+        source,
+        /** @type {string} */
         key;
+
+      if (!isInternalDataLoaded) {
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
+      }
+
+      source = resolveSwitchVariableObject(variableObjectId, instanceId);
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('load variable action command executed with unset variable source');
@@ -1119,8 +1136,16 @@
       instanceId
     ) {
       var projectCommon = Agtk.constants.switchVariableObjects.ProjectCommon,
-        source = resolveSwitchVariableObject(switchObjectId, instanceId),
+        /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | import("pgmmv/agtk/constants/switch-variable-objects").AgtkSwitchVariableObjects['ProjectCommon'] | import("pgmmv/agtk/constants/action-commands").AgtkActionCommands['UnsetObject']} */
+        source,
+        /** @type {string} */
         key;
+
+      if (!isInternalDataLoaded) {
+        return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorBlock;
+      }
+
+      source = resolveSwitchVariableObject(switchObjectId, instanceId);
 
       if (source === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('load switch action command executed with unset switch source');
