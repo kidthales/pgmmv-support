@@ -1,6 +1,7 @@
 /**
  * @file Opinionated PGMMV plugin template.
  * @author kidthales <kidthales@agogpixel.com>
+ * @version 0.0.0
  * @license MIT
  */
 (function () {

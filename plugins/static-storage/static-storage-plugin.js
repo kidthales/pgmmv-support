@@ -2,6 +2,7 @@
  * @file PGMMV plugin that provides static storage for your switches &
  * variables.
  * @author kidthales <kidthales@agogpixel.com>
+ * @version 1.0.0-alpha
  * @license MIT
  */
 (function () {

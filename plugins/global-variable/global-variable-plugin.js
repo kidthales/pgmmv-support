@@ -1,6 +1,7 @@
 /**
  * @file PGMMV plugin that provides a global variable for your scripts.
  * @author kidthales <kidthales@agogpixel.com>
+ * @version 1.0.0
  * @license MIT
  */
 (function () {
