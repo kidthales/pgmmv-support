@@ -1030,7 +1030,7 @@
       ioController.requestSave();
     },
     /**
-     * Execute save variable action command.
+     * Execute save static variable action command.
      *
      * @param variableObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1038,7 +1038,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execSaveVariable = function (
+    execSaveStaticVariable = function (
       /** @type {number} */
       variableObjectId,
       /** @type {number} */
@@ -1059,7 +1059,7 @@
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Execute load variable action command.
+     * Execute load static variable action command.
      *
      * @param variableObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1067,7 +1067,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execLoadVariable = function (
+    execLoadStaticVariable = function (
       /** @type {number} */
       variableObjectId,
       /** @type {number} */
@@ -1114,7 +1114,7 @@
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Execute save switch action command.
+     * Execute save static switch action command.
      *
      * @param switchObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1122,7 +1122,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execSaveSwitch = function (
+    execSaveStaticSwitch = function (
       /** @type {number} */
       switchObjectId,
       /** @type {number} */
@@ -1143,7 +1143,7 @@
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Execute load switch action command.
+     * Execute load static switch action command.
      *
      * @param switchObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1151,7 +1151,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execLoadSwitch = function (
+    execLoadStaticSwitch = function (
       /** @type {number} */
       switchObjectId,
       /** @type {number} */
@@ -1246,10 +1246,10 @@
 
         if (!window[vendorGlobalKey][pluginVendorKey]) {
           window[vendorGlobalKey][pluginVendorKey] = {
-            execSaveVariable: execSaveVariable,
-            execLoadVariable: execLoadVariable,
-            execSaveSwitch: execSaveSwitch,
-            execLoadSwitch: execLoadSwitch
+            execSaveVariable: execSaveStaticVariable,
+            execLoadVariable: execLoadStaticVariable,
+            execSaveSwitch: execSaveStaticSwitch,
+            execLoadSwitch: execLoadStaticSwitch
           };
         }
       },
@@ -1304,25 +1304,25 @@
 
           switch (actionCommand.id) {
             case actionCommandId.saveStaticVariable.id:
-              return execSaveVariable(
+              return execSaveStaticVariable(
                 np[actionCommandId.saveStaticVariable.parameterId.variableSource],
                 np[actionCommandId.saveStaticVariable.parameterId.variable],
                 instanceId
               );
             case actionCommandId.loadStaticVariable.id:
-              return execLoadVariable(
+              return execLoadStaticVariable(
                 np[actionCommandId.loadStaticVariable.parameterId.variableSource],
                 np[actionCommandId.loadStaticVariable.parameterId.variable],
                 instanceId
               );
             case actionCommandId.saveStaticSwitch.id:
-              return execSaveSwitch(
+              return execSaveStaticSwitch(
                 np[actionCommandId.saveStaticSwitch.parameterId.switchSource],
                 np[actionCommandId.saveStaticSwitch.parameterId.switch],
                 instanceId
               );
             case actionCommandId.loadStaticSwitch.id:
-              return execLoadSwitch(
+              return execLoadStaticSwitch(
                 np[actionCommandId.loadStaticSwitch.parameterId.switchSource],
                 np[actionCommandId.loadStaticSwitch.parameterId.switch],
                 instanceId
