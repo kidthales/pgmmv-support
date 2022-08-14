@@ -93,3 +93,15 @@ Plugin also exposes the action command API to your scripts, under the `kt.static
         -   **switchId**: The switch ID.
         -   **instanceId**: ID of object instance (used for resolving Self or Parent switch source).
     -   Returns `CommandBehaviorBlock` until initial static file load is complete. Otherwise, returns `CommandBehaviorNext`.
+
+Example:
+
+```javascript
+(function () {
+    // Save current value in common variable with ID 2005.
+    kt.staticStorage.execSaveVariable(0, 2005, instanceId);
+
+    // Save current value in common switch with ID 2007.
+    kt.staticStorage.execSaveSwitch(0, 2007, instanceId);
+})();
+```
