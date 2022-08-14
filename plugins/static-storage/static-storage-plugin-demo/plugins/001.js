@@ -7,12 +7,28 @@
  */
 (function () {
   /**
-   * Variable accessor type value. Used in internalData key generation.
+   * Key used in window object to expose vendor specific APIs directly to
+   * scripts.
    *
    * @const
    * @private
    */
-  var kVariableAccessorType = 0,
+  var vendorGlobalKey = 'kt',
+    /**
+     * Key used in global vendor object to expose plugin specific APIs directly
+     * to scripts
+     *
+     * @const
+     * @private
+     */
+    pluginVendorKey = 'staticStorage',
+    /**
+     * Variable accessor type value. Used in internalData key generation.
+     *
+     * @const
+     * @private
+     */
+    kVariableAccessorType = 0,
     /**
      * Switch accessor type value. Used in internalData key generation.
      *
@@ -320,33 +336,33 @@
      */
     actionCommandId = {
       /**
-       * Save variable action command.
+       * Save static variable action command.
        *
        * @const
        */
-      saveVariable: {
+      saveStaticVariable: {
         /**
-         * Save variable action command ID.
+         * Save static variable action command ID.
          *
          * @const
          */
         id: 0,
 
         /**
-         * Save variable action command parameter IDs.
+         * Save static variable action command parameter IDs.
          *
          * @const
          */
         parameterId: {
           /**
-           * Save variable action command variable parameter ID.
+           * Save static variable action command variable parameter ID.
            *
            * @const
            */
           variable: 0,
 
           /**
-           * Save variable action command variable source parameter ID.
+           * Save static variable action command variable source parameter ID.
            *
            * @const
            */
@@ -355,33 +371,33 @@
       },
 
       /**
-       * Load variable action command ID.
+       * Load static variable action command ID.
        *
        * @const
        */
-      loadVariable: {
+      loadStaticVariable: {
         /**
-         * Load variable action command ID.
+         * Load static variable action command ID.
          *
          * @const
          */
         id: 1,
 
         /**
-         * Load variable action command parameter IDs.
+         * Load static variable action command parameter IDs.
          *
          * @const
          */
         parameterId: {
           /**
-           * Load variable action command variable parameter ID.
+           * Load static variable action command variable parameter ID.
            *
            * @const
            */
           variable: 0,
 
           /**
-           * Load variable action command variable source parameter ID.
+           * Load static variable action command variable source parameter ID.
            *
            * @const
            */
@@ -390,11 +406,11 @@
       },
 
       /**
-       * Save switch action command.
+       * Save static switch action command.
        *
        * @const
        */
-      saveSwitch: {
+      saveStaticSwitch: {
         /**
          * Save switch action command ID.
          *
@@ -403,20 +419,20 @@
         id: 2,
 
         /**
-         * Save switch action command parameter IDs.
+         * Save static switch action command parameter IDs.
          *
          * @const
          */
         parameterId: {
           /**
-           * Save switch action command switch parameter ID.
+           * Save static switch action command switch parameter ID.
            *
            * @const
            */
           switch: 0,
 
           /**
-           * Save switch action command switch source parameter ID.
+           * Save static switch action command switch source parameter ID.
            *
            * @const
            */
@@ -425,33 +441,33 @@
       },
 
       /**
-       * Load switch action command.
+       * Load static switch action command.
        *
        * @const
        */
-      loadSwitch: {
+      loadStaticSwitch: {
         /**
-         * Load switch action command ID.
+         * Load static switch action command ID.
          *
          * @const
          */
         id: 3,
 
         /**
-         * Load switch action command parameter IDs.
+         * Load static switch action command parameter IDs.
          *
          * @const
          */
         parameterId: {
           /**
-           * Load switch action command switch parameter ID.
+           * Load static switch action command switch parameter ID.
            *
            * @const
            */
           switch: 0,
 
           /**
-           * Load switch action command switch source parameter ID.
+           * Load static switch action command switch source parameter ID.
            *
            * @const
            */
@@ -469,13 +485,13 @@
     actionCommands = [
       // Save variable action command.
       {
-        id: actionCommandId.saveVariable.id,
+        id: actionCommandId.saveStaticVariable.id,
         name: 'loca(ACTION_COMMAND_NAME_SAVE_VARIABLE)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_VARIABLE)',
         parameter: [
           // Variable source parameter.
           {
-            id: actionCommandId.saveVariable.parameterId.variableSource,
+            id: actionCommandId.saveStaticVariable.parameterId.variableSource,
             name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
@@ -483,10 +499,10 @@
           },
           // Variable parameter.
           {
-            id: actionCommandId.saveVariable.parameterId.variable,
+            id: actionCommandId.saveStaticVariable.parameterId.variable,
             name: 'loca(ACTION_COMMAND_SAVE_VARIABLE_PARAMETER_NAME_VARIABLE)',
             type: 'VariableId',
-            referenceId: actionCommandId.saveVariable.parameterId.variableSource,
+            referenceId: actionCommandId.saveStaticVariable.parameterId.variableSource,
             withNewButton: true,
             defaultValue: kUnsetId
           }
@@ -494,13 +510,13 @@
       },
       // Load variable action command.
       {
-        id: actionCommandId.loadVariable.id,
+        id: actionCommandId.loadStaticVariable.id,
         name: 'loca(ACTION_COMMAND_NAME_LOAD_VARIABLE)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_VARIABLE)',
         parameter: [
           // Variable source parameter.
           {
-            id: actionCommandId.loadVariable.parameterId.variableSource,
+            id: actionCommandId.loadStaticVariable.parameterId.variableSource,
             name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
@@ -508,10 +524,10 @@
           },
           // Variable parameter.
           {
-            id: actionCommandId.loadVariable.parameterId.variable,
+            id: actionCommandId.loadStaticVariable.parameterId.variable,
             name: 'loca(ACTION_COMMAND_LOAD_VARIABLE_PARAMETER_NAME_VARIABLE)',
             type: 'VariableId',
-            referenceId: actionCommandId.loadVariable.parameterId.variableSource,
+            referenceId: actionCommandId.loadStaticVariable.parameterId.variableSource,
             withNewButton: false,
             defaultValue: kUnsetId
           }
@@ -519,13 +535,13 @@
       },
       // Save switch action command.
       {
-        id: actionCommandId.saveSwitch.id,
+        id: actionCommandId.saveStaticSwitch.id,
         name: 'loca(ACTION_COMMAND_NAME_SAVE_SWITCH)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_SAVE_SWITCH)',
         parameter: [
           // Switch source parameter.
           {
-            id: actionCommandId.saveSwitch.parameterId.switchSource,
+            id: actionCommandId.saveStaticSwitch.parameterId.switchSource,
             name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
@@ -533,10 +549,10 @@
           },
           // Switch parameter.
           {
-            id: actionCommandId.saveSwitch.parameterId.switch,
+            id: actionCommandId.saveStaticSwitch.parameterId.switch,
             name: 'loca(ACTION_COMMAND_SAVE_SWITCH_PARAMETER_NAME_SWITCH)',
             type: 'SwitchId',
-            referenceId: actionCommandId.saveSwitch.parameterId.switchSource,
+            referenceId: actionCommandId.saveStaticSwitch.parameterId.switchSource,
             withNewButton: true,
             defaultValue: kUnsetId
           }
@@ -544,13 +560,13 @@
       },
       // Load switch action command.
       {
-        id: actionCommandId.loadSwitch.id,
+        id: actionCommandId.loadStaticSwitch.id,
         name: 'loca(ACTION_COMMAND_NAME_LOAD_SWITCH)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_LOAD_SWITCH)',
         parameter: [
           // Switch source parameter.
           {
-            id: actionCommandId.loadSwitch.parameterId.switchSource,
+            id: actionCommandId.loadStaticSwitch.parameterId.switchSource,
             name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH_SOURCE)',
             type: 'SwitchVariableObjectId',
             option: ['SelfObject', 'ParentObject'],
@@ -558,10 +574,10 @@
           },
           // Switch parameter.
           {
-            id: actionCommandId.loadSwitch.parameterId.switch,
+            id: actionCommandId.loadStaticSwitch.parameterId.switch,
             name: 'loca(ACTION_COMMAND_LOAD_SWITCH_PARAMETER_NAME_SWITCH)',
             type: 'SwitchId',
-            referenceId: actionCommandId.loadSwitch.parameterId.switchSource,
+            referenceId: actionCommandId.loadStaticSwitch.parameterId.switchSource,
             withNewButton: false,
             defaultValue: kUnsetId
           }
@@ -1014,7 +1030,7 @@
       ioController.requestSave();
     },
     /**
-     * Execute save variable action command.
+     * Execute save static variable action command.
      *
      * @param variableObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1022,7 +1038,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execSaveVariable = function (
+    execSaveStaticVariable = function (
       /** @type {number} */
       variableObjectId,
       /** @type {number} */
@@ -1043,7 +1059,7 @@
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Execute load variable action command.
+     * Execute load static variable action command.
      *
      * @param variableObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1051,7 +1067,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execLoadVariable = function (
+    execLoadStaticVariable = function (
       /** @type {number} */
       variableObjectId,
       /** @type {number} */
@@ -1098,7 +1114,7 @@
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Execute save switch action command.
+     * Execute save static switch action command.
      *
      * @param switchObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1106,7 +1122,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execSaveSwitch = function (
+    execSaveStaticSwitch = function (
       /** @type {number} */
       switchObjectId,
       /** @type {number} */
@@ -1127,7 +1143,7 @@
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
     },
     /**
-     * Execute load switch action command.
+     * Execute load static switch action command.
      *
      * @param switchObjectId Project Common identifier or object ID (Self or
      * Parent).
@@ -1135,7 +1151,7 @@
      * @param instanceId ID of object instance executing this action command.
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
-    execLoadSwitch = function (
+    execLoadStaticSwitch = function (
       /** @type {number} */
       switchObjectId,
       /** @type {number} */
@@ -1219,7 +1235,24 @@
         }
       },
 
-      initialize: function () {},
+      initialize: function () {
+        if (inEditor()) {
+          return;
+        }
+
+        if (!window[vendorGlobalKey]) {
+          window[vendorGlobalKey] = {};
+        }
+
+        if (!window[vendorGlobalKey][pluginVendorKey]) {
+          window[vendorGlobalKey][pluginVendorKey] = {
+            execSaveVariable: execSaveStaticVariable,
+            execLoadVariable: execLoadStaticVariable,
+            execSaveSwitch: execSaveStaticSwitch,
+            execLoadSwitch: execLoadStaticSwitch
+          };
+        }
+      },
 
       finalize: function () {},
 
@@ -1270,28 +1303,28 @@
           np = normalizeParameters(parameter, actionCommand.parameter);
 
           switch (actionCommand.id) {
-            case actionCommandId.saveVariable.id:
-              return execSaveVariable(
-                np[actionCommandId.saveVariable.parameterId.variableSource],
-                np[actionCommandId.saveVariable.parameterId.variable],
+            case actionCommandId.saveStaticVariable.id:
+              return execSaveStaticVariable(
+                np[actionCommandId.saveStaticVariable.parameterId.variableSource],
+                np[actionCommandId.saveStaticVariable.parameterId.variable],
                 instanceId
               );
-            case actionCommandId.loadVariable.id:
-              return execLoadVariable(
-                np[actionCommandId.loadVariable.parameterId.variableSource],
-                np[actionCommandId.loadVariable.parameterId.variable],
+            case actionCommandId.loadStaticVariable.id:
+              return execLoadStaticVariable(
+                np[actionCommandId.loadStaticVariable.parameterId.variableSource],
+                np[actionCommandId.loadStaticVariable.parameterId.variable],
                 instanceId
               );
-            case actionCommandId.saveSwitch.id:
-              return execSaveSwitch(
-                np[actionCommandId.saveSwitch.parameterId.switchSource],
-                np[actionCommandId.saveSwitch.parameterId.switch],
+            case actionCommandId.saveStaticSwitch.id:
+              return execSaveStaticSwitch(
+                np[actionCommandId.saveStaticSwitch.parameterId.switchSource],
+                np[actionCommandId.saveStaticSwitch.parameterId.switch],
                 instanceId
               );
-            case actionCommandId.loadSwitch.id:
-              return execLoadSwitch(
-                np[actionCommandId.loadSwitch.parameterId.switchSource],
-                np[actionCommandId.loadSwitch.parameterId.switch],
+            case actionCommandId.loadStaticSwitch.id:
+              return execLoadStaticSwitch(
+                np[actionCommandId.loadStaticSwitch.parameterId.switchSource],
+                np[actionCommandId.loadStaticSwitch.parameterId.switch],
                 instanceId
               );
             default:
