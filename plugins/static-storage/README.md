@@ -60,3 +60,36 @@ Provides static storage for your switches & variables.
                     -   Parent Object (`-7`)
             -   **Switch**
                 -   Required.
+
+## Script API
+
+Plugin also exposes the action command API to your scripts, under the `kt.staticStorage` global namespace.
+
+-   `execSaveVariable(variableObjectId, variableId, instanceId)`
+    -   Execute save static variable action command.
+    -   _Parameters_:
+        -   **variableObjectId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **variableId**: The variable ID.
+        -   **instanceId**: ID of object instance (used for resolving Self or Parent variable source).
+    -   Returns `CommandBehaviorNext`.
+-   `execLoadVariable(variableObjectId, variableId, instanceId)`
+    -   Execute load static variable action command.
+    -   _Parameters_:
+        -   **variableObjectId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **variableId**: The variable ID.
+        -   **instanceId**: ID of object instance (used for resolving Self or Parent variable source).
+    -   Returns `CommandBehaviorBlock` until initial static file load is complete. Otherwise, returns `CommandBehaviorNext`.
+-   `execSaveSwitch(switchObjectId, switchId, instanceId)`
+    -   Execute save static switch action command.
+    -   _Parameters_:
+        -   **switchObjectId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **switchId**: The switch ID.
+        -   **instanceId**: ID of object instance (used for resolving Self or Parent switch source).
+    -   Returns `CommandBehaviorNext`.
+-   `execLoadSwitch(switchObjectId, switchId, instanceId)`
+    -   Execute load static switch action command.
+    -   _Parameters_:
+        -   **switchObjectId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **switchId**: The switch ID.
+        -   **instanceId**: ID of object instance (used for resolving Self or Parent switch source).
+    -   Returns `CommandBehaviorBlock` until initial static file load is complete. Otherwise, returns `CommandBehaviorNext`.
