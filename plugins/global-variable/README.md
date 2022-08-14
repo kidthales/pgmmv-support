@@ -11,7 +11,7 @@ Example with defaults:
 })();
 ```
 
-**Parameters:**
+## Parameters
 
 -   **Global Variable Name**
     -   Required.
