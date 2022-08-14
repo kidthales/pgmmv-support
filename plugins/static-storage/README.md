@@ -105,3 +105,7 @@ Example:
     kt.staticStorage.execSaveSwitch(0, 2007, instanceId);
 })();
 ```
+
+## License
+
+[MIT](../../LICENSE)

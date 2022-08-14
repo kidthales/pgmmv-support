@@ -21,3 +21,7 @@ Example with defaults:
     -   Required.
     -   Must be a valid JSON value.
     -   Default: `{}`
+
+## License
+
+[MIT](../../LICENSE)
