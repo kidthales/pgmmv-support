@@ -7,7 +7,7 @@ Example with defaults:
 ```javascript
 (function () {
     // Logs: '{}'.
-    Agtk.log(JSON.parse(MyPlugin));
+    Agtk.log(JSON.parse(MyGlobal));
 })();
 ```
 
@@ -16,7 +16,7 @@ Example with defaults:
 -   **Global Variable Name**
     -   Required.
     -   Must be a valid JavaScript identifier.
-    -   Default: `MyPlugin`
+    -   Default: `MyGlobal`
 -   **Global Variable Value**
     -   Required.
     -   Must be a valid JSON value.

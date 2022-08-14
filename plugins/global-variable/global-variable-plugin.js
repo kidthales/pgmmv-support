@@ -11,7 +11,7 @@
    * @const
    * @private
    */
-  var kDefaultGlobalVariableName = 'MyPlugin',
+  var kDefaultGlobalVariableName = 'MyGlobal',
     /**
      * Default global variable value.
      *
