@@ -59,6 +59,9 @@
     kDefaultStaticFileSlot = 0,
     /**
      * Default unset ID.
+     *
+     * @const
+     * @private
      */
     kUnsetId = -1,
     /**
