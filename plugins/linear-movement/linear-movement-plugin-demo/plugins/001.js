@@ -79,16 +79,18 @@
             PLUGIN_NAME: 'Linear Movement Plugin',
 
             /** Required. */
-            PLUGIN_DESCRIPTION: 'TODO',
+            PLUGIN_DESCRIPTION: 'Move to coordinates stored in variables.',
 
             /** Required. */
             PLUGIN_AUTHOR: 'kidthales <kidthales@agogpixel.com>',
 
             /** Required. */
-            PLUGIN_HELP: 'TODO',
+            PLUGIN_HELP:
+              'Provides action commands for translating an object instance to an (x,y) coordinate pair, each of which is read from a variable.',
 
             ACTION_COMMAND_NAME_MOVE_TO_VARIABLE_COORDINATES: 'Move To Variable Coordinates',
-            ACTION_COMMAND_DESCRIPTION_MOVE_TO_VARIABLE_COORDINATES: 'TODO',
+            ACTION_COMMAND_DESCRIPTION_MOVE_TO_VARIABLE_COORDINATES:
+              "Move object instance to coordinates stored in variables. Uses object instance's set move speed (Move Speed %).",
             ACTION_COMMAND_MOVE_TO_VARIABLE_COORDINATES_PARAMETER_NAME_X_COORDINATE_VARIABLE_SOURCE:
               'X Coordinate\nVariable Source!:',
             ACTION_COMMAND_MOVE_TO_VARIABLE_COORDINATES_PARAMETER_NAME_X_COORDINATE_VARIABLE: 'X Coordinate Variable!:',
@@ -97,7 +99,8 @@
             ACTION_COMMAND_MOVE_TO_VARIABLE_COORDINATES_PARAMETER_NAME_Y_COORDINATE_VARIABLE: 'Y Coordinate Variable!:',
 
             ACTION_COMMAND_NAME_TWEEN_TO_VARIABLE_COORDINATES: 'Tween To Variable Coordinates',
-            ACTION_COMMAND_DESCRIPTION_TWEEN_TO_VARIABLE_COORDINATES: 'TODO',
+            ACTION_COMMAND_DESCRIPTION_TWEEN_TO_VARIABLE_COORDINATES:
+              "Tween object instance to coordinates stored in variables. Uses specified duration (in seconds) to determine object instance's move speed.",
             ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_PARAMETER_NAME_X_COORDINATE_VARIABLE_SOURCE:
               'X Coordinate\nVariable Source!:',
             ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_PARAMETER_NAME_X_COORDINATE_VARIABLE:
@@ -656,8 +659,8 @@
           moveType: Agtk.constants.actionCommands.objectMove.MoveToPosition,
           posX: resolveVariableValue(xSource, xVariableId),
           posY: resolveVariableValue(ySource, yVariableId),
-          targettingType: 1,
-          targetObjectId: -2,
+          targettingType: Agtk.constants.actionCommands.objectMove.TargettingById,
+          targetObjectId: Agtk.constants.actionCommands.SelfObject,
           moveInDisplayCoordinates: false,
           useObjectParameter: true
         });
@@ -708,8 +711,8 @@
           moveType: Agtk.constants.actionCommands.objectMove.MoveToPosition,
           posX: resolveVariableValue(xSource, xVariableId),
           posY: resolveVariableValue(ySource, yVariableId),
-          targettingType: 1,
-          targetObjectId: -2,
+          targettingType: Agtk.constants.actionCommands.objectMove.TargettingById,
+          targetObjectId: Agtk.constants.actionCommands.SelfObject,
           moveInDisplayCoordinates: false,
           useObjectParameter: false,
           moveDuration300: kDuration300 * duration
