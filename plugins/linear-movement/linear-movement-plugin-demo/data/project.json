@@ -662,36 +662,6 @@
       },
       "scenePartList": [
         {
-          "id": 1,
-          "name": "Camera",
-          "partType": 2,
-          "layerIndex": -1,
-          "locked": false,
-          "visible": true,
-          "priority": 2,
-          "dispPriority": 0,
-
-          "othersType": 0,
-          "camera": {
-            "initialPlayerPosition": false,
-            "x": 0,
-            "y": 0,
-            "width": 640,
-            "height": 360,
-            "followTargetType": 0,
-            "objectId": -1,
-            "courseScenePartId": -1,
-            "startPointId": -1,
-            "scrollToShowAllPlayers": false,
-            "scaleToShowAllPlayers": false,
-            "maxScaling": 100.0,
-            "switchObjectId": -1,
-            "switchQualifierId": -1,
-            "switchId": -1
-          },
-          "folder": false
-        },
-        {
           "id": 2,
           "name": "MoveTo",
           "partType": 0,
@@ -840,9 +810,39 @@
           },
           "disappearActionCommandList": [],
           "folder": false
+        },
+        {
+          "id": 1,
+          "name": "Camera",
+          "partType": 2,
+          "layerIndex": -1,
+          "locked": false,
+          "visible": true,
+          "priority": 2,
+          "dispPriority": 0,
+
+          "othersType": 0,
+          "camera": {
+            "initialPlayerPosition": false,
+            "x": 0,
+            "y": 0,
+            "width": 640,
+            "height": 360,
+            "followTargetType": 0,
+            "objectId": -1,
+            "courseScenePartId": -1,
+            "startPointId": -1,
+            "scrollToShowAllPlayers": false,
+            "scaleToShowAllPlayers": false,
+            "maxScaling": 100.0,
+            "switchObjectId": -1,
+            "switchQualifierId": -1,
+            "switchId": -1
+          },
+          "folder": false
         }
       ],
-      "objectSingleIdHash": { "2": 3, "1": 2 },
+      "objectSingleIdHash": { "1": 2, "2": 3 },
       "folder": false
     }
   ],
