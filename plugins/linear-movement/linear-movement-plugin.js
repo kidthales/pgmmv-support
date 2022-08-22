@@ -2,7 +2,7 @@
  * @file PGMMV plugin that provides action commands for translating an object
  * instance to an (x,y) coordinate pair, each of which is read from a variable.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.1.0
+ * @version 1.2.0
  * @license MIT
  */
 (function () {
@@ -57,6 +57,13 @@
      * @private
      */
     kTweenDurationDecimals = 3,
+    /**
+     * Minimum duration.
+     *
+     * @const
+     * @private
+     */
+    kMinDuration = 0,
     /**
      * Localization manager. Responsible for mapping our localization keys to
      * their localized values.
@@ -119,6 +126,29 @@
             ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_WORLD:
               'World',
             ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_CAMERA:
+              'Camera',
+
+            ACTION_COMMAND_NAME_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION:
+              'Tween To Variable Coordinates With Variable Duration',
+            ACTION_COMMAND_DESCRIPTION_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION:
+              "Tween object instance to coordinates stored in variables. Uses duration (in seconds) stored in variable to determine object instance's move speed.",
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_X_COORDINATE_VARIABLE_SOURCE:
+              'X Coordinate\nVariable Source!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_X_COORDINATE_VARIABLE:
+              'X Coordinate Variable!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_Y_COORDINATE_VARIABLE_SOURCE:
+              'Y Coordinate\nVariable Source!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_Y_COORDINATE_VARIABLE:
+              'Y Coordinate Variable!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE_SOURCE:
+              'Duration Variable Source!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE:
+              'Duration Variable!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_COORDINATE_SPACE:
+              'Coordinate Space!:',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_WORLD:
+              'World',
+            ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_CAMERA:
               'Camera'
           }
         },
@@ -423,7 +453,7 @@
           xCoordinateVariableSource: 100,
 
           /**
-           * Tween to variable coordinates action command x coordinate variable
+           * Tween to variable coordinates action command y coordinate variable
            * parameter ID.
            *
            * @const
@@ -431,7 +461,7 @@
           yCoordinateVariable: 1,
 
           /**
-           * Tween to variable coordinates action command x coordinate variable
+           * Tween to variable coordinates action command y coordinate variable
            * source parameter ID.
            *
            * @const
@@ -476,6 +506,111 @@
               /**
                * Tween to variable coordinates action command coordinate space
                * parameter camera custom parameter ID.
+               *
+               * @const
+               */
+              camera: 1
+            }
+          }
+        }
+      },
+
+      /**
+       * Tween to variable coordinates with variable duration action command.
+       */
+      tweenToVariableCoordinatesWithVariableDuration: {
+        /**
+         * Tween to variable coordinates with variable duration action command
+         * ID.
+         *
+         * @const
+         */
+        id: 1,
+
+        /**
+         * Tween to variable coordinates with variable duration action command
+         * parameter IDs.
+         *
+         * @const
+         */
+        parameterId: {
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * x coordinate variable parameter ID.
+           *
+           * @const
+           */
+          xCoordinateVariable: 0,
+
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * x coordinate variable source parameter ID.
+           *
+           * @const
+           */
+          xCoordinateVariableSource: 100,
+
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * y coordinate variable parameter ID.
+           *
+           * @const
+           */
+          yCoordinateVariable: 1,
+
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * y coordinate variable source parameter ID.
+           *
+           * @const
+           */
+          yCoordinateVariableSource: 101,
+
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * duration variable parameter ID.
+           */
+          durationVariable: 2,
+
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * duration variable source parameter ID.
+           */
+          durationVariableSource: 102,
+
+          /**
+           * Tween to variable coordinates with variable duration action command
+           * coordinate space parameter.
+           *
+           * @const
+           */
+          coordinateSpace: {
+            /**
+             * Tween to variable coordinates with variable duration action
+             * command coordinate space parameter ID.
+             *
+             * @const
+             */
+            id: 3,
+
+            /**
+             * Tween to variable coordinates with variable duration action
+             * command coordinate space parameter custom parameter IDs.
+             *
+             * @const
+             */
+            parameterId: {
+              /**
+               * Tween to variable coordinates with variable duration action
+               * command coordinate space parameter world custom parameter ID.
+               *
+               * @const
+               */
+              world: 0,
+
+              /**
+               * Tween to variable coordinates with variable duration action
+               * command coordinate space parameter camera custom parameter ID.
                *
                * @const
                */
@@ -620,6 +755,92 @@
               {
                 id: actionCommandId.tweenToVariableCoordinates.parameterId.coordinateSpace.parameterId.camera,
                 name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_CAMERA)'
+              }
+            ]
+          }
+        ]
+      },
+
+      // Tween to variable coordinates with variable duration action command.
+      {
+        id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.id,
+        name: 'loca(ACTION_COMMAND_NAME_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION)',
+        description: 'loca(ACTION_COMMAND_DESCRIPTION_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION)',
+        parameter: [
+          // X coordinate variable source parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.xCoordinateVariableSource,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_X_COORDINATE_VARIABLE_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: ['SelfObject', 'ParentObject'],
+            defaultValue: kUnsetId
+          },
+          // X coordinate variable parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.xCoordinateVariable,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_X_COORDINATE_VARIABLE)',
+            type: 'VariableId',
+            referenceId:
+              actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.xCoordinateVariableSource,
+            withNewButton: true,
+            defaultValue: kUnsetId
+          },
+          // Y coordinate variable source parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.yCoordinateVariableSource,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_Y_COORDINATE_VARIABLE_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: ['SelfObject', 'ParentObject'],
+            defaultValue: kUnsetId
+          },
+          // Y coordinate variable parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.yCoordinateVariable,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_Y_COORDINATE_VARIABLE)',
+            type: 'VariableId',
+            referenceId:
+              actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.xCoordinateVariableSource,
+            withNewButton: true,
+            defaultValue: kUnsetId
+          },
+          // Duration variable source parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.durationVariableSource,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE_SOURCE)',
+            type: 'SwitchVariableObjectId',
+            option: ['SelfObject', 'ParentObject'],
+            defaultValue: kUnsetId
+          },
+          // Duration variable parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.durationVariable,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE)',
+            type: 'VariableId',
+            referenceId:
+              actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.durationVariableSource,
+            withNewButton: true,
+            defaultValue: kUnsetId
+          },
+          // Coordinate space parameter.
+          {
+            id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.coordinateSpace.id,
+            name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_COORDINATE_SPACE)',
+            type: 'CustomId',
+            defaultValue:
+              actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.coordinateSpace.parameterId
+                .world,
+            customParam: [
+              // World space.
+              {
+                id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.coordinateSpace
+                  .parameterId.world,
+                name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_WORLD)'
+              },
+              // Camera space.
+              {
+                id: actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.coordinateSpace
+                  .parameterId.camera,
+                name: 'loca(ACTION_COMMAND_TWEEN_TO_VARIABLE_COORDINATES_WITH_VARIABLE_DURATION_PARAMETER_NAME_COORDINATE_SPACE_CUSTOM_PARAMETER_NAME_CAMERA)'
               }
             ]
           }
@@ -837,9 +1058,9 @@
       } else if (ySource === Agtk.constants.actionCommands.UnsetObject) {
         logWarning('tween to variable coordinates action command executed with unset y coordinate variable source');
       } else if (xVariableId < 1) {
-        logWarning('tween to variable coordinates command executed with invalid x coordinate variable ID');
+        logWarning('tween to variable coordinates action command executed with invalid x coordinate variable ID');
       } else if (yVariableId < 1) {
-        logWarning('tween to variable coordinates command executed with invalid y coordinate variable ID');
+        logWarning('tween to variable coordinates action command executed with invalid y coordinate variable ID');
       } else {
         Agtk.objectInstances.get(instanceId).execCommandObjectMove({
           moveType: Agtk.constants.actionCommands.objectMove.MoveToPosition,
@@ -850,6 +1071,84 @@
           moveInDisplayCoordinates: !!isCameraSpace,
           useObjectParameter: false,
           moveDuration300: kDuration300 * duration
+        });
+      }
+
+      return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
+    },
+    /**
+     * Execute tween to variable coordinates action command.
+     *
+     * @param xVariableSourceId Project Common identifier or object ID (Self or
+     * Parent).
+     * @param xVariableId Variable ID.
+     * @param yVariableSourceId Project Common identifier or object ID (Self or
+     * Parent).
+     * @param yVariableId Variable ID.
+     * @param durationVariableSourceId: Project Common identifier or object ID
+     * (Self or Parent).
+     * @param durationVariableId Variable ID.
+     * @param instanceId ID of object instance executing this action command.
+     * @param isCameraSpace Set to `true` to move with respect to camera space.
+     * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
+     */
+    execTweenToVariableCoordinatesWithVariableDuration = function (
+      /** @type {number} */
+      xVariableSourceId,
+      /** @type {number} */
+      xVariableId,
+      /** @type {number} */
+      yVariableSourceId,
+      /** @type {number} */
+      yVariableId,
+      /** @type {number} */
+      durationVariableSourceId,
+      /** @type {number} */
+      durationVariableId,
+      /** @type {number} */
+      instanceId,
+      /** @type {boolean} */
+      isCameraSpace
+    ) {
+      var xSource = resolveVariableObject(xVariableSourceId, instanceId),
+        ySource = resolveVariableObject(yVariableSourceId, instanceId),
+        durationSource = resolveVariableObject(durationVariableSourceId, instanceId);
+
+      if (xSource === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'tween to variable coordinates with variable duration action command executed with unset x coordinate variable source'
+        );
+      } else if (ySource === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'tween to variable coordinates with variable duration action command executed with unset y coordinate variable source'
+        );
+      } else if (durationSource === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'tween to variable coordinates with variable duration action command executed with unset duration variable source'
+        );
+      } else if (xVariableId < 1) {
+        logWarning(
+          'tween to variable coordinates with variable duration action command executed with invalid x coordinate variable ID'
+        );
+      } else if (yVariableId < 1) {
+        logWarning(
+          'tween to variable coordinates with variable duration action command executed with invalid y coordinate variable ID'
+        );
+      } else if (durationVariableId < 1) {
+        logWarning(
+          'tween to variable coordinates with variable duration action command executed with invalid duration variable ID'
+        );
+      } else {
+        Agtk.objectInstances.get(instanceId).execCommandObjectMove({
+          moveType: Agtk.constants.actionCommands.objectMove.MoveToPosition,
+          posX: resolveVariableValue(xSource, xVariableId),
+          posY: resolveVariableValue(ySource, yVariableId),
+          targettingType: Agtk.constants.actionCommands.objectMove.TargettingById,
+          targetObjectId: Agtk.constants.actionCommands.SelfObject,
+          moveInDisplayCoordinates: !!isCameraSpace,
+          useObjectParameter: false,
+          moveDuration300:
+            kDuration300 * cc.clampf(resolveVariableValue(durationSource, durationVariableId), kMinDuration, Infinity)
         });
       }
 
@@ -947,6 +1246,19 @@
               np[actionCommandId.tweenToVariableCoordinates.parameterId.yCoordinateVariableSource],
               np[actionCommandId.tweenToVariableCoordinates.parameterId.yCoordinateVariable],
               np[actionCommandId.tweenToVariableCoordinates.parameterId.duration],
+              instanceId,
+              np[actionCommandId.tweenToVariableCoordinates.parameterId.coordinateSpace.id] ===
+                actionCommandId.tweenToVariableCoordinates.parameterId.coordinateSpace.parameterId.camera
+            );
+
+          case actionCommandId.tweenToVariableCoordinatesWithVariableDuration.id:
+            return execTweenToVariableCoordinatesWithVariableDuration(
+              np[actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.xCoordinateVariableSource],
+              np[actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.xCoordinateVariable],
+              np[actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.yCoordinateVariableSource],
+              np[actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.yCoordinateVariable],
+              np[actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.durationVariableSource],
+              np[actionCommandId.tweenToVariableCoordinatesWithVariableDuration.parameterId.durationVariable],
               instanceId,
               np[actionCommandId.tweenToVariableCoordinates.parameterId.coordinateSpace.id] ===
                 actionCommandId.tweenToVariableCoordinates.parameterId.coordinateSpace.parameterId.camera

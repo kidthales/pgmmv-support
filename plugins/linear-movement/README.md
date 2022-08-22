@@ -56,6 +56,39 @@ Provides action commands for translating an object instance to an (x,y) coordina
             -   Must be one of:
                 -   `World`: Tween with respect to world space.
                 -   `Camera`: Tween with respect to camera space.
+-   **Tween To Variable Coordinates With Variable Duration**
+    -   Tween object instance to coordinates stored in variables.
+    -   Uses duration stored in variable to determine object instance's move speed.
+    -   _Parameters_:
+        -   **X Coordinate Variable Source**
+            -   Required.
+            -   Must be one of:
+                -   Project Common (`0`)
+                -   Object Self (`-2`)
+                -   Parent Object (`-7`)
+        -   **X Coordinate Variable**
+            -   Required.
+        -   **Y Coordinate Variable Source**
+            -   Required.
+            -   Must be one of:
+                -   Project Common (`0`)
+                -   Object Self (`-2`)
+                -   Parent Object (`-7`)
+        -   **Y Coordinate Variable**
+            -   Required.
+        -   **Duration Variable Source**
+            -   Required.
+            -   Must be one of:
+                -   Project Common (`0`)
+                -   Object Self (`-2`)
+                -   Parent Object (`-7`)
+        -   **Duration Variable**
+            -   Required.
+        -   **Coordinate Space**
+            -   Required.
+            -   Must be one of:
+                -   `World`: Tween with respect to world space.
+                -   `Camera`: Tween with respect to camera space.
 
 ## Script API
 
@@ -79,6 +112,18 @@ Plugin also exposes the action command API to your scripts, under the `kt.linear
         -   **yVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
         -   **yVariableId**: The variable ID.
         -   **duration**: Duration of tween, in seconds.
+        -   **instanceId**: ID of executing object instance (also used for resolving Self or Parent variable source).
+        -   **isCameraSpace**: Optional. When `true`, tween with respect to camera space.
+    -   Returns `CommandBehaviorNext`.
+-   `execTweenToVariableCoordinatesWithVariableDuration(xVariableSourceId, xVariableId, yVariableSourceId, yVariableId, durationVariableSourceId, durationVariableId, instanceId, isCameraSpace)`
+    -   Execute tween to variable coordinates action command.
+    -   _Parameters_:
+        -   **xVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **xVariableId**: The variable ID.
+        -   **yVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **yVariableId**: The variable ID.
+        -   **durationVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
+        -   **durationVariableId**: The variable ID.
         -   **instanceId**: ID of executing object instance (also used for resolving Self or Parent variable source).
         -   **isCameraSpace**: Optional. When `true`, tween with respect to camera space.
     -   Returns `CommandBehaviorNext`.
