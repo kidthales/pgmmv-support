@@ -2,7 +2,7 @@
  * @file PGMMV plugin that provides action commands for translating an object
  * instance to an (x,y) coordinate pair, each of which is read from a variable.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.3.0
+ * @version 1.3.1
  * @license MIT
  */
 (function () {
@@ -1441,7 +1441,8 @@
         if (!window[kVendorGlobalKey][kPluginVendorKey]) {
           window[kVendorGlobalKey][kPluginVendorKey] = {
             execMoveToVariableCoordinates: execMoveToVariableCoordinates,
-            execTweenToVariableCoordinates: execTweenToVariableCoordinates
+            execTweenToVariableCoordinates: execTweenToVariableCoordinates,
+            execTweenToVariableCoordinatesWithVariableDuration: execTweenToVariableCoordinatesWithVariableDuration
           };
         }
       },

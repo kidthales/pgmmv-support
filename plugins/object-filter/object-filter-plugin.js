@@ -3,7 +3,7 @@
  * to an object instance, the value/intensity/level of which is read from a
  * variable.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.0.0-beta
+ * @version 1.0.0-beta.1
  * @license MIT
  */
 (function () {
@@ -99,8 +99,7 @@
             ACTION_COMMAND_DESCRIPTION_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE:
               'Apply basic filter effect to object instance using value/intensity/level stored in variable.\n\n' +
               "Available filter effects: 'Noise', 'Mosaic', 'Monochrome', 'Sepia', 'Invert', 'Blur', 'Chromatic Aberration', 'Mosaic', & 'Transparency'.",
-            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_FILTER_EFFECT:
-              'Filter Effect!:',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_FILTER_EFFECT: 'Filter Effect:',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_FILTER_EFFECT_CUSTOM_PARAMETER_NAME_NOISE:
               'Noise',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_FILTER_EFFECT_CUSTOM_PARAMETER_NAME_MOSAIC:
@@ -120,41 +119,58 @@
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_FILTER_EFFECT_CUSTOM_PARAMETER_NAME_TRANSPARENCY:
               'Transparency',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_VALUE_VARIABLE_SOURCE:
-              'Value/Intensity/Level\nVariable Source!:',
+              'Value Variable Source:',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_VALUE_VARIABLE:
-              'Value/Intensity/Level\nVariable!:',
-            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_DURATION: 'Duration!:',
+              'Value Variable:',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_DURATION: 'Duration:',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_ACTION_TARGET: 'Action Target:',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF:
+              'Object Self',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT:
+              'Parent Object',
 
             ACTION_COMMAND_NAME_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS:
               'Apply Color Filter Effect With Variable Channels',
             ACTION_COMMAND_DESCRIPTION_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS:
               'Apply color filter effect to object instance using RGBA values stored in variables.',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_RED_CHANNEL_VARIABLE_SOURCE:
-              'Red Channel\nVariable Source!:',
+              'Red Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_RED_CHANNEL_VARIABLE:
-              'Red Channel\nVariable!:',
+              'Red Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_GREEN_CHANNEL_VARIABLE_SOURCE:
-              'Green Channel\nVariable Source!:',
+              'Green Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_GREEN_CHANNEL_VARIABLE:
-              'Green Channel\nVariable!:',
+              'Green Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_BLUE_CHANNEL_VARIABLE_SOURCE:
-              'Blue Channel\nVariable Source!:',
+              'Blue Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_BLUE_CHANNEL_VARIABLE:
-              'Blue Channel\nVariable!:',
+              'Blue Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ALPHA_CHANNEL_VARIABLE_SOURCE:
-              'Alpha Channel\nVariable Source!:',
+              'Alpha Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ALPHA_CHANNEL_VARIABLE:
-              'Alpha Channel\nVariable!:',
-            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_DURATION: 'Duration!:',
+              'Alpha Channel Variable:',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_DURATION: 'Duration:',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ACTION_TARGET:
+              'Action Target:',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF:
+              'Object Self',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT:
+              'Parent Object',
 
             ACTION_COMMAND_NAME_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL:
               'Apply Blink Filter Effect With Variable Interval',
             ACTION_COMMAND_DESCRIPTION_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL:
               'Apply blink filter effect to object instance using interval value stored in variable.',
             ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_INTERVAL_VARIABLE_SOURCE:
-              'Interval Variable Source!:',
+              'Interval Variable Source:',
             ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_INTERVAL_VARIABLE:
-              'Interval Variable!:',
+              'Interval Variable:',
+            ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_ACTION_TARGET:
+              'Action Target:',
+            ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF:
+              'Object Self',
+            ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT:
+              'Parent Object',
 
             ACTION_COMMAND_NAME_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION:
               'Apply Basic Filter Effect With Variable Value & Variable Duration',
@@ -162,7 +178,7 @@
               'Apply basic filter effect to object instance using value/intensity/level stored in variable & duration stored in another variable.\n\n' +
               "Available filter effects: 'Noise', 'Mosaic', 'Monochrome', 'Sepia', 'Invert', 'Blur', 'Chromatic Aberration', 'Mosaic', & 'Transparency'.",
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_FILTER_EFFECT:
-              'Filter Effect!:',
+              'Filter Effect:',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_FILTER_EFFECT_CUSTOM_PARAMETER_NAME_NOISE:
               'Noise',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_FILTER_EFFECT_CUSTOM_PARAMETER_NAME_MOSAIC:
@@ -182,38 +198,50 @@
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_FILTER_EFFECT_CUSTOM_PARAMETER_NAME_TRANSPARENCY:
               'Transparency',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_VALUE_VARIABLE_SOURCE:
-              'Value/Intensity/Level\nVariable Source!:',
+              'Value Variable Source:',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_VALUE_VARIABLE:
-              'Value/Intensity/Level\nVariable!:',
+              'Value Variable:',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE_SOURCE:
-              'Duration Variable Source!:',
+              'Duration Variable Source:',
             ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE:
-              'Duration Variable!:',
+              'Duration Variable:',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET:
+              'Action Target:',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF:
+              'Object Self',
+            ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT:
+              'Parent Object',
 
             ACTION_COMMAND_NAME_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION:
               'Apply Color Filter Effect With Variable Channels & Variable Duration',
             ACTION_COMMAND_DESCRIPTION_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION:
               'Apply color filter effect to object instance using RGBA values stored in variables & duration stored in another variable.',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_RED_CHANNEL_VARIABLE_SOURCE:
-              'Red Channel\nVariable Source!:',
+              'Red Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_RED_CHANNEL_VARIABLE:
-              'Red Channel\nVariable!:',
+              'Red Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_GREEN_CHANNEL_VARIABLE_SOURCE:
-              'Green Channel\nVariable Source!:',
+              'Green Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_GREEN_CHANNEL_VARIABLE:
-              'Green Channel\nVariable!:',
+              'Green Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_BLUE_CHANNEL_VARIABLE_SOURCE:
-              'Blue Channel\nVariable Source!:',
+              'Blue Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_BLUE_CHANNEL_VARIABLE:
-              'Blue Channel\nVariable!:',
+              'Blue Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ALPHA_CHANNEL_VARIABLE_SOURCE:
-              'Alpha Channel\nVariable Source!:',
+              'Alpha Channel Variable\nSource:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ALPHA_CHANNEL_VARIABLE:
-              'Alpha Channel\nVariable!:',
+              'Alpha Channel Variable:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE_SOURCE:
-              'Duration Variable Source!:',
+              'Duration Variable Source:',
             ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_DURATION_VARIABLE:
-              'Duration Variable!:'
+              'Duration Variable:',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET:
+              'Action Target:',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF:
+              'Object Self',
+            ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT:
+              'Parent Object'
           }
         },
         /**
@@ -529,7 +557,47 @@
            *
            * @const
            */
-          duration: 2
+          duration: 2,
+
+          /**
+           * Apply basic filter effect with variable value action command action
+           * target parameter.
+           *
+           * @const
+           */
+          actionTarget: {
+            /**
+             * Apply basic filter effect with variable value action command
+             * action target parameter ID.
+             *
+             * @const
+             */
+            id: 3,
+
+            /**
+             * Apply basic filter effect with variable value action command
+             * action target parameter custom parameter IDs.
+             *
+             * @const
+             */
+            parameterId: {
+              /**
+               * Apply basic filter effect with variable value action command
+               * action target parameter object self custom parameter ID.
+               *
+               * @const
+               */
+              objectSelf: -2,
+
+              /**
+               * Apply basic filter effect with variable value action command
+               * action target parameter parent object custom parameter ID.
+               *
+               * @const
+               */
+              parentObject: -7
+            }
+          }
         }
       },
 
@@ -619,7 +687,47 @@
            * Apply color filter effect with variable channels action command
            * duration parameter ID.
            */
-          duration: 4
+          duration: 4,
+
+          /**
+           * Apply color filter effect with variable channels action command
+           * action target parameter.
+           *
+           * @const
+           */
+          actionTarget: {
+            /**
+             * Apply color filter effect with variable channels action command
+             * action target parameter ID.
+             *
+             * @const
+             */
+            id: 5,
+
+            /**
+             * Apply color filter effect with variable channels action command
+             * action target parameter custom parameter IDs.
+             *
+             * @const
+             */
+            parameterId: {
+              /**
+               * Apply color filter effect with variable channels action command
+               * action target parameter object self custom parameter ID.
+               *
+               * @const
+               */
+              objectSelf: -2,
+
+              /**
+               * Apply color filter effect with variable channels action command
+               * action target parameter parent object custom parameter ID.
+               *
+               * @const
+               */
+              parentObject: -7
+            }
+          }
         }
       },
 
@@ -655,7 +763,47 @@
            *
            * @const
            */
-          intervalVariableSource: 100
+          intervalVariableSource: 100,
+
+          /**
+           * Apply blink filter effect with variable interval action command
+           * action target parameter.
+           *
+           * @const
+           */
+          actionTarget: {
+            /**
+             * Apply blink filter effect with variable interval action command
+             * action target parameter ID.
+             *
+             * @const
+             */
+            id: 1,
+
+            /**
+             * Apply blink filter effect with variable interval action command
+             * action target parameter custom parameter IDs.
+             *
+             * @const
+             */
+            parameterId: {
+              /**
+               * Apply blink filter effect with variable interval action command
+               * action target parameter object self custom parameter ID.
+               *
+               * @const
+               */
+              objectSelf: -2,
+
+              /**
+               * Apply blink filter effect with variable interval action command
+               * action target parameter parent object custom parameter ID.
+               *
+               * @const
+               */
+              parentObject: -7
+            }
+          }
         }
       },
 
@@ -817,7 +965,50 @@
            *
            * @const
            */
-          durationVariableSource: 102
+          durationVariableSource: 102,
+
+          /**
+           * Apply basic filter effect with variable value and variable duration
+           * action command action target parameter.
+           *
+           * @const
+           */
+          actionTarget: {
+            /**
+             * Apply basic filter effect with variable value and variable
+             * duration action command action target parameter ID.
+             *
+             * @const
+             */
+            id: 3,
+
+            /**
+             * Apply basic filter effect with variable value and variable
+             * duration action command action target parameter custom parameter
+             * IDs.
+             *
+             * @const
+             */
+            parameterId: {
+              /**
+               * Apply basic filter effect with variable value and variable
+               * duration action command action target parameter object self
+               * custom parameter ID.
+               *
+               * @const
+               */
+              objectSelf: -2,
+
+              /**
+               * Apply basic filter effect with variable value and variable
+               * duration action command action target parameter parent object
+               * custom parameter ID.
+               *
+               * @const
+               */
+              parentObject: -7
+            }
+          }
         }
       },
 
@@ -916,7 +1107,50 @@
            *
            * @const
            */
-          durationVariableSource: 104
+          durationVariableSource: 104,
+
+          /**
+           * Apply color filter effect with variable channels and variable
+           * duration action command action target parameter.
+           *
+           * @const
+           */
+          actionTarget: {
+            /**
+             * Apply color filter effect with variable channels and variable
+             * duration action command action target parameter ID.
+             *
+             * @const
+             */
+            id: 5,
+
+            /**
+             * Apply color filter effect with variable channels and variable
+             * duration action command action target parameter custom parameter
+             * IDs.
+             *
+             * @const
+             */
+            parameterId: {
+              /**
+               * Apply color filter effect with variable channels and variable
+               * duration action command action target parameter object self
+               * custom parameter ID.
+               *
+               * @const
+               */
+              objectSelf: -2,
+
+              /**
+               * Apply color filter effect with variable channels and variable
+               * duration action command action target parameter parent object
+               * custom parameter ID.
+               *
+               * @const
+               */
+              parentObject: -7
+            }
+          }
         }
       }
     },
@@ -934,6 +1168,29 @@
         name: 'loca(ACTION_COMMAND_NAME_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE)',
         parameter: [
+          // Action target parameter.
+          {
+            id: actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.actionTarget.id,
+            name: 'loca(ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_ACTION_TARGET)',
+            type: 'CustomId',
+            defaultValue:
+              actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.actionTarget.parameterId.objectSelf,
+            customParam: [
+              // Object self.
+              {
+                id: actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.actionTarget.parameterId
+                  .objectSelf,
+                name: 'loca(ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF)'
+              },
+              // Parent object.
+              {
+                id: actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.actionTarget.parameterId
+                  .parentObject,
+                name: 'loca(ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT)'
+              }
+            ]
+          },
+          { id: -1, name: '', type: 'Embedded' },
           // Filter effect parameter.
           {
             id: actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.filterEffect,
@@ -992,6 +1249,7 @@
               }
             ]
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Value variable source parameter.
           {
             id: actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.valueVariableSource,
@@ -1009,6 +1267,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Duration parameter.
           {
             id: actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.duration,
@@ -1026,6 +1285,30 @@
         name: 'loca(ACTION_COMMAND_NAME_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS)',
         parameter: [
+          // Action target parameter.
+          {
+            id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.actionTarget.id,
+            name: 'loca(ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ACTION_TARGET)',
+            type: 'CustomId',
+            defaultValue:
+              actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.actionTarget.parameterId
+                .objectSelf,
+            customParam: [
+              // Object self.
+              {
+                id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.actionTarget.parameterId
+                  .objectSelf,
+                name: 'loca(ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF)'
+              },
+              // Parent object.
+              {
+                id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.actionTarget.parameterId
+                  .parentObject,
+                name: 'loca(ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT)'
+              }
+            ]
+          },
+          { id: -1, name: '', type: 'Embedded' },
           // Red channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.redChannelVariableSource,
@@ -1044,6 +1327,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Green channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.greenChannelVariableSource,
@@ -1062,6 +1346,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Blue channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.blueChannelVariableSource,
@@ -1080,6 +1365,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Alpha channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.alphaChannelVariableSource,
@@ -1098,6 +1384,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Duration parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.duration,
@@ -1115,6 +1402,30 @@
         name: 'loca(ACTION_COMMAND_NAME_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL)',
         description: 'loca(ACTION_COMMAND_DESCRIPTION_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL)',
         parameter: [
+          // Action target parameter.
+          {
+            id: actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.actionTarget.id,
+            name: 'loca(ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_ACTION_TARGET)',
+            type: 'CustomId',
+            defaultValue:
+              actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.actionTarget.parameterId
+                .objectSelf,
+            customParam: [
+              // Object self.
+              {
+                id: actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.actionTarget.parameterId
+                  .objectSelf,
+                name: 'loca(ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF)'
+              },
+              // Parent object.
+              {
+                id: actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.actionTarget.parameterId
+                  .parentObject,
+                name: 'loca(ACTION_COMMAND_APPLY_BLINK_FILTER_EFFECT_WITH_VARIABLE_INTERVAL_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT)'
+              }
+            ]
+          },
+          { id: -1, name: '', type: 'Embedded' },
           // Interval variable source parameter.
           {
             id: actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.intervalVariableSource,
@@ -1141,6 +1452,30 @@
         description:
           'loca(ACTION_COMMAND_DESCRIPTION_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION)',
         parameter: [
+          // Action target parameter.
+          {
+            id: actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.actionTarget.id,
+            name: 'loca(ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET)',
+            type: 'CustomId',
+            defaultValue:
+              actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.actionTarget
+                .parameterId.objectSelf,
+            customParam: [
+              // Object self.
+              {
+                id: actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.actionTarget
+                  .parameterId.objectSelf,
+                name: 'loca(ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF)'
+              },
+              // Parent object.
+              {
+                id: actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.actionTarget
+                  .parameterId.parentObject,
+                name: 'loca(ACTION_COMMAND_APPLY_BASIC_FILTER_EFFECT_WITH_VARIABLE_VALUE_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT)'
+              }
+            ]
+          },
+          { id: -1, name: '', type: 'Embedded' },
           // Filter effect parameter.
           {
             id: actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.filterEffect,
@@ -1206,6 +1541,7 @@
               }
             ]
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Value variable source parameter.
           {
             id: actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId
@@ -1226,6 +1562,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Duration variable source parameter.
           {
             id: actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId
@@ -1255,6 +1592,31 @@
         description:
           'loca(ACTION_COMMAND_DESCRIPTION_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION)',
         parameter: [
+          // Action target parameter.
+          {
+            id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId.actionTarget
+              .id,
+            name: 'loca(ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET)',
+            type: 'CustomId',
+            defaultValue:
+              actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId.actionTarget
+                .parameterId.objectSelf,
+            customParam: [
+              // Object self.
+              {
+                id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
+                  .actionTarget.parameterId.objectSelf,
+                name: 'loca(ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_OBJECT_SELF)'
+              },
+              // Parent object.
+              {
+                id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
+                  .actionTarget.parameterId.parentObject,
+                name: 'loca(ACTION_COMMAND_APPLY_COLOR_FILTER_EFFECT_WITH_VARIABLE_CHANNELS_AND_VARIABLE_DURATION_PARAMETER_NAME_ACTION_TARGET_CUSTOM_PARAMETER_NAME_PARENT_OBJECT)'
+              }
+            ]
+          },
+          { id: -1, name: '', type: 'Embedded' },
           // Red channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
@@ -1276,6 +1638,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Green channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
@@ -1297,6 +1660,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Blue channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
@@ -1318,6 +1682,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Alpha channel variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
@@ -1339,6 +1704,7 @@
             withNewButton: true,
             defaultValue: kUnsetId
           },
+          { id: -1, name: '', type: 'Embedded' },
           // Duration variable source parameter.
           {
             id: actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
@@ -1502,6 +1868,7 @@
      * @param valueVariableId Variable ID.
      * @param duration Duration in seconds.
      * @param instanceId ID of object instance executing this action command.
+     * @param actionTarget Object ID (Self or Parent).
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
     execApplyBasicFilterEffectWithVariableValue = function (
@@ -1514,7 +1881,9 @@
       /** @type {number} */
       duration,
       /** @type {number} */
-      instanceId
+      instanceId,
+      /** @type {number} */
+      actionTarget
     ) {
       var basicEffects = [
           Agtk.constants.filterEffects.EffectNoise,
@@ -1528,12 +1897,18 @@
           Agtk.constants.filterEffects.EffectTransparency
         ],
         valueSource = resolveVariableObject(valueVariableSourceId, instanceId),
+        actionTargetInstance = resolveVariableObject(
+          actionTarget ? actionTarget : Agtk.constants.actionCommands.SelfObject,
+          instanceId
+        ),
         /** @type {import("pgmmv/agtk/object-instances/object-instance/action-command-config").AgtkObjectFilterEffect} */
         objectFilterEffect = {},
         /** @type {string} */
         key;
 
-      if (valueSource === Agtk.constants.actionCommands.UnsetObject) {
+      if (!actionTargetInstance || actionTargetInstance === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning('apply basic filter effect with variable value action command executed with invalid action target');
+      } else if (valueSource === Agtk.constants.actionCommands.UnsetObject) {
         logWarning(
           'apply basic filter effect with variable value action command executed with unset value variable source'
         );
@@ -1586,7 +1961,7 @@
           kMaxBasicFilterValue
         );
 
-        Agtk.objectInstances.get(instanceId).execCommandObjectFilterEffect(objectFilterEffect);
+        actionTargetInstance.execCommandObjectFilterEffect(objectFilterEffect);
       }
 
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
@@ -1608,6 +1983,7 @@
      * @param alphaChannelVariableId Variable ID.
      * @param duration Duration in seconds.
      * @param instanceId ID of object instance executing this action command.
+     * @param actionTarget Object ID (Self or Parent).
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
     execApplyColorFilterEffectWithVariableChannels = function (
@@ -1630,14 +2006,24 @@
       /** @type {number} */
       duration,
       /** @type {number} */
-      instanceId
+      instanceId,
+      /** @type {number} */
+      actionTarget
     ) {
       var redChannelSource = resolveVariableObject(redChannelVariableSourceId, instanceId),
         greenChannelSource = resolveVariableObject(greenChannelVariableSourceId, instanceId),
         blueChannelSource = resolveVariableObject(blueChannelVariableSourceId, instanceId),
-        alphaChannelSource = resolveVariableObject(alphaChannelVariableSourceId, instanceId);
+        alphaChannelSource = resolveVariableObject(alphaChannelVariableSourceId, instanceId),
+        actionTargetInstance = resolveVariableObject(
+          actionTarget ? actionTarget : Agtk.constants.actionCommands.SelfObject,
+          instanceId
+        );
 
-      if (redChannelSource === Agtk.constants.actionCommands.UnsetObject) {
+      if (!actionTargetInstance || actionTargetInstance === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'apply color filter effect with variable channels action command executed with invalid action target'
+        );
+      } else if (redChannelSource === Agtk.constants.actionCommands.UnsetObject) {
         logWarning(
           'apply color filter effect with variable channels action command executed with unset red channel variable source'
         );
@@ -1670,7 +2056,7 @@
           'apply color filter effect with variable channels action command executed with invalid alpha channel variable ID'
         );
       } else {
-        Agtk.objectInstances.get(instanceId).execCommandObjectFilterEffect({
+        actionTargetInstance.execCommandObjectFilterEffect({
           effectType: Agtk.constants.filterEffects.EffectFillColor,
           fillR: cc.clampf(resolveVariableValue(redChannelSource, redChannelVariableId), kMinRGBAValue, kMaxRGBAValue),
           fillG: cc.clampf(
@@ -1701,6 +2087,7 @@
      * (Self or Parent).
      * @param intervalVariableId Variable ID.
      * @param instanceId ID of object instance executing this action command.
+     * @param actionTarget Object ID (Self or Parent).
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
     execApplyBlinkFilterEffectWithVariableInterval = function (
@@ -1709,11 +2096,21 @@
       /** @type {number} */
       intervalVariableId,
       /** @type {number} */
-      instanceId
+      instanceId,
+      /** @type {number} */
+      actionTarget
     ) {
-      var intervalSource = resolveVariableObject(intervalVariableSourceId, instanceId);
+      var intervalSource = resolveVariableObject(intervalVariableSourceId, instanceId),
+        actionTargetInstance = resolveVariableObject(
+          actionTarget ? actionTarget : Agtk.constants.actionCommands.SelfObject,
+          instanceId
+        );
 
-      if (intervalSource === Agtk.constants.actionCommands.UnsetObject) {
+      if (!actionTargetInstance || actionTargetInstance === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'apply blink filter effect with variable interval action command executed with invalid action target'
+        );
+      } else if (intervalSource === Agtk.constants.actionCommands.UnsetObject) {
         logWarning(
           'apply blink filter effect with variable interval action command executed with unset interval variable source'
         );
@@ -1722,7 +2119,7 @@
           'apply blink filter effect with variable interval action command executed with invalid interval variable ID'
         );
       } else {
-        Agtk.objectInstances.get(instanceId).execCommandObjectFilterEffect({
+        actionTargetInstance.execCommandObjectFilterEffect({
           effectType: Agtk.constants.filterEffects.EffectBlink,
           blinkInterval300:
             kDuration300 *
@@ -1753,6 +2150,7 @@
      * (Self or Parent).
      * @param durationVariableId Variable ID.
      * @param instanceId ID of object instance executing this action command.
+     * @param actionTarget Object ID (Self or Parent).
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
     execApplyBasicFilterEffectWithVariableValueAndVariableDuration = function (
@@ -1767,7 +2165,9 @@
       /** @type {number} */
       durationVariableId,
       /** @type {number} */
-      instanceId
+      instanceId,
+      /** @type {number} */
+      actionTarget
     ) {
       var basicEffects = [
           Agtk.constants.filterEffects.EffectNoise,
@@ -1782,12 +2182,20 @@
         ],
         valueSource = resolveVariableObject(valueVariableSourceId, instanceId),
         durationSource = resolveVariableObject(durationVariableSourceId, instanceId),
+        actionTargetInstance = resolveVariableObject(
+          actionTarget ? actionTarget : Agtk.constants.actionCommands.SelfObject,
+          instanceId
+        ),
         /** @type {import("pgmmv/agtk/object-instances/object-instance/action-command-config").AgtkObjectFilterEffect} */
         objectFilterEffect = {},
         /** @type {string} */
         key;
 
-      if (valueSource === Agtk.constants.actionCommands.UnsetObject) {
+      if (!actionTargetInstance || actionTargetInstance === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'apply basic filter effect with variable value and variable duration action command executed with invalid action target'
+        );
+      } else if (valueSource === Agtk.constants.actionCommands.UnsetObject) {
         logWarning(
           'apply basic filter effect with variable value and variable duration action command executed with unset value variable source'
         );
@@ -1849,7 +2257,7 @@
           kMaxBasicFilterValue
         );
 
-        Agtk.objectInstances.get(instanceId).execCommandObjectFilterEffect(objectFilterEffect);
+        actionTargetInstance.execCommandObjectFilterEffect(objectFilterEffect);
       }
 
       return Agtk.constants.actionCommands.commandBehavior.CommandBehaviorNext;
@@ -1874,6 +2282,7 @@
      * (Self or Parent).
      * @param durationVariableId Variable ID.
      * @param instanceId ID of object instance executing this action command.
+     * @param actionTarget Object ID (Self or Parent).
      * @returns {import("pgmmv/agtk/constants/action-commands/command-behavior").AgtkCommandBehavior['CommandBehaviorNext']}
      */
     execApplyColorFilterEffectWithVariableChannelsAndVariableDuration = function (
@@ -1898,15 +2307,25 @@
       /** @type {number} */
       durationVariableId,
       /** @type {number} */
-      instanceId
+      instanceId,
+      /** @type {number} */
+      actionTarget
     ) {
       var redChannelSource = resolveVariableObject(redChannelVariableSourceId, instanceId),
         greenChannelSource = resolveVariableObject(greenChannelVariableSourceId, instanceId),
         blueChannelSource = resolveVariableObject(blueChannelVariableSourceId, instanceId),
         alphaChannelSource = resolveVariableObject(alphaChannelVariableSourceId, instanceId),
-        durationSource = resolveVariableObject(durationVariableSourceId, instanceId);
+        durationSource = resolveVariableObject(durationVariableSourceId, instanceId),
+        actionTargetInstance = resolveVariableObject(
+          actionTarget ? actionTarget : Agtk.constants.actionCommands.SelfObject,
+          instanceId
+        );
 
-      if (redChannelSource === Agtk.constants.actionCommands.UnsetObject) {
+      if (!actionTargetInstance || actionTargetInstance === Agtk.constants.actionCommands.UnsetObject) {
+        logWarning(
+          'apply color filter effect with variable channels and variable duration action command executed with invalid action target'
+        );
+      } else if (redChannelSource === Agtk.constants.actionCommands.UnsetObject) {
         logWarning(
           'apply color filter effect with variable channels and variable duration action command executed with unset red channel variable source'
         );
@@ -1947,7 +2366,7 @@
           'apply color filter effect with variable channels and variable duration action command executed with invalid duration variable ID'
         );
       } else {
-        Agtk.objectInstances.get(instanceId).execCommandObjectFilterEffect({
+        actionTargetInstance.execCommandObjectFilterEffect({
           effectType: Agtk.constants.filterEffects.EffectFillColor,
           fillR: cc.clampf(resolveVariableValue(redChannelSource, redChannelVariableId), kMinRGBAValue, kMaxRGBAValue),
           fillG: cc.clampf(
@@ -2057,7 +2476,8 @@
               np[actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.valueVariableSource],
               np[actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.valueVariable],
               np[actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.duration],
-              instanceId
+              instanceId,
+              np[actionCommandId.applyBasicFilterEffectWithVariableValue.parameterId.actionTarget.id]
             );
 
           case actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.id:
@@ -2077,14 +2497,16 @@
               np[
                 actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.durationVariable
               ],
-              instanceId
+              instanceId,
+              np[actionCommandId.applyBasicFilterEffectWithVariableValueAndVariableDuration.parameterId.actionTarget.id]
             );
 
           case actionCommandId.applyBlinkFilterEffectWithVariableInterval.id:
             return execApplyBlinkFilterEffectWithVariableInterval(
               np[actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.intervalVariableSource],
               np[actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.intervalVariable],
-              instanceId
+              instanceId,
+              np[actionCommandId.applyBlinkFilterEffectWithVariableInterval.parameterId.actionTarget.id]
             );
 
           case actionCommandId.applyColorFilterEffectWithVariableChannels.id:
@@ -2098,7 +2520,8 @@
               np[actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.alphaChannelVariableSource],
               np[actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.alphaChannelVariable],
               np[actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.duration],
-              instanceId
+              instanceId,
+              np[actionCommandId.applyColorFilterEffectWithVariableChannels.parameterId.actionTarget.id]
             );
 
           case actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.id:
@@ -2143,7 +2566,11 @@
                 actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId
                   .durationVariable
               ],
-              instanceId
+              instanceId,
+              np[
+                actionCommandId.applyColorFilterEffectWithVariableChannelsAndVariableDuration.parameterId.actionTarget
+                  .id
+              ]
             );
 
           default:

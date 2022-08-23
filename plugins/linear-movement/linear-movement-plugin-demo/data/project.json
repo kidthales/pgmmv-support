@@ -812,6 +812,32 @@
           "folder": false
         },
         {
+          "id": 4,
+          "name": "Parent",
+          "partType": 0,
+          "layerIndex": 1,
+          "locked": false,
+          "visible": true,
+          "priority": 3,
+          "dispPriority": 0,
+
+          "objectId": 3,
+          "initialActionId": -1,
+          "initialDisplayDirectionFlag": false,
+          "initialDisplayDirection": 180.0,
+          "x": 281.5,
+          "y": 44.25,
+          "scalingX": 100,
+          "scalingY": 100,
+          "rotation": 0,
+          "courseScenePartId": -1,
+          "courseStartPointId": -1,
+          "commonActionCommandListObject": {},
+          "actionCommandListObject": { "1": [] },
+          "disappearActionCommandList": [],
+          "folder": false
+        },
+        {
           "id": 1,
           "name": "Camera",
           "partType": 2,
@@ -840,35 +866,9 @@
             "switchId": -1
           },
           "folder": false
-        },
-        {
-          "id": 4,
-          "name": "Parent",
-          "partType": 0,
-          "layerIndex": 1,
-          "locked": false,
-          "visible": true,
-          "priority": 3,
-          "dispPriority": 0,
-
-          "objectId": 3,
-          "initialActionId": -1,
-          "initialDisplayDirectionFlag": false,
-          "initialDisplayDirection": 180.0,
-          "x": 281.5,
-          "y": 44.25,
-          "scalingX": 100,
-          "scalingY": 100,
-          "rotation": 0,
-          "courseScenePartId": -1,
-          "courseStartPointId": -1,
-          "commonActionCommandListObject": {},
-          "actionCommandListObject": { "1": [] },
-          "disappearActionCommandList": [],
-          "folder": false
         }
       ],
-      "objectSingleIdHash": { "2": 3, "3": 4, "1": 2 },
+      "objectSingleIdHash": { "1": 2, "2": 3, "3": 4 },
       "folder": false
     }
   ],
