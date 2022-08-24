@@ -89,9 +89,9 @@ Provides action commands for translating an object instance to an (x,y) coordina
 
 Plugin also exposes the action command API to your scripts, under the `kt.linearMovement` global namespace.
 
--   `execMoveToVariableCoordinates(xVariableSourceId, xVariableId, yVariableSourceId, yVariableId, instanceId, isCameraSpace, actionTarget)`
+-   `execMoveToVariableCoordinates(config)`
     -   Execute move to variable coordinates action command.
-    -   _Parameters_:
+    -   _config_:
         -   **xVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
         -   **xVariableId**: The variable ID.
         -   **yVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
@@ -100,9 +100,9 @@ Plugin also exposes the action command API to your scripts, under the `kt.linear
         -   **isCameraSpace**: Optional. When `true`, move with respect to camera space.
         -   **actionTarget**: Optional. Object ID (Self or Parent, `-2` or `-7` respectively, default is `-2`).
     -   Returns `CommandBehaviorNext`.
--   `execTweenToVariableCoordinates(xVariableSourceId, xVariableId, yVariableSourceId, yVariableId, duration, instanceId, isCameraSpace, actionTarget)`
+-   `execTweenToVariableCoordinates(config)`
     -   Execute tween to variable coordinates action command.
-    -   _Parameters_:
+    -   _config_:
         -   **xVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
         -   **xVariableId**: The variable ID.
         -   **yVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
@@ -112,9 +112,9 @@ Plugin also exposes the action command API to your scripts, under the `kt.linear
         -   **isCameraSpace**: Optional. When `true`, tween with respect to camera space.
         -   **actionTarget**: Optional. Object ID (Self or Parent, `-2` or `-7` respectively, default is `-2`).
     -   Returns `CommandBehaviorNext`.
--   `execTweenToVariableCoordinatesWithVariableDuration(xVariableSourceId, xVariableId, yVariableSourceId, yVariableId, durationVariableSourceId, durationVariableId, instanceId, isCameraSpace, actionTarget)`
+-   `execTweenToVariableCoordinatesWithVariableDuration(config)`
     -   Execute tween to variable coordinates action command.
-    -   _Parameters_:
+    -   _config_:
         -   **xVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).
         -   **xVariableId**: The variable ID.
         -   **yVariableSourceId**: Project Common identifier (`0`) or object ID (Self or Parent, `-2` or `-7` respectively).

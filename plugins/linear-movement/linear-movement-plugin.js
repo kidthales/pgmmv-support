@@ -2,7 +2,7 @@
  * @file PGMMV plugin that provides action commands for translating an object
  * instance to an (x,y) coordinate pair, each of which is read from a variable.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.3.1
+ * @version 2.0.0
  * @license MIT
  */
 (function () {
@@ -1440,9 +1440,44 @@
 
         if (!window[kVendorGlobalKey][kPluginVendorKey]) {
           window[kVendorGlobalKey][kPluginVendorKey] = {
-            execMoveToVariableCoordinates: execMoveToVariableCoordinates,
-            execTweenToVariableCoordinates: execTweenToVariableCoordinates,
-            execTweenToVariableCoordinatesWithVariableDuration: execTweenToVariableCoordinatesWithVariableDuration
+            execMoveToVariableCoordinates: function (c) {
+              return execMoveToVariableCoordinates(
+                c.xVariableSourceId,
+                c.xVariableId,
+                c.yVariableSourceId,
+                c.yVariableId,
+                c.instanceId,
+                c.isCameraSpace,
+                c.actionTarget
+              );
+            },
+
+            execTweenToVariableCoordinates: function (c) {
+              return execTweenToVariableCoordinates(
+                c.xVariableSourceId,
+                c.xVariableId,
+                c.yVariableSourceId,
+                c.yVariableId,
+                c.duration,
+                c.instanceId,
+                c.isCameraSpace,
+                c.actionTarget
+              );
+            },
+
+            execTweenToVariableCoordinatesWithVariableDuration: function (c) {
+              return execTweenToVariableCoordinatesWithVariableDuration(
+                c.xVariableSourceId,
+                c.xVariableId,
+                c.yVariableSourceId,
+                c.yVariableId,
+                c.durationVariableSourceId,
+                c.durationVariableId,
+                c.instanceId,
+                c.isCameraSpace,
+                c.actionTarget
+              );
+            }
           };
         }
       },
