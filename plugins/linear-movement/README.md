@@ -132,7 +132,13 @@ Examples:
 (function () {
     // Move object self to (x,y) coordinates specified in common variables with
     // ID 2010 (x) & 2011 (y).
-    kt.linearMovement.execMoveToVariableCoordinates(0, 2010, 0, 2011, instanceId);
+    kt.linearMovement.execMoveToVariableCoordinates({
+        xVariableSourceId: 0,
+        xVariableId: 2010,
+        yVariableSourceId: 0,
+        yVariableId: 2011,
+        instanceId: instanceId
+    });
 })();
 ```
 
@@ -141,7 +147,15 @@ Examples:
     // Tween object self to (x,y) coordinates specified in common variables with
     // ID 2010 (x) & 2011 (y) with a duration of 752 milliseconds, using camera
     // space.
-    kt.linearMovement.execTweenToVariableCoordinates(0, 2010, 0, 2011, 0.752, instanceId, true);
+    kt.linearMovement.execTweenToVariableCoordinates({
+        xVariableSourceId: 0,
+        xVariableId: 2010,
+        yVariableSourceId: 0,
+        yVariableId: 2011,
+        duration: 0.752,
+        instanceId: instanceId,
+        isCameraSpace: true
+    });
 })();
 ```
 
@@ -149,6 +163,14 @@ Examples:
 (function () {
     // Move object parent to (x,y) coordinates specified in common variables
     // with ID 2010 (x) & 2011 (y), using world space.
-    kt.linearMovement.execMoveToVariableCoordinates(0, 2010, 0, 2011, instanceId, false, -7);
+    kt.linearMovement.execMoveToVariableCoordinates({
+        xVariableSourceId: 0,
+        xVariableId: 2010,
+        yVariableSourceId: 0,
+        yVariableId: 2011,
+        instanceId: instanceId,
+        isCameraSpace: false,
+        actionTarget: -7
+    });
 })();
 ```
