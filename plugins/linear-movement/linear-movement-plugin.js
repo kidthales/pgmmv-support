@@ -1132,6 +1132,7 @@
      *   - 0: Project Common
      *   - -2: Self Object
      *   - -7: Parent Object
+     * @param instanceId ID of object instance.
      * @returns {
      *   import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance |
      *   import("pgmmv/agtk/constants/switch-variable-objects").AgtkSwitchVariableObjects['ProjectCommon'] |
@@ -1165,6 +1166,14 @@
 
       return Agtk.constants.actionCommands.UnsetObject;
     },
+    /**
+     * Resolve variable value using specified source and variable ID.
+     *
+     * @param variableSource Either the Project Common identifier (`0`) or an
+     * appropriate object instance.
+     * @param variableId The variable ID.
+     * @returns {number}
+     */
     resolveVariableValue = function (
       /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | 0 } */
       variableSource,

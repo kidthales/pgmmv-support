@@ -1043,7 +1043,8 @@
       },
 
       /**
-       * Apply color filter effect with variable channels and variable duration action command.
+       * Apply color filter effect with variable channels and variable duration
+       * action command.
        */
       applyColorFilterEffectWithVariableChannelsAndVariableDuration: {
         /**
@@ -1868,6 +1869,14 @@
 
       return Agtk.constants.actionCommands.UnsetObject;
     },
+    /**
+     * Resolve variable value using specified source and variable ID.
+     *
+     * @param variableSource Either the Project Common identifier (`0`) or an
+     * appropriate object instance.
+     * @param variableId The variable ID.
+     * @returns {number}
+     */
     resolveVariableValue = function (
       /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | 0 } */
       variableSource,
