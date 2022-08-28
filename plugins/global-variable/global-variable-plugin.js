@@ -1,7 +1,7 @@
 /**
  * @file PGMMV plugin that provides a global variable for your scripts.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @license MIT
  */
 (function () {
@@ -412,7 +412,7 @@
         }
 
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
-        name = trim(np[parameterId.globalVariableName]);
+        name = np[parameterId.globalVariableName];
         value = JSON.parse(np[parameterId.globalVariableValue]);
 
         if (!name) {
@@ -432,7 +432,7 @@
         }
 
         // Inject value into global variable!
-        window[name] = value;
+        window[name.trim()] = value;
       },
 
       setInternal: function () {},
