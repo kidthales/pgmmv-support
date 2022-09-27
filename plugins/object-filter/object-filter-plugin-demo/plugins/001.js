@@ -3,7 +3,7 @@
  * to an object instance, the value/intensity/level of which is read from a
  * variable.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @license MIT
  */
 (function () {
@@ -1043,7 +1043,8 @@
       },
 
       /**
-       * Apply color filter effect with variable channels and variable duration action command.
+       * Apply color filter effect with variable channels and variable duration
+       * action command.
        */
       applyColorFilterEffectWithVariableChannelsAndVariableDuration: {
         /**
@@ -1868,6 +1869,14 @@
 
       return Agtk.constants.actionCommands.UnsetObject;
     },
+    /**
+     * Resolve variable value using specified source and variable ID.
+     *
+     * @param variableSource Either the Project Common identifier (`0`) or an
+     * appropriate object instance.
+     * @param variableId The variable ID.
+     * @returns {number}
+     */
     resolveVariableValue = function (
       /** @type {import("pgmmv/agtk/object-instances/object-instance").AgtkObjectInstance | 0 } */
       variableSource,
@@ -2467,74 +2476,72 @@
           window[kVendorGlobalKey] = {};
         }
 
-        if (!window[kVendorGlobalKey][kPluginVendorKey]) {
-          window[kVendorGlobalKey][kPluginVendorKey] = {
-            execApplyBasicFilterEffectWithVariableValue: function (c) {
-              return execApplyBasicFilterEffectWithVariableValue(
-                c.filterEffect,
-                c.valueVariableSourceId,
-                c.valueVariableId,
-                c.duration,
-                c.instanceId,
-                c.actionTarget
-              );
-            },
+        window[kVendorGlobalKey][kPluginVendorKey] = {
+          execApplyBasicFilterEffectWithVariableValue: function (c) {
+            return execApplyBasicFilterEffectWithVariableValue(
+              c.filterEffect,
+              c.valueVariableSourceId,
+              c.valueVariableId,
+              c.duration,
+              c.instanceId,
+              c.actionTarget
+            );
+          },
 
-            execApplyBasicFilterEffectWithVariableValueAndVariableDuration: function (c) {
-              return execApplyBasicFilterEffectWithVariableValueAndVariableDuration(
-                c.filterEffect,
-                c.valueVariableSourceId,
-                c.valueVariableId,
-                c.durationVariableSourceId,
-                c.durationVariableId,
-                c.instanceId,
-                c.actionTarget
-              );
-            },
+          execApplyBasicFilterEffectWithVariableValueAndVariableDuration: function (c) {
+            return execApplyBasicFilterEffectWithVariableValueAndVariableDuration(
+              c.filterEffect,
+              c.valueVariableSourceId,
+              c.valueVariableId,
+              c.durationVariableSourceId,
+              c.durationVariableId,
+              c.instanceId,
+              c.actionTarget
+            );
+          },
 
-            execApplyBlinkFilterEffectWithVariableInterval: function (c) {
-              return execApplyBlinkFilterEffectWithVariableInterval(
-                c.intervalVariableSourceId,
-                c.intervalVariableId,
-                c.instanceId,
-                c.actionTarget
-              );
-            },
+          execApplyBlinkFilterEffectWithVariableInterval: function (c) {
+            return execApplyBlinkFilterEffectWithVariableInterval(
+              c.intervalVariableSourceId,
+              c.intervalVariableId,
+              c.instanceId,
+              c.actionTarget
+            );
+          },
 
-            execApplyColorFilterEffectWithVariableChannels: function (c) {
-              return execApplyColorFilterEffectWithVariableChannels(
-                c.redChannelVariableSourceId,
-                c.redChannelVariableId,
-                c.greenChannelVariableSourceId,
-                c.greenChannelVariableId,
-                c.blueChannelVariableSourceId,
-                c.blueChannelVariableId,
-                c.alphaChannelVariableSourceId,
-                c.alphaChannelVariableId,
-                c.duration,
-                c.instanceId,
-                c.actionTarget
-              );
-            },
+          execApplyColorFilterEffectWithVariableChannels: function (c) {
+            return execApplyColorFilterEffectWithVariableChannels(
+              c.redChannelVariableSourceId,
+              c.redChannelVariableId,
+              c.greenChannelVariableSourceId,
+              c.greenChannelVariableId,
+              c.blueChannelVariableSourceId,
+              c.blueChannelVariableId,
+              c.alphaChannelVariableSourceId,
+              c.alphaChannelVariableId,
+              c.duration,
+              c.instanceId,
+              c.actionTarget
+            );
+          },
 
-            execApplyColorFilterEffectWithVariableChannelsAndVariableDuration: function (c) {
-              return execApplyColorFilterEffectWithVariableChannelsAndVariableDuration(
-                c.redChannelVariableSourceId,
-                c.redChannelVariableId,
-                c.greenChannelVariableSourceId,
-                c.greenChannelVariableId,
-                c.blueChannelVariableSourceId,
-                c.blueChannelVariableId,
-                c.alphaChannelVariableSourceId,
-                c.alphaChannelVariableId,
-                c.durationVariableSourceId,
-                c.durationVariableId,
-                c.instanceId,
-                c.actionTarget
-              );
-            }
-          };
-        }
+          execApplyColorFilterEffectWithVariableChannelsAndVariableDuration: function (c) {
+            return execApplyColorFilterEffectWithVariableChannelsAndVariableDuration(
+              c.redChannelVariableSourceId,
+              c.redChannelVariableId,
+              c.greenChannelVariableSourceId,
+              c.greenChannelVariableId,
+              c.blueChannelVariableSourceId,
+              c.blueChannelVariableId,
+              c.alphaChannelVariableSourceId,
+              c.alphaChannelVariableId,
+              c.durationVariableSourceId,
+              c.durationVariableId,
+              c.instanceId,
+              c.actionTarget
+            );
+          }
+        };
       },
 
       finalize: function () {},
