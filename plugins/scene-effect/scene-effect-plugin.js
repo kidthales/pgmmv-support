@@ -2,7 +2,7 @@
  * @file PGMMV plugin that provides action commands for applying a scene effect,
  * the value/intensity/level of which is read from a variable.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.0.0-beta
+ * @version 1.0.0-beta.1
  * @license MIT
  */
 (function () {
@@ -2262,74 +2262,72 @@
           window[kVendorGlobalKey] = {};
         }
 
-        if (!window[kVendorGlobalKey][kPluginVendorKey]) {
-          window[kVendorGlobalKey][kPluginVendorKey] = {
-            execApplyBasicSceneEffectWithVariableValue: function (c) {
-              return execApplyBasicSceneEffectWithVariableValue(
-                c.sceneEffect,
-                c.valueVariableSourceId,
-                c.valueVariableId,
-                c.duration,
-                c.instanceId,
-                c.layerIndex
-              );
-            },
+        window[kVendorGlobalKey][kPluginVendorKey] = {
+          execApplyBasicSceneEffectWithVariableValue: function (c) {
+            return execApplyBasicSceneEffectWithVariableValue(
+              c.sceneEffect,
+              c.valueVariableSourceId,
+              c.valueVariableId,
+              c.duration,
+              c.instanceId,
+              c.layerIndex
+            );
+          },
 
-            execApplyBasicSceneEffectWithVariableValueAndVariableDuration: function (c) {
-              return execApplyBasicSceneEffectWithVariableValueAndVariableDuration(
-                c.sceneEffect,
-                c.valueVariableSourceId,
-                c.valueVariableId,
-                c.durationVariableSourceId,
-                c.durationVariableId,
-                c.instanceId,
-                c.layerIndex
-              );
-            },
+          execApplyBasicSceneEffectWithVariableValueAndVariableDuration: function (c) {
+            return execApplyBasicSceneEffectWithVariableValueAndVariableDuration(
+              c.sceneEffect,
+              c.valueVariableSourceId,
+              c.valueVariableId,
+              c.durationVariableSourceId,
+              c.durationVariableId,
+              c.instanceId,
+              c.layerIndex
+            );
+          },
 
-            execApplyBlinkSceneEffectWithVariableInterval: function (c) {
-              return execApplyBlinkSceneEffectWithVariableInterval(
-                c.intervalVariableSourceId,
-                c.intervalVariableId,
-                c.instanceId,
-                c.layerIndex
-              );
-            },
+          execApplyBlinkSceneEffectWithVariableInterval: function (c) {
+            return execApplyBlinkSceneEffectWithVariableInterval(
+              c.intervalVariableSourceId,
+              c.intervalVariableId,
+              c.instanceId,
+              c.layerIndex
+            );
+          },
 
-            execApplyColorSceneEffectWithVariableChannels: function (c) {
-              return execApplyColorSceneEffectWithVariableChannels(
-                c.redChannelVariableSourceId,
-                c.redChannelVariableId,
-                c.greenChannelVariableSourceId,
-                c.greenChannelVariableId,
-                c.blueChannelVariableSourceId,
-                c.blueChannelVariableId,
-                c.alphaChannelVariableSourceId,
-                c.alphaChannelVariableId,
-                c.duration,
-                c.instanceId,
-                c.layerIndex
-              );
-            },
+          execApplyColorSceneEffectWithVariableChannels: function (c) {
+            return execApplyColorSceneEffectWithVariableChannels(
+              c.redChannelVariableSourceId,
+              c.redChannelVariableId,
+              c.greenChannelVariableSourceId,
+              c.greenChannelVariableId,
+              c.blueChannelVariableSourceId,
+              c.blueChannelVariableId,
+              c.alphaChannelVariableSourceId,
+              c.alphaChannelVariableId,
+              c.duration,
+              c.instanceId,
+              c.layerIndex
+            );
+          },
 
-            execApplyColorSceneEffectWithVariableChannelsAndVariableDuration: function (c) {
-              return execApplyColorSceneEffectWithVariableChannelsAndVariableDuration(
-                c.redChannelVariableSourceId,
-                c.redChannelVariableId,
-                c.greenChannelVariableSourceId,
-                c.greenChannelVariableId,
-                c.blueChannelVariableSourceId,
-                c.blueChannelVariableId,
-                c.alphaChannelVariableSourceId,
-                c.alphaChannelVariableId,
-                c.durationVariableSourceId,
-                c.durationVariableId,
-                c.instanceId,
-                c.layerIndex
-              );
-            }
-          };
-        }
+          execApplyColorSceneEffectWithVariableChannelsAndVariableDuration: function (c) {
+            return execApplyColorSceneEffectWithVariableChannelsAndVariableDuration(
+              c.redChannelVariableSourceId,
+              c.redChannelVariableId,
+              c.greenChannelVariableSourceId,
+              c.greenChannelVariableId,
+              c.blueChannelVariableSourceId,
+              c.blueChannelVariableId,
+              c.alphaChannelVariableSourceId,
+              c.alphaChannelVariableId,
+              c.durationVariableSourceId,
+              c.durationVariableId,
+              c.instanceId,
+              c.layerIndex
+            );
+          }
+        };
       },
 
       finalize: function () {},

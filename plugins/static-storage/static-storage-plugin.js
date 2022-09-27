@@ -2,7 +2,7 @@
  * @file PGMMV plugin that provides static storage for your switches &
  * variables.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.0.0-beta
+ * @version 1.0.0-beta.1
  * @license MIT
  */
 (function () {
@@ -1247,14 +1247,12 @@
           window[vendorGlobalKey] = {};
         }
 
-        if (!window[vendorGlobalKey][pluginVendorKey]) {
-          window[vendorGlobalKey][pluginVendorKey] = {
-            execSaveVariable: execSaveStaticVariable,
-            execLoadVariable: execLoadStaticVariable,
-            execSaveSwitch: execSaveStaticSwitch,
-            execLoadSwitch: execLoadStaticSwitch
-          };
-        }
+        window[vendorGlobalKey][pluginVendorKey] = {
+          execSaveVariable: execSaveStaticVariable,
+          execLoadVariable: execLoadStaticVariable,
+          execSaveSwitch: execSaveStaticSwitch,
+          execLoadSwitch: execLoadStaticSwitch
+        };
       },
 
       finalize: function () {},

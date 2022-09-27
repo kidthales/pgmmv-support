@@ -662,36 +662,6 @@
       },
       "scenePartList": [
         {
-          "id": 1,
-          "name": "Camera",
-          "partType": 2,
-          "layerIndex": -1,
-          "locked": false,
-          "visible": true,
-          "priority": 4,
-          "dispPriority": 0,
-
-          "othersType": 0,
-          "camera": {
-            "initialPlayerPosition": false,
-            "x": 0,
-            "y": 0,
-            "width": 320,
-            "height": 180,
-            "followTargetType": 0,
-            "objectId": -1,
-            "courseScenePartId": -1,
-            "startPointId": -1,
-            "scrollToShowAllPlayers": false,
-            "scaleToShowAllPlayers": false,
-            "maxScaling": 100.0,
-            "switchObjectId": -1,
-            "switchQualifierId": -1,
-            "switchId": -1
-          },
-          "folder": false
-        },
-        {
           "id": 2,
           "name": "Green Isosceles Triangle",
           "partType": 0,
@@ -807,6 +777,36 @@
           "actionCommandListObject": { "1": [] },
           "disappearActionCommandList": [],
           "folder": false
+        },
+        {
+          "id": 1,
+          "name": "Camera",
+          "partType": 2,
+          "layerIndex": -1,
+          "locked": false,
+          "visible": true,
+          "priority": 4,
+          "dispPriority": 0,
+
+          "othersType": 0,
+          "camera": {
+            "initialPlayerPosition": false,
+            "x": 0,
+            "y": 0,
+            "width": 320,
+            "height": 180,
+            "followTargetType": 0,
+            "objectId": -1,
+            "courseScenePartId": -1,
+            "startPointId": -1,
+            "scrollToShowAllPlayers": false,
+            "scaleToShowAllPlayers": false,
+            "maxScaling": 100.0,
+            "switchObjectId": -1,
+            "switchQualifierId": -1,
+            "switchId": -1
+          },
+          "folder": false
         }
       ],
       "objectSingleIdHash": { "2": 3, "1": 2 },
@@ -877,7 +877,7 @@
       "zenkakuWidth": 1,
       "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
       "localeSettings": {
-        "mainLanguage": {
+        "en_US": {
           "imageFontFlag": true,
           "imageId": 1,
           "fontName": "mplus-1m-regular",
@@ -908,7 +908,7 @@
       "zenkakuWidth": 1,
       "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
       "localeSettings": {
-        "mainLanguage": {
+        "en_US": {
           "imageFontFlag": true,
           "imageId": 2,
           "fontName": "mplus-1m-regular",
@@ -939,7 +939,7 @@
       "zenkakuWidth": 1,
       "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
       "localeSettings": {
-        "mainLanguage": {
+        "en_US": {
           "imageFontFlag": true,
           "imageId": 3,
           "fontName": "mplus-1m-regular",
@@ -970,7 +970,7 @@
       "zenkakuWidth": 10,
       "letterLayout": "",
       "localeSettings": {
-        "mainLanguage": {
+        "en_US": {
           "imageFontFlag": false,
           "imageId": -1,
           "fontName": "mplus-1m-regular",
@@ -3857,7 +3857,7 @@
       "id": 1,
       "name": "plugin_001",
       "filename": "plugins/001.js",
-      "srcFilename": "D:/kidthales/pgmmv-support/plugins/scene-effect/scene-effect-plugin.js",
+      "srcFilename": "D:/Workspaces/pgmmv-support/plugins/scene-effect/scene-effect-plugin.js",
       "enabled": true,
       "internalJson": null,
       "paramValueJson": [],
