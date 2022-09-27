@@ -48,6 +48,7 @@ import type { CCPoint, CCPointConstructor } from './point';
 import type { CCQuad2Constructor } from './quad-2';
 import type { CCQuad3Constructor } from './quad-3';
 import type { CCRect, CCRectConstructor } from './rect';
+import type { CCRenderTextureConstructor } from './render-texture';
 import type { CCRepeat, CCRepeatConstructor } from './repeat';
 import type { CCScale9SpriteConstructor } from './scale-9-sprite';
 import type { CCSceneConstructor } from './scene';
@@ -1108,6 +1109,11 @@ export interface cc {
    * Rect zero.
    */
   RectZero(): CCRect;
+
+  /**
+   * Render texture.
+   */
+  RenderTexture: CCRenderTextureConstructor;
 
   /**
    * Creates a Repeat action. Times is an unsigned integer between 1 and pow(2,30).
