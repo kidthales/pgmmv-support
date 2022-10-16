@@ -954,7 +954,7 @@
       "id": 1,
       "name": "Global Variable Plugin",
       "filename": "plugins/001.js",
-      "srcFilename": "D:/kidthales/pgmmv-support/plugins/global-variable/global-variable-plugin.js",
+      "srcFilename": "D:/Workspaces/pgmmv-support/plugins/global-variable/global-variable-plugin.js",
       "enabled": true,
       "internalJson": {},
       "paramValueJson": [{ "id": 1, "value": "{}" }],
@@ -969,6 +969,28 @@
     "gridMagnet": true,
     "actionIconHide": true,
     "memo": ""
+  },
+  "transitionFlow": {
+    "flowScreenList": [
+      {
+        "id": 1,
+        "scene": true,
+        "sceneMenuId": -1,
+        "x": 24,
+        "y": 24,
+        "width": 144,
+        "height": 48,
+        "shortcutList": [],
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1
+      }
+    ],
+    "flowLinkList": [],
+    "flowGroupList": [],
+    "transitionLinkPaletteList": [],
+    "transitionScreenPaletteList": []
   },
   "animParticleImageList": []
 }

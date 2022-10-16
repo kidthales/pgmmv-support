@@ -1,7 +1,7 @@
 /**
  * @file PGMMV plugin that provides a global variable for your scripts.
  * @author kidthales <kidthales@agogpixel.com>
- * @version 1.0.0
+ * @version 1.0.2
  * @license MIT
  */
 (function () {
@@ -11,7 +11,7 @@
    * @const
    * @private
    */
-  var kDefaultGlobalVariableName = 'MyPlugin',
+  var kDefaultGlobalVariableName = 'MyGlobal',
     /**
      * Default global variable value.
      *
@@ -412,7 +412,7 @@
         }
 
         np = normalizeParameters(paramValue, self.getInfo('parameter'));
-        name = trim(np[parameterId.globalVariableName]);
+        name = (np[parameterId.globalVariableName] || '').trim();
         value = JSON.parse(np[parameterId.globalVariableValue]);
 
         if (!name) {
