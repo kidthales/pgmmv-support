@@ -18,5 +18,5 @@ export interface CCClassConstructor<T extends CCClass = CCClass, U extends any[]
    *
    * @param props
    */
-  extends<V extends this>(props: Record<string, unknown>): V;
+  extend<V extends this>(props: Record<string, unknown>): V;
 }
