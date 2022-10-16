@@ -1,0 +1,2029 @@
+{
+  "version": "1.0.5",
+  "gameIcon": "",
+  "gameIconSrcFilename": "",
+  "gameType": 1,
+  "playerCount": 1,
+  "mode30Fps": false,
+  "fix60FpsMode": false,
+  "tileWidth": 16,
+  "tileHeight": 16,
+  "screenWidth": 1280,
+  "screenHeight": 720,
+  "loadingSceneId": -1,
+  "logoSizeId": 1,
+  "disableLogo": false,
+  "screenSettings": 1,
+  "nxScreenSettings": 0,
+  "nxScreenScale": 1,
+  "nxMarginImage": "",
+  "nxMarginImageSrcFilename": "",
+  "nxSoftResetKeyConfig": 0,
+  "nxReturnToLauncherKeyConfig": 0,
+  "nxMenuBarVisibleKeyConfig": 0,
+  "nxSupportForSingleJoyCon": true,
+  "nxPlayerVersion": "1.0.5",
+  "gameVersion": "1.0",
+  "magnifyWindow": false,
+  "windowMagnification": 2,
+  "adjustPixelMagnification": false,
+  "pixelMagnificationType": 0,
+  "displayMenuBar": false,
+  "displayMousePointer": true,
+  "screenEffectFlagList": [false, false, false],
+  "screenEffectValueList": [0, 0, 0],
+  "initialLocale": "en_US",
+  "wallDetectionOverlapMargin": 0.6,
+  "multithreading": true,
+  "inputMapping": {
+    "inputMappingList": [
+      {
+        "id": 1,
+        "system": true,
+        "keyId": 1,
+        "custom1Input": 0,
+        "custom2Input": 1,
+        "diInput": 0,
+        "pcInput": -1,
+        "nxInput": 0
+      },
+      {
+        "id": 2,
+        "system": true,
+        "keyId": 2,
+        "custom1Input": 1,
+        "custom2Input": 2,
+        "diInput": 1,
+        "pcInput": -1,
+        "nxInput": 1
+      },
+      {
+        "id": 3,
+        "system": true,
+        "keyId": 3,
+        "custom1Input": 2,
+        "custom2Input": 0,
+        "diInput": 2,
+        "pcInput": 1,
+        "nxInput": 2
+      },
+      {
+        "id": 4,
+        "system": true,
+        "keyId": 4,
+        "custom1Input": 3,
+        "custom2Input": 3,
+        "diInput": 3,
+        "pcInput": 2,
+        "nxInput": 3
+      },
+      {
+        "id": 5,
+        "system": true,
+        "keyId": 5,
+        "custom1Input": 5,
+        "custom2Input": 5,
+        "diInput": 5,
+        "pcInput": 3,
+        "nxInput": 7
+      },
+      {
+        "id": 6,
+        "system": true,
+        "keyId": 6,
+        "custom1Input": 23,
+        "custom2Input": 7,
+        "diInput": 11,
+        "pcInput": -1,
+        "nxInput": 11
+      },
+      {
+        "id": 7,
+        "system": true,
+        "keyId": 7,
+        "custom1Input": 4,
+        "custom2Input": 4,
+        "diInput": 4,
+        "pcInput": -1,
+        "nxInput": 6
+      },
+      {
+        "id": 8,
+        "system": true,
+        "keyId": 8,
+        "custom1Input": 22,
+        "custom2Input": 6,
+        "diInput": 10,
+        "pcInput": -1,
+        "nxInput": 10
+      },
+      {
+        "id": 9,
+        "system": true,
+        "keyId": 9,
+        "custom1Input": 10,
+        "custom2Input": 14,
+        "diInput": 12,
+        "pcInput": 10,
+        "nxInput": 12
+      },
+      {
+        "id": 10,
+        "system": true,
+        "keyId": 10,
+        "custom1Input": 12,
+        "custom2Input": 16,
+        "diInput": 14,
+        "pcInput": 12,
+        "nxInput": 14
+      },
+      {
+        "id": 11,
+        "system": true,
+        "keyId": 11,
+        "custom1Input": 13,
+        "custom2Input": 17,
+        "diInput": 15,
+        "pcInput": 13,
+        "nxInput": 15
+      },
+      {
+        "id": 12,
+        "system": true,
+        "keyId": 12,
+        "custom1Input": 11,
+        "custom2Input": 15,
+        "diInput": 13,
+        "pcInput": 11,
+        "nxInput": 13
+      },
+      {
+        "id": 13,
+        "system": true,
+        "keyId": 13,
+        "custom1Input": 24,
+        "custom2Input": 24,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 24
+      },
+      {
+        "id": 14,
+        "system": true,
+        "keyId": 14,
+        "custom1Input": 26,
+        "custom2Input": 26,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 26
+      },
+      {
+        "id": 15,
+        "system": true,
+        "keyId": 15,
+        "custom1Input": 27,
+        "custom2Input": 27,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 27
+      },
+      {
+        "id": 16,
+        "system": true,
+        "keyId": 16,
+        "custom1Input": 25,
+        "custom2Input": 25,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 25
+      },
+      {
+        "id": 17,
+        "system": true,
+        "keyId": 17,
+        "custom1Input": 28,
+        "custom2Input": 28,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 28
+      },
+      {
+        "id": 18,
+        "system": true,
+        "keyId": 18,
+        "custom1Input": 30,
+        "custom2Input": 30,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 30
+      },
+      {
+        "id": 19,
+        "system": true,
+        "keyId": 19,
+        "custom1Input": 31,
+        "custom2Input": 31,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 31
+      },
+      {
+        "id": 20,
+        "system": true,
+        "keyId": 20,
+        "custom1Input": 29,
+        "custom2Input": 29,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": 29
+      },
+      {
+        "id": 21,
+        "system": true,
+        "keyId": 26,
+        "custom1Input": 0,
+        "custom2Input": 1,
+        "diInput": 6,
+        "pcInput": -1,
+        "nxInput": 1
+      },
+      {
+        "id": 22,
+        "system": true,
+        "keyId": 27,
+        "custom1Input": 1,
+        "custom2Input": 2,
+        "diInput": 7,
+        "pcInput": -1,
+        "nxInput": 0
+      }
+    ],
+    "systemInputMappingList": [
+      {
+        "id": 23,
+        "system": true,
+        "keyId": -1,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": 16777248,
+        "nxInput": -1
+      },
+      {
+        "id": 24,
+        "system": true,
+        "keyId": -2,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 25,
+        "system": true,
+        "keyId": -3,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 26,
+        "system": true,
+        "keyId": -4,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 27,
+        "system": true,
+        "keyId": -5,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": 16777296,
+        "nxInput": -1
+      },
+      {
+        "id": 28,
+        "system": true,
+        "keyId": -6,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 29,
+        "system": true,
+        "keyId": -7,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 30,
+        "system": true,
+        "keyId": -8,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 31,
+        "system": true,
+        "keyId": -9,
+        "custom1Input": 7,
+        "custom2Input": 9,
+        "diInput": 8,
+        "pcInput": 16777300,
+        "nxInput": -1
+      },
+      {
+        "id": 32,
+        "system": true,
+        "keyId": -10,
+        "custom1Input": 6,
+        "custom2Input": 8,
+        "diInput": 9,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 33,
+        "system": true,
+        "keyId": -11,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      },
+      {
+        "id": 34,
+        "system": true,
+        "keyId": -12,
+        "custom1Input": -1,
+        "custom2Input": -1,
+        "diInput": -1,
+        "pcInput": -1,
+        "nxInput": -1
+      }
+    ],
+    "operationKeyList": []
+  },
+  "gameInformation": {
+    "title": "Infinite Parallax Plugin Demo",
+    "author": "",
+    "genre": "",
+    "description": "",
+    "mainLanguage": "en_US",
+    "language": ["en_US"]
+  },
+  "soundSetting": {
+    "bgmVolume": 100,
+    "seVolume": 100,
+    "voiceVolume": 100
+  },
+  "playerCharacter": [[], [], [], []],
+  "actionProgramSetting": {
+    "autoApart": true,
+    "gridShow": true,
+    "gridMagnet": true,
+    "actionIconHide": true,
+    "memo": ""
+  },
+  "transitionFlow": {
+    "flowScreenList": [
+      {
+        "id": 1,
+        "scene": true,
+        "sceneMenuId": -1,
+        "x": 24,
+        "y": 24,
+        "width": 144,
+        "height": 48,
+        "shortcutList": [],
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1
+      },
+      {
+        "id": 2,
+        "scene": true,
+        "sceneMenuId": 1,
+        "x": 216,
+        "y": 120,
+        "width": 144,
+        "height": 48,
+        "shortcutList": [],
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1
+      }
+    ],
+    "flowLinkList": [
+      {
+        "id": 1,
+        "typeIdPair": [
+          [0, 1, -1],
+          [0, 2, -1]
+        ],
+        "linkType": 0,
+        "priority": 0,
+        "startPointGroup": 0,
+        "changeConditionType": 1,
+        "noInput": true,
+        "useInput": true,
+        "inputConditionList": [],
+        "sceneTerminated": false,
+        "timeElapsed": false,
+        "timeElapsed300": 0,
+        "switchVariableChanged": false,
+        "switchVariableConditionList": [],
+        "memo": "",
+        "preMoveEffect": 0,
+        "preMoveDuration300": 300,
+        "preMoveBgmChangeType": 0,
+        "preMoveBgmFadeout": false,
+        "preMoveBgmId": -1,
+        "preMoveBgmLoop": false,
+        "preMoveBgmChangeTiming": 0,
+        "preMovePlaySe": false,
+        "preMoveSeId": -1,
+        "postMoveEffect": 0,
+        "postMoveDuration300": 300,
+        "postMoveBgmChangeType": 2,
+        "postMoveBgmFadeout": false,
+        "postMoveBgmId": -1,
+        "postMoveBgmLoop": false,
+        "postMoveBgmChangeTiming": 0,
+        "postMovePlaySe": false,
+        "postMoveSeId": -1,
+        "postMoveChangeSwitchVariable": false,
+        "postMoveSwitchVariableAssignList": [],
+        "postMoveExecuteObjectAction": false,
+        "postMoveObjectActionList": [],
+        "coordList": [
+          [143, 71],
+          [240, 120]
+        ],
+        "endPointFactor": [-1, -1],
+        "visible": true,
+        "num": 0,
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1,
+        "flowLinkIdList": []
+      }
+    ],
+    "flowGroupList": [],
+    "transitionLinkPaletteList": [],
+    "transitionScreenPaletteList": []
+  },
+  "objectGroup": ["Player Group", "Enemy Group"],
+  "tileGroup": ["Default Tile"],
+  "colorActionPaletteList": [
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 }
+  ],
+  "colorActionLinkPaletteList": [
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 },
+    { "a": -1, "r": -1, "g": -1, "b": -1 }
+  ],
+  "sceneList": [
+    {
+      "id": 99999999,
+      "name": "menu scene",
+      "horzScreenCount": 1,
+      "vertScreenCount": 1,
+      "tileset": [],
+      "memo": "",
+      "playBgmType": 1,
+      "bgmId": -1,
+      "loopBgmFlag": true,
+      "bgColorR": 0,
+      "bgColorG": 0,
+      "bgColorB": 0,
+      "setBgImageFlag": false,
+      "bgImageId": -1,
+      "bgImagePlacement": 0,
+      "bgImageMoveSpeed": 1,
+      "bgImageMoveDirection": 0,
+      "bgMoveSpeed": 100,
+      "bgMoveSpeedY": 100,
+      "layerMoveSpeed": [100],
+      "layerMoveSpeedY": [100],
+      "gravityAccel": 0,
+      "gravityDirection": 180,
+      "airResistance": 1,
+      "screenAutoScroll": true,
+      "screenAutoScrollSpeed": 0,
+      "screenAutoScrollDirection": 0,
+      "screenAutoScrollSwitchObjectId": -1,
+      "screenAutoScrollSwitchQualifierId": -1,
+      "screenAutoScrollSwitchId": -1,
+      "limitAreaX": 0,
+      "limitAreaY": 0,
+      "limitAreaWidth": 1280,
+      "limitAreaHeight": 720,
+      "disableLimitArea": false,
+      "limitCameraX": 0,
+      "limitCameraY": 0,
+      "limitCameraWidth": 1280,
+      "limitCameraHeight": 720,
+      "disableLimitCamera": false,
+      "initialMenuLayerId": -1,
+      "preloadMenuLayerIdList": [],
+      "sceneFilterEffectList": [],
+      "layer1": {
+        "tile": {},
+        "name": "Menu 1"
+      },
+      "scenePartList": [
+        {
+          "id": 1,
+          "name": "Camera",
+          "partType": 2,
+          "layerIndex": -1,
+          "locked": false,
+          "visible": true,
+          "priority": 0,
+          "dispPriority": 0,
+
+          "othersType": 0,
+          "camera": {
+            "initialPlayerPosition": false,
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "followTargetType": 0,
+            "objectId": -1,
+            "courseScenePartId": -1,
+            "startPointId": -1,
+            "scrollToShowAllPlayers": false,
+            "scaleToShowAllPlayers": false,
+            "maxScaling": 100.0,
+            "switchObjectId": -1,
+            "switchQualifierId": -1,
+            "switchId": -1
+          },
+          "folder": false
+        }
+      ],
+      "objectSingleIdHash": {},
+      "folder": false
+    },
+    {
+      "id": 1,
+      "name": "test",
+      "horzScreenCount": 1,
+      "vertScreenCount": 1,
+      "tileset": [],
+      "memo": "",
+      "playBgmType": 1,
+      "bgmId": -1,
+      "loopBgmFlag": true,
+      "bgColorR": 0,
+      "bgColorG": 0,
+      "bgColorB": 0,
+      "setBgImageFlag": false,
+      "bgImageId": -1,
+      "bgImagePlacement": 0,
+      "bgImageMoveSpeed": 0,
+      "bgImageMoveDirection": 0,
+      "bgMoveSpeed": 100,
+      "bgMoveSpeedY": 100,
+      "layerMoveSpeed": [100, 100, 100, 100],
+      "layerMoveSpeedY": [100, 100, 100, 100],
+      "gravityAccel": 0,
+      "gravityDirection": 180,
+      "airResistance": 1,
+      "screenAutoScroll": false,
+      "screenAutoScrollSpeed": 0,
+      "screenAutoScrollDirection": 270,
+      "screenAutoScrollSwitchObjectId": -1,
+      "screenAutoScrollSwitchQualifierId": -1,
+      "screenAutoScrollSwitchId": -1,
+      "limitAreaX": 0,
+      "limitAreaY": 0,
+      "limitAreaWidth": 1280,
+      "limitAreaHeight": 720,
+      "disableLimitArea": false,
+      "limitCameraX": 0,
+      "limitCameraY": 0,
+      "limitCameraWidth": 1280,
+      "limitCameraHeight": 720,
+      "disableLimitCamera": false,
+      "initialMenuLayerId": -1,
+      "preloadMenuLayerIdList": [],
+      "sceneFilterEffectList": [],
+      "layer1": {
+        "tile": {},
+        "name": "Layer 1"
+      },
+      "layer2": {
+        "tile": {},
+        "name": "Layer 2"
+      },
+      "layer3": {
+        "tile": {},
+        "name": "Layer 3"
+      },
+      "layer4": {
+        "tile": {},
+        "name": "Layer 4"
+      },
+      "scenePartList": [
+        {
+          "id": 1,
+          "name": "Camera",
+          "partType": 2,
+          "layerIndex": -1,
+          "locked": false,
+          "visible": true,
+          "priority": 0,
+          "dispPriority": 0,
+
+          "othersType": 0,
+          "camera": {
+            "initialPlayerPosition": false,
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "followTargetType": 0,
+            "objectId": -1,
+            "courseScenePartId": -1,
+            "startPointId": -1,
+            "scrollToShowAllPlayers": false,
+            "scaleToShowAllPlayers": false,
+            "maxScaling": 100.0,
+            "switchObjectId": -1,
+            "switchQualifierId": -1,
+            "switchId": -1
+          },
+          "folder": false
+        },
+        {
+          "id": 2,
+          "name": "test",
+          "partType": 0,
+          "layerIndex": 3,
+          "locked": false,
+          "visible": true,
+          "priority": 1,
+          "dispPriority": 0,
+
+          "objectId": 1,
+          "initialActionId": -1,
+          "initialDisplayDirectionFlag": false,
+          "initialDisplayDirection": 180.0,
+          "x": 605,
+          "y": 330,
+          "scalingX": 100,
+          "scalingY": 100,
+          "rotation": 0,
+          "courseScenePartId": -1,
+          "courseStartPointId": -1,
+          "commonActionCommandListObject": {},
+          "actionCommandListObject": {
+            "1": [
+              {
+                "id": 1,
+                "commandType": 50,
+                "ignored": true,
+                "instanceConfigurable": false,
+                "scriptEvaluate": {
+                  "script": "(function () {\n  kt.infiniteParallax.test(instanceId, 4);\n})()",
+                  "useCoffeeScript": false,
+                  "javaScript": ""
+                }
+              }
+            ]
+          },
+          "disappearActionCommandList": [],
+          "folder": false
+        }
+      ],
+      "objectSingleIdHash": { "1": 2 },
+      "folder": false
+    }
+  ],
+  "tilesetList": [],
+  "imageList": [
+    {
+      "id": 1,
+      "name": "font6x10",
+      "filename": "img/001.png",
+      "srcFilename": "",
+      "horzDivCount": 1,
+      "vertDivCount": 1,
+      "folder": false
+    },
+    {
+      "id": 4,
+      "name": "Hubble_Extreme_Deep_Field_(full_resolution)",
+      "filename": "img/004.png",
+      "srcFilename": "D:/Workspaces/pgmmv-support/resources/img/Hubble_Extreme_Deep_Field_(full_resolution).png",
+      "horzDivCount": 1,
+      "vertDivCount": 1,
+      "folder": false
+    },
+    {
+      "id": 5,
+      "name": "Empty 2x2",
+      "filename": "img/005.png",
+      "srcFilename": "D:/Workspaces/pgmmv-support/resources/img/Empty 2x2.png",
+      "horzDivCount": 1,
+      "vertDivCount": 1,
+      "folder": false
+    },
+    {
+      "id": 2,
+      "name": "font8x8",
+      "filename": "img/002.png",
+      "srcFilename": "",
+      "horzDivCount": 1,
+      "vertDivCount": 1,
+      "folder": false
+    },
+    {
+      "id": 3,
+      "name": "font12x12",
+      "filename": "img/003.png",
+      "srcFilename": "",
+      "horzDivCount": 1,
+      "vertDivCount": 1,
+      "folder": false
+    }
+  ],
+  "fontList": [
+    {
+      "id": 0,
+      "name": "font6x10",
+      "imageFontFlag": true,
+      "imageId": 1,
+      "fontName": "mplus-1m-regular",
+      "ttfName": "M+ 1m",
+      "fontSize": 10,
+      "antialiasDisabled": false,
+      "aliasThreshold": 126,
+      "fixedWidth": true,
+      "hankakuWidth": 1,
+      "zenkakuWidth": 1,
+      "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
+      "localeSettings": {
+        "mainLanguage": {
+          "imageFontFlag": true,
+          "imageId": 1,
+          "fontName": "mplus-1m-regular",
+          "ttfName": "M+ 1m",
+          "fontSize": 10,
+          "antialiasDisabled": false,
+          "aliasThreshold": 126,
+          "fixedWidth": true,
+          "hankakuWidth": 1,
+          "zenkakuWidth": 1,
+          "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡"
+        }
+      },
+      "folder": false
+    },
+    {
+      "id": 1,
+      "name": "font8x8",
+      "imageFontFlag": true,
+      "imageId": 2,
+      "fontName": "mplus-1m-regular",
+      "ttfName": "M+ 1m",
+      "fontSize": 10,
+      "antialiasDisabled": false,
+      "aliasThreshold": 126,
+      "fixedWidth": true,
+      "hankakuWidth": 1,
+      "zenkakuWidth": 1,
+      "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
+      "localeSettings": {
+        "mainLanguage": {
+          "imageFontFlag": true,
+          "imageId": 2,
+          "fontName": "mplus-1m-regular",
+          "ttfName": "M+ 1m",
+          "fontSize": 10,
+          "antialiasDisabled": false,
+          "aliasThreshold": 126,
+          "fixedWidth": true,
+          "hankakuWidth": 1,
+          "zenkakuWidth": 1,
+          "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡"
+        }
+      },
+      "folder": false
+    },
+    {
+      "id": 2,
+      "name": "font12x12",
+      "imageFontFlag": true,
+      "imageId": 3,
+      "fontName": "mplus-1m-regular",
+      "ttfName": "M+ 1m",
+      "fontSize": 10,
+      "antialiasDisabled": false,
+      "aliasThreshold": 126,
+      "fixedWidth": true,
+      "hankakuWidth": 1,
+      "zenkakuWidth": 1,
+      "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡",
+      "localeSettings": {
+        "mainLanguage": {
+          "imageFontFlag": true,
+          "imageId": 3,
+          "fontName": "mplus-1m-regular",
+          "ttfName": "M+ 1m",
+          "fontSize": 10,
+          "antialiasDisabled": false,
+          "aliasThreshold": 126,
+          "fixedWidth": true,
+          "hankakuWidth": 1,
+          "zenkakuWidth": 1,
+          "letterLayout": "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nあいうえおかきくけこさしすせそたちつてとなにぬねの\nはひふへほまみむめもやゐゆゑよらりるれろわをん\nがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ\nぁぃぅぇぉゃゅょゎっ\nアイウエオカキクケコサシスセソタチツテトナニヌネノ\nハヒフヘホマミムメモヤヰユヱヨラリルレロワヲン\nガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ\nァィゥェォャュョヮヵヶッ\n!\"#$%&'[]*+,-./{|}`･@~ \n0123456789:;<=>?｢｣^_\n『』【】()≪≫→←↑↓～゛゜､｡"
+        }
+      },
+      "folder": false
+    },
+    {
+      "id": 3,
+      "name": "default",
+      "imageFontFlag": false,
+      "imageId": -1,
+      "fontName": "mplus-1m-regular",
+      "ttfName": "M+ 1m",
+      "fontSize": 10,
+      "antialiasDisabled": false,
+      "aliasThreshold": 126,
+      "fixedWidth": true,
+      "hankakuWidth": 10,
+      "zenkakuWidth": 10,
+      "letterLayout": "",
+      "localeSettings": {
+        "mainLanguage": {
+          "imageFontFlag": false,
+          "imageId": -1,
+          "fontName": "mplus-1m-regular",
+          "ttfName": "M+ 1m",
+          "fontSize": 10,
+          "antialiasDisabled": false,
+          "aliasThreshold": 126,
+          "fixedWidth": true,
+          "hankakuWidth": 10,
+          "zenkakuWidth": 10,
+          "letterLayout": ""
+        }
+      },
+      "folder": false
+    }
+  ],
+  "textList": [],
+  "movieList": [],
+  "bgmList": [],
+  "seList": [],
+  "voiceList": [],
+  "variableList": [
+    {
+      "folder": false,
+      "id": 6,
+      "initialValue": 1,
+      "memo": "",
+      "name": "No. of Players",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 7,
+      "initialValue": -1,
+      "memo": "",
+      "name": "1P Object",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 8,
+      "initialValue": -1,
+      "memo": "",
+      "name": "2P Object",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 9,
+      "initialValue": -1,
+      "memo": "",
+      "name": "3P Object",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 10,
+      "initialValue": -1,
+      "memo": "",
+      "name": "4P Object",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 14,
+      "initialValue": -1,
+      "memo": "",
+      "name": "1P Instance",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 15,
+      "initialValue": -1,
+      "memo": "",
+      "name": "2P Instance",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 16,
+      "initialValue": -1,
+      "memo": "",
+      "name": "3P Instance",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 17,
+      "initialValue": -1,
+      "memo": "",
+      "name": "4P Instance",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 18,
+      "initialValue": -1,
+      "memo": "",
+      "name": "1P Controller ID",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 19,
+      "initialValue": -1,
+      "memo": "",
+      "name": "2P Controller ID",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 20,
+      "initialValue": -1,
+      "memo": "",
+      "name": "3P Controller ID",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 21,
+      "initialValue": -1,
+      "memo": "",
+      "name": "4P Controller ID",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 11,
+      "initialValue": 0,
+      "memo": "",
+      "name": "Portal Transfer Start Time",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 12,
+      "initialValue": 0,
+      "memo": "",
+      "name": "File Slot",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 13,
+      "initialValue": 0,
+      "memo": "",
+      "name": "Destination File Slot",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 22,
+      "initialValue": -1,
+      "memo": "",
+      "name": "Mouse Coordinate X",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 23,
+      "initialValue": -1,
+      "memo": "",
+      "name": "Mouse Coordinate Y",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 24,
+      "initialValue": 100,
+      "memo": "",
+      "name": "BGM Volume Adjust",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 25,
+      "initialValue": 100,
+      "memo": "",
+      "name": "SE Volume Adjust",
+      "toBeSaved": true
+    },
+    {
+      "folder": false,
+      "id": 26,
+      "initialValue": 100,
+      "memo": "",
+      "name": "Voice Volume Adjust",
+      "toBeSaved": true
+    }
+  ],
+  "switchList": [
+    {
+      "id": 1,
+      "name": "Initialize Resources",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 2,
+      "name": "Reset Game",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 6,
+      "name": "Save File",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 7,
+      "name": "Load File",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 8,
+      "name": "Copy File",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 9,
+      "name": "Delete File",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 13,
+      "name": "Check File",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 10,
+      "name": "Default Camera",
+      "initialValue": true,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 11,
+      "name": "Show Loading Screen",
+      "initialValue": true,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    },
+    {
+      "id": 12,
+      "name": "End Game",
+      "initialValue": false,
+      "toBeSaved": true,
+      "memo": "",
+      "folder": false
+    }
+  ],
+  "animationOnlyList": [],
+  "objectList": [
+    {
+      "id": 1,
+      "name": "test",
+      "type": 0,
+      "group": 0,
+      "animationId": 1,
+      "operatable": false,
+      "priority": 0,
+      "initialActionId": 1,
+      "initialDisplayDirectionFlag": false,
+      "initialDisplayDirection": 180.0,
+      "hitPlayerGroup": false,
+      "hitEnemyGroup": false,
+      "hitObjectGroupBit": 0,
+      "collideWithPlayerGroup": false,
+      "collideWithEnemyGroup": false,
+      "collideWithObjectGroupBit": 0,
+      "collideWithTile": false,
+      "collideWithTileGroupBit": 0,
+      "dispPriority": 0,
+      "actionList": [
+        {
+          "id": 1,
+          "name": "Actions001",
+          "a": 255,
+          "r": 166,
+          "g": 166,
+          "b": 166,
+          "animMotionId": 1,
+          "animDirectionId": 1,
+          "takeOverMotion": false,
+          "jumpable": false,
+          "enableCustomizedJump": false,
+          "ignoreMoveInput": false,
+          "keepDirection": false,
+          "ignoreGravity": false,
+          "gravity": 100,
+          "reflectGravityToDisplayDirection": false,
+          "moveSpeed": 100,
+          "upDownMoveSpeed": 100,
+          "jumpSpeed": 100,
+          "turnSpeed": 100,
+          "objCommandList": [
+            {
+              "id": 1,
+              "commandType": 50,
+              "ignored": false,
+              "instanceConfigurable": false,
+              "scriptEvaluate": {
+                "script": "(function () {\n  kt.infiniteParallax.test(instanceId, 4);\n})()",
+                "useCoffeeScript": false,
+                "javaScript": ""
+              }
+            }
+          ],
+          "memo": "",
+          "x": -72,
+          "y": -24,
+          "width": 168,
+          "height": 48,
+          "shortcutList": []
+        }
+      ],
+      "actionLinkList": [],
+      "actionGroupList": [],
+      "memo": "",
+      "testplayOnly": false,
+      "appearCondition": 1,
+      "appearConditionTileCount": 0,
+      "reappearCondition": 1,
+      "reappearConditionTileCount": 0,
+      "hp": 1,
+      "maxHp": 1,
+      "minAttack": 1,
+      "maxAttack": 1,
+      "initialDamageRate": 100,
+      "damageVariationValue": 0,
+      "critical": true,
+      "criticalRatio": 200,
+      "criticalIncidence": 5,
+      "moveType": 0,
+      "normalAccelMove": false,
+      "tankAccelMove": false,
+      "carAccelMove": false,
+      "upMoveKeyId": -1,
+      "downMoveKeyId": -1,
+      "leftMoveKeyId": -1,
+      "rightMoveKeyId": -1,
+      "forwardMoveKeyId": -1,
+      "backwardMoveKeyId": -1,
+      "leftTurnKeyId": -1,
+      "rightTurnKeyId": -1,
+      "slipOnSlope": false,
+      "diagonalMoveWithPolar": false,
+      "moveAroundWithinDots": false,
+      "dotsToMoveAround": 0,
+      "horizontalMove": 1.0,
+      "verticalMove": 1.0,
+      "horizontalAccel": 1.0,
+      "horizontalMaxMove": 1.0,
+      "horizontalDecel": 1.0,
+      "verticalAccel": 1.0,
+      "verticalMaxMove": 1.0,
+      "verticalDecel": 1.0,
+      "forwardMove": 1.0,
+      "backwardMove": 1.0,
+      "forwardAccel": 1.0,
+      "forwardMaxMove": 1.0,
+      "forwardDecel": 1.0,
+      "backwardAccel": 1.0,
+      "backwardMaxMove": 1.0,
+      "backwardDecel": 1.0,
+      "leftTurn": 1.0,
+      "rightTurn": 1.0,
+      "jumpInitialSpeed": 1.0,
+      "gravity": 1.0,
+      "movableWhenJumping": true,
+      "movableWhenFalling": true,
+      "fallOnCollideWithWall": true,
+      "fallOnCollideWithHitbox": true,
+      "jumpInputOperationKeyId": -1,
+      "affectInputDuration300": 0,
+      "limitFalldownAmount": true,
+      "maxFalldownAmount": 16.0,
+      "invincibleOnDamaged": true,
+      "invincibleDuration300": 300,
+      "winkWhenInvincible": true,
+      "winkInterval300": 300,
+      "afterimage": false,
+      "afterimageCount": 0,
+      "afterimageInterval": 0.0,
+      "afterimageDuration300": 0,
+      "fillAfterimage": false,
+      "fillAfterimageA": 255,
+      "fillAfterimageR": 128,
+      "fillAfterimageG": 0,
+      "fillAfterimageB": 255,
+      "fadeoutAfterimage": false,
+      "fadeoutAfterimageStart300": 0,
+      "useAnimationAfterimage": false,
+      "afterimageAnimationId": -1,
+      "followType": 1,
+      "followPrecision": 100,
+      "followIntervalByTime300": 0,
+      "followIntervalByLocusLength": 0,
+      "childDamageType": 1,
+      "takeOverDamageRateToParent": false,
+      "unattackableToParent": true,
+      "takeoverDispDirection": true,
+      "takeoverAngle": true,
+      "takeoverScaling": true,
+      "takeoverIntensity": true,
+      "disappearWhenHp0": false,
+      "disappearWhenOutOfCamera": false,
+      "disappearCameraMarginTileCount": 2,
+      "fixedInCamera": false,
+      "pushedbackByObject": true,
+      "takeoverStatesAtSceneEnd": false,
+      "disappearSettingFlag": false,
+      "disappearSetting": {
+        "otherObjectDecrementHp": true,
+        "decrement": 0,
+        "targetObjectType": 1,
+        "targetObjectTypeByType": 0,
+        "targetObjectGroup": -1,
+        "targetObjectId": -3,
+        "damageRange": 0,
+        "cameraRangeAdjust": 0,
+        "objCommandList": []
+      },
+      "fireBulletSettingFlag": false,
+      "additionalDisplayList": [],
+      "fireBulletSettingList": [],
+      "effectSettingFlag": false,
+      "effectSettingList": [],
+      "connectSettingFlag": false,
+      "connectSettingList": [],
+      "moveDispDirectionSettingFlag": false,
+      "moveDispDirectionSetting": {
+        "upOperationKeyId": -1,
+        "downOperationKeyId": -1,
+        "leftOperationKeyId": -1,
+        "rightOperationKeyId": -1,
+        "actionInfoList": []
+      },
+      "physicsSettingFlag": false,
+      "physicsSetting": {
+        "affectPhysics": false,
+        "physicsAffected": false,
+        "followConnectedPhysics": false,
+        "templateId": -1,
+        "density": 1000,
+        "mass": 1,
+        "friction": 1,
+        "repulsion": 0.5,
+        "nonCollisionGroup": []
+      },
+      "viewportLightSettingFlag": false,
+      "viewportLightSettingList": [],
+      "commonActionSettingFlag": false,
+      "commonActionSettingList": [],
+      "commonActionGroup": {
+        "id": 99999999,
+        "name": "Common Actions",
+        "a": 255,
+        "r": 255,
+        "g": 255,
+        "b": 0,
+        "actionIdList": [],
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 64,
+        "collapsed": false
+      },
+      "aroundCharacterViewSettingFlag": false,
+      "aroundCharacterViewSetting": {
+        "tileOn": true,
+        "objectOn": true,
+        "viewType": 0,
+        "multiplyFill": true,
+        "fillA": 255,
+        "fillR": 255,
+        "fillG": 255,
+        "fillB": 255,
+        "transparency": 0,
+        "width": 0,
+        "height": 0
+      },
+      "invincibleSettingFlag": false,
+      "invincibleSettingList": [],
+      "damagedSettingFlag": false,
+      "damagedSettingList": [],
+      "moveRestrictionSettingFlag": false,
+      "moveRestrictionSettingList": [],
+      "variableList": [
+        {
+          "folder": false,
+          "id": 1,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Object ID",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 2,
+          "initialValue": 0,
+          "memo": "",
+          "name": "HP",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 3,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Max HP",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 4,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Min Attack",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 5,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Max attack",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 15,
+          "initialValue": 100,
+          "memo": "",
+          "name": "Critical Boost (%)",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 16,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Critical Rate (%)",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 6,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Received Damage Rate",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 36,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Damage Spread",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 7,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Attack Attribute",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 8,
+          "initialValue": -1,
+          "memo": "",
+          "name": "Area Detection",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 9,
+          "initialValue": 0,
+          "memo": "",
+          "name": "X Coordinate Position",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 10,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Y Coordinate Position",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 37,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Display Direction",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 32,
+          "initialValue": 100,
+          "memo": "",
+          "name": "Scale X (%)",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 33,
+          "initialValue": 100,
+          "memo": "",
+          "name": "Scale Y (%)",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 11,
+          "initialValue": 0,
+          "memo": "",
+          "name": "X Direction Speed",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 12,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Y Direction Speed",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 23,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Horizontal Movement",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 24,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Vertical Movement",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 25,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Horizontal Acceleration",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 26,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Vertical Acceleration",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 27,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Horizontal Max Movement",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 28,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Vertical Max Movement",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 29,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Horizontal Deceleration",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 30,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Vertical Deceleration",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 35,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Initial Jump Speed",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 13,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Player Detection",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 22,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Controller ID",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 14,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Received Damage Amount",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 17,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Time of Invincibility",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 18,
+          "initialValue": -1,
+          "memo": "",
+          "name": "Animation frame",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 19,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Instance ID",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 21,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Single Unit Instance ID",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 20,
+          "initialValue": 0,
+          "memo": "",
+          "name": "No. of Same Instances Placed in Scene",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 31,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Duration to take over accelerated speed",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 34,
+          "initialValue": 0,
+          "memo": "",
+          "name": "Display Priority",
+          "toBeSaved": true
+        },
+        {
+          "folder": false,
+          "id": 38,
+          "initialValue": -1,
+          "memo": "",
+          "name": "Parent Object Instance ID",
+          "toBeSaved": true
+        }
+      ],
+      "switchList": [
+        {
+          "id": 1,
+          "name": "Invincibility",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 2,
+          "name": "Free Movement",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 3,
+          "name": "Lock Target",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 4,
+          "name": "Portal Touched",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 5,
+          "name": "Critical Received",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 6,
+          "name": "Disable",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 7,
+          "name": "SlipOnSlope",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 8,
+          "name": "AffectOtherPhysics",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 9,
+          "name": "AffectedByOtherPhysics",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 10,
+          "name": "FollowConnectedPhysics",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        },
+        {
+          "id": 11,
+          "name": "Display Afterimage",
+          "initialValue": false,
+          "toBeSaved": true,
+          "memo": "",
+          "folder": false
+        }
+      ],
+      "databaseSettingFlag": false,
+      "databaseId": 0,
+      "physicsPartList": [],
+      "priorityInPhysics": 0,
+      "folder": false
+    }
+  ],
+  "animationList": [
+    {
+      "id": 1,
+      "name": "empty",
+      "type": 0,
+      "originType": 0,
+      "originX": 0,
+      "originY": 0,
+      "resourceInfoList": [{ "id": 1, "image": true, "imageId": 5, "hdivCount": 1, "vdivCount": 1 }],
+      "motionList": [
+        {
+          "id": 1,
+          "name": "Motion001",
+          "dispFrameCount300": 5,
+          "loopCount": 1,
+          "infiniteLoop": false,
+          "reversePlay": false,
+          "directionList": [
+            {
+              "id": 1,
+              "name": "Direction001",
+              "directionBit": 0,
+              "autoGeneration": false,
+              "yFlip": false,
+              "resourceInfoId": 1,
+              "animationName": "",
+              "timelineInfoList": [
+                {
+                  "id": 1,
+                  "name": "Wall Detection",
+                  "timelineType": 0,
+                  "areaList": [
+                    {
+                      "frame": 0,
+                      "x": 0,
+                      "y": 0,
+                      "width": 2,
+                      "height": 2,
+                      "backside": false,
+                      "valid": true,
+                      "interpType": 0
+                    }
+                  ]
+                },
+                {
+                  "id": 2,
+                  "name": "Collision Detection",
+                  "timelineType": 1,
+                  "areaList": [
+                    {
+                      "frame": 0,
+                      "x": 0,
+                      "y": 0,
+                      "width": 2,
+                      "height": 2,
+                      "backside": false,
+                      "valid": true,
+                      "interpType": 0
+                    }
+                  ]
+                },
+                { "id": 3, "name": "Attack Detection", "timelineType": 2, "areaList": [] },
+                { "id": 4, "name": "Connection Point", "timelineType": 3, "areaList": [] }
+              ],
+              "frameList": [
+                {
+                  "id": 1,
+                  "frameCount300": 5,
+                  "interpType": 0,
+                  "playSe": false,
+                  "playSeId": -1,
+                  "playVoice": false,
+                  "playVoiceId": -1,
+                  "centerOrigin": true,
+                  "originX": 0,
+                  "originY": 0,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "centerX": 0,
+                  "centerY": 0,
+                  "scalingX": 100,
+                  "scalingY": 100,
+                  "flipX": false,
+                  "flipY": false,
+                  "rotation": 0,
+                  "alpha": 255,
+                  "r": 255,
+                  "g": 255,
+                  "b": 255,
+                  "imageTileX": 0,
+                  "imageTileY": 0
+                }
+              ],
+              "frameLocked": false,
+              "framePreviewVisible": true,
+              "imageWidth": 2,
+              "imageHeight": 2
+            }
+          ]
+        }
+      ],
+      "memo": "",
+      "folder": false
+    }
+  ],
+  "transitionPortalList": [],
+  "pluginList": [
+    {
+      "id": 1,
+      "name": "plugin_001",
+      "filename": "plugins/001.js",
+      "srcFilename": "D:/Workspaces/pgmmv-support/plugins/infinite-parallax/infinite-parallax-plugin.js",
+      "enabled": true,
+      "internalJson": {},
+      "paramValueJson": [],
+      "officialKey": "",
+      "folder": false
+    }
+  ],
+  "databaseList": [],
+  "objectActionProgramSettings": {
+    "autoApart": true,
+    "gridShow": true,
+    "gridMagnet": true,
+    "actionIconHide": true,
+    "memo": ""
+  },
+  "transitionFlow": {
+    "flowScreenList": [
+      {
+        "id": 1,
+        "scene": true,
+        "sceneMenuId": -1,
+        "x": 24,
+        "y": 24,
+        "width": 144,
+        "height": 48,
+        "shortcutList": [],
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1
+      },
+      {
+        "id": 2,
+        "scene": true,
+        "sceneMenuId": 1,
+        "x": 216,
+        "y": 120,
+        "width": 144,
+        "height": 48,
+        "shortcutList": [],
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1
+      }
+    ],
+    "flowLinkList": [
+      {
+        "id": 1,
+        "typeIdPair": [
+          [0, 1, -1],
+          [0, 2, -1]
+        ],
+        "linkType": 0,
+        "priority": 0,
+        "startPointGroup": 0,
+        "changeConditionType": 1,
+        "noInput": true,
+        "useInput": true,
+        "inputConditionList": [],
+        "sceneTerminated": false,
+        "timeElapsed": false,
+        "timeElapsed300": 0,
+        "switchVariableChanged": false,
+        "switchVariableConditionList": [],
+        "memo": "",
+        "preMoveEffect": 0,
+        "preMoveDuration300": 300,
+        "preMoveBgmChangeType": 0,
+        "preMoveBgmFadeout": false,
+        "preMoveBgmId": -1,
+        "preMoveBgmLoop": false,
+        "preMoveBgmChangeTiming": 0,
+        "preMovePlaySe": false,
+        "preMoveSeId": -1,
+        "postMoveEffect": 0,
+        "postMoveDuration300": 300,
+        "postMoveBgmChangeType": 2,
+        "postMoveBgmFadeout": false,
+        "postMoveBgmId": -1,
+        "postMoveBgmLoop": false,
+        "postMoveBgmChangeTiming": 0,
+        "postMovePlaySe": false,
+        "postMoveSeId": -1,
+        "postMoveChangeSwitchVariable": false,
+        "postMoveSwitchVariableAssignList": [],
+        "postMoveExecuteObjectAction": false,
+        "postMoveObjectActionList": [],
+        "coordList": [
+          [143, 71],
+          [240, 120]
+        ],
+        "endPointFactor": [-1, -1],
+        "visible": true,
+        "num": 0,
+        "a": -1,
+        "r": -1,
+        "g": -1,
+        "b": -1,
+        "flowLinkIdList": []
+      }
+    ],
+    "flowGroupList": [],
+    "transitionLinkPaletteList": [],
+    "transitionScreenPaletteList": []
+  },
+  "animParticleImageList": []
+}

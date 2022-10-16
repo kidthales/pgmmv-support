@@ -28,7 +28,7 @@
     "npm": ">=6.0.0"
   },
   "lint-staged": {
-    "*.(js|ts)": "eslint --cache --fix --ignore-pattern 'pgmmv/*'",
+    "*.(js)": "eslint --cache --fix --ignore-pattern 'pgmmv/*' --ignore-pattern 'plugins/*/*-demo/*'",
     "*.(json|md|yml)": "prettier --write"
   }
 }
